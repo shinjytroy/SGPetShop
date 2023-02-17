@@ -720,13 +720,13 @@ li.menu-item .nav-label.sale-label::before{
 	background: transparent;
 }
 .header-style-1 .primary-nav-section{
-	background: #444444;
+	background: #E90064;
 }
 .primary{
 	position: relative;
 }
 .primary-nav-section .primary>.menu-item{
-	display: block;
+	
 	float: left;
 	position: static;
 }
@@ -735,7 +735,7 @@ li.menu-item .nav-label.sale-label::before{
 	color: #ffffff;
 }
 .primary .menu-item.home-icon>a{
-	padding: 10px 20px;
+	padding: auto;
 }
 .primary>.menu-item:not(.home-icon)>a{
 	font-weight: 700;
@@ -744,10 +744,10 @@ li.menu-item .nav-label.sale-label::before{
 	padding: 11px 23px;
 }
 .primary>.menu-item:not(first-child){
-	border-right: 1px solid #555555;
+	border-right: 1px solid  #E90064;
 }
 .primary>.menu-item:not(.home-icon):hover{
-	background: #555555;
+	background:  #E90064;
 }
 .primary .menu-item>a:focus,
 .primary .menu-item>a:active,
@@ -5095,7 +5095,7 @@ table.shop_attributes tbody{
 .header-toggle .primary-nav-section{
     display: inline-block;
     position: relative;
-    width: 23.0769230769%;
+    width: auto;
     float: left;
 }
 .header-toggle .nav.primary{

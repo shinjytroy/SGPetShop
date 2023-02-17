@@ -37,22 +37,25 @@
 
 	<!--header-->
 	<header id="header" class="header header-style-1">
-		<div class="container-fluid">
+		<div class="container-fluid" >
 			<div class="row">
-				<div class="topbar-menu-area">
-					<div class="container">
+				<div class="topbar-menu-area" style="padding-top:17px ; padding-bottom:17px ;background-color:#dc3545 ; font-size:15px ;">
+					<div class="container"  >
 						<div class="topbar-menu left-menu">
-							<!-- <ul>
-								<li class="menu-item" >
-									<a title="Hotline: (+123) 456 789" href="#" ><span class="icon label-before fa fa-mobile"></span>Hotline: (+123) 456 789</a>
-								</li>
-							</ul> -->
-						</div>
-						<div class="topbar-menu right-menu">
 							<ul>
-								<li class="menu-item" ><a title="Register or Login" href="{{Route('login')}}">Login</a></li>
-								<li class="menu-item" ><a title="Register or Login" href="{{Route('logout')}}">LogOut</a></li>
-
+								<li class="menu-item" >
+									<a style="color:white" title="Address : 590 Cach Mang Thang Tam, Ward 11, District 3, City. Ho Chi Minh City" href="#" ><span class="icon label-before fa fa-home"></span>Address : 590 Cach Mang Thang Tam, Ward 11, District 3, City. Ho Chi Minh City</a>
+								</li>
+							</ul>
+							
+						</div>
+						 <div class="topbar-menu right-menu">
+							<ul>
+							<li class="menu-item" >
+							<a style="color:white" title="Hotline: (+123) 456 789" href="#" ><span  class="icon  fa fa-mobile"></span> Hotline: (+123) 456 789</a>
+								<!-- <li class="menu-item" ><a title="Register or Login" href="{{Route('login')}}">Login</a></li>
+								<li class="menu-item" ><a title="Register or Login" href="{{Route('logout')}}">LogOut</a></li> -->
+							</li>
 							</ul>
 						</div>
 					</div>
@@ -138,6 +141,7 @@
 									</div>
 								</a>
 							</div>
+
 							
 							<div class="wrap-icon-section show-up-after-1024">
 								<a href="#" class="mobile-navigation">
@@ -164,14 +168,14 @@
 						</div>
 					</div>
 
-					<div class="primary-nav-section">
+					<div class="primary-nav-section" style="padding-top:15px ; padding-bottom:15px ;font-family:Quicksand ; font-size:17px  ">
 						<div class="container">
 							<ul class="nav primary clone-main-menu" id="mercado_main" data-menuname="Main menu" >
-								<li class="menu-item home-icon">
-									<a href="{{Route('home')}}" class="link-term mercado-item-title"><i class="fa fa-home" aria-hidden="true"></i></a>
+								<li class="menu-item" >
+									<a href="{{Route('home')}}"class="link-term mercado-item-title" alt="home">Home</a>
 								</li>
-								<li class="menu-item">
-									<a href="{{Route('about')}}" class="link-term mercado-item-title">About Us Viet</a>
+								<li class="menu-item" >
+									<a href="{{Route('about')}}" class="link-term mercado-item-title">About Us </a>
 								</li>
 								<li class="menu-item">
 									<a href="{{Route('shop')}}" class="link-term mercado-item-title">Products</a>
@@ -203,7 +207,7 @@
 		<div class="wrap-footer-content footer-style-1">
 
 			<div class="wrap-function-info">
-				<div class="container">
+				<div class="container" >
 					<ul>
 						<li class="fc-info-item">
 							<i class="fa fa-truck" aria-hidden="true"></i>
