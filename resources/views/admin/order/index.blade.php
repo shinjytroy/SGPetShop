@@ -75,7 +75,7 @@
                           </i>
                           View
                       </a>
-                      <form action="{{ Route('admin.product.destroy', $item->id) }}" method="post" style="display:inline-block">
+                      <form action=" #" method="post" style="display:inline-block">
                         @csrf
                         @method("delete")
                         <button type="submit" class="btn btn-danger btn-sm">
