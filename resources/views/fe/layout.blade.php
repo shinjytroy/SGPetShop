@@ -39,7 +39,7 @@
 	<header id="header" class="header header-style-1">
 		<div class="container-fluid" >
 			<div class="row">
-				<div class="topbar-menu-area" style="padding-top:17px ; padding-bottom:17px ;background-color:#dc3545 ; font-size:15px ;">
+				<div class="topbar-menu-area" style="padding-top:9px ; padding-bottom:9px ;background-color:#dc3545 ; font-size:13px ;">
 					<div class="container"  >
 						<div class="topbar-menu left-menu">
 							<ul>
@@ -168,7 +168,7 @@
 						</div>
 					</div>
 
-					<div class="primary-nav-section" style="padding-top:15px ; padding-bottom:15px ;font-family:Quicksand ; font-size:17px  ">
+					<div class="primary-nav-section" style="padding-top:13px ; padding-bottom:13px ;font-family:Quicksand ; font-size:17px  ">
 						<div class="container">
 							<ul class="nav primary clone-main-menu" id="mercado_main" data-menuname="Main menu" >
 								<li class="menu-item" >

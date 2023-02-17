@@ -47,10 +47,10 @@ class ProductController extends Controller
         {
             $file=$request->file('photo');
             $extension = $file->getClientOriginalExtension();
-            if($extension != 'jpg' && $extension != 'png' && $extension !='jpeg')
+            if($extension != 'jpg' && $extension != 'png' && $extension !='jpeg' && $extension !='webp')
             {
                 return view('admin.product.create')
-                    ->with('loi','Bạn chỉ được chọn file có đuôi jpg,png,jpeg');
+                    ->with('loi','Bạn chỉ được chọn file có đuôi jpg,png,jpeg ');
             }
             $imageName = $file->getClientOriginalName();
             $file->move("images",$imageName);
@@ -102,7 +102,7 @@ class ProductController extends Controller
         {
             $file=$request->file('photo');
             $extension = $file->getClientOriginalExtension();
-            if($extension != 'jpg' && $extension != 'png' && $extension !='jpeg')
+            if($extension != 'jpg' && $extension != 'png' && $extension !='jpeg' && $extension !='webp')
             {
                 return view('admin.product.create')
                     ->with('loi','Bạn chỉ được chọn file có đuôi jpg,png,jpeg');
