@@ -153,6 +153,7 @@ class HomeController extends Controller
 
        }
         $request->session()->forget('cart');
+        
         return view('fe.thankyou');
     }
      public function shop()
@@ -166,5 +167,10 @@ class HomeController extends Controller
     public function contact()
     {
         return view ('fe.contact');
+    }
+    public function person()
+    {
+
+        return view ('fe.person');
     }
 }

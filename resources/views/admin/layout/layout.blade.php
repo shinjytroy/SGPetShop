@@ -29,6 +29,9 @@
       <li class="nav-item d-none d-sm-inline-block">
         <a href="{{asset('/')}}" class="nav-link">View HomePage</a>
       </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="{{Route('logout')}}" class="nav-link">Log Out</a>
+      </li>
     </ul>
 
     <!-- Right navbar links -->

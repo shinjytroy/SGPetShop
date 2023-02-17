@@ -51,7 +51,7 @@
 						<div class="topbar-menu right-menu">
 							<ul>
 								<li class="menu-item" ><a title="Register or Login" href="{{Route('login')}}">Login</a></li>
-								<!-- <li class="menu-item" ><a title="Register or Login" href="register.html">Register</a></li> -->
+								<li class="menu-item" ><a title="Register or Login" href="{{Route('logout')}}">LogOut</a></li>
 
 							</ul>
 						</div>
@@ -128,14 +128,17 @@
 								</a>
 							</div>
 							<div class="wrap-icon-section wishlist">
-								<a href="#" class="link-direction">
-									<i class="fa fa-heart" aria-hidden="true"></i>
+								<a href="{{asset('person')}}" class="link-direction">
+									<i class="fa fa-user" aria-hidden="true"></i>
 									<div class="left-info">
-										<span class="index">0 item</span>
-										<span class="title">Wishlist</span>
+									@if (Session::get('user'))
+										<span class="index"> {{Session::get('user')->name}}</span>
+									@endif	
+										<span class="title"></span>
 									</div>
 								</a>
 							</div>
+							
 							<div class="wrap-icon-section show-up-after-1024">
 								<a href="#" class="mobile-navigation">
 									<span></span>

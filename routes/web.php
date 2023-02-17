@@ -36,6 +36,7 @@ Route::post('/add-cart', [FEController::class, 'addCart'])->name('addCart');
 Route::get('/shop', [FEController::class, 'shop'])->name('shop');
 Route::get('/about', [FEController::class, 'about'])->name('about');
 Route::get('/contact', [FEController::class, 'contact'])->name('contact');
+Route::get('/person', [FEController::class, 'person'])->name('person');
 Route::get('/view-cart', [FEController::class, 'viewCart'])->name('viewCart');
 Route::get('/clear-cart', [FEController::class, 'clearCart'])->name('clearCart');
 
