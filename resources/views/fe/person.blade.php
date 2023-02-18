@@ -4,7 +4,7 @@
 
 <div class="wrap-breadcrumb">
   <ul>
-    <li class="item-link"><a href="#" class="link">home</a></li>
+    <li class="item-link"><a href="{{Route('home')}}" class="link">home</a></li>
     <li class="item-link"><span>Person</span></li>
   </ul>
 </div>
@@ -18,6 +18,8 @@
 
 @else
 <h3> Please Login To Continuce
+
+<h4><a href="{{Route('login')}}">Login</a></h4>
 @endif
 
   <div class="wrap-show-advance-info-box style-1 box-in-site">
