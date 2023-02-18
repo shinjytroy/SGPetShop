@@ -18,7 +18,7 @@ class CanAdmin
     {
         $user = $request->session()->get('user');
         
-        if ($user->role == 1) {
+        if ($user->role == 1 || $user->role ==2) {
             return $next($request);
         }
         return redirect()->route('login');

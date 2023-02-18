@@ -54,12 +54,14 @@
                   <td>{{ $item->name }}</td>
                   <td>{{ $item->phone }}</td>
                   <td class="project-state">
+                    @if(Session::get('user')->name == "VietDepTrai")
                     @if ($item->role != null && $item->role == 1)
                         <span class="badge badge-danger">Admin</span>
                     @else 
                       <span class="badge badge-success">User</span>
                     @endif
                   </td>
+                 
                   <td class="project-actions text-right">
                       <a class="btn btn-primary btn-sm" href="#">
                           <i class="fas fa-folder">
@@ -81,6 +83,29 @@
                         </button>
                       </form>
                   </td>
+                 
+                  @else
+                  @if ($item->role != null && $item->role == 1)
+                        <span class="badge badge-danger">Admin</span>
+                    @else 
+                      <span class="badge badge-success">User</span>
+                    @endif
+                  </td>
+                 @if ($item->role != null && $item->name !="VietDepTrai" )
+                  <td class="project-actions text-right">
+                      <a class="btn btn-primary btn-sm" href="#">
+                          <i class="fas fa-folder">
+                          </i>
+                          View
+                      </a>
+                      <a class="btn btn-info btn-sm" href="{{ Route('admin.user.edit', $item->id) }}">
+                          <i class="fas fa-pencil-alt">
+                          </i>
+                          Edit
+                      </a>
+                    @endif
+                  </td>
+                  @endif
               </tr>
             @endforeach
           </tbody>
