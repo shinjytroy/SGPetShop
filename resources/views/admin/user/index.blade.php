@@ -54,7 +54,7 @@
                   <td>{{ $item->name }}</td>
                   <td>{{ $item->phone }}</td>
                   <td class="project-state">
-                    @if(Session::get('user')->name == "VietDepTrai")
+                   @if(Session::get('user')->name == "Adminshop")
                     @if ($item->role != null && $item->role == 1)
                         <span class="badge badge-danger">Admin</span>
                     @else 
@@ -91,7 +91,7 @@
                       <span class="badge badge-success">User</span>
                     @endif
                   </td>
-                 @if ($item->role != null && $item->name !="VietDepTrai" )
+                 @if ($item->role != null && $item->name !="Adminshop" )
                   <td class="project-actions text-right">
                       <a class="btn btn-primary btn-sm" href="#">
                           <i class="fas fa-folder">
