@@ -39,7 +39,7 @@
 	<header id="header" class="header header-style-1">
 		<div class="container-fluid" >
 			<div class="row">
-				<div class="topbar-menu-area" style="padding-top:9px ; padding-bottom:9px ;background-color:#dc3545 ; font-size:13px ;">
+				<div class="topbar-menu-area" style="padding-top:9px ; padding-bottom:9px ;background-color:#dc3545 ; font-size:15px ;">
 					<div class="container"  >
 						<div class="topbar-menu left-menu">
 							<ul>
@@ -53,8 +53,11 @@
 							<ul>
 							<li class="menu-item" >
 							<a style="color:white" title="Hotline: (+123) 456 789" href="#" ><span  class="icon  fa fa-mobile"></span> Hotline: (+123) 456 789</a>
-								<!-- <li class="menu-item" ><a title="Register or Login" href="{{Route('login')}}">Login</a></li>
-								<li class="menu-item" ><a title="Register or Login" href="{{Route('logout')}}">LogOut</a></li> -->
+							@if (Session::get('user'))
+								<li class="menu-item" ><a style="color:white" title="Register or Login" href="{{Route('logout')}}">LogOut</a></li>
+							@else
+								<li class="menu-item" ><a style="color:white"  title="Register or Login" href="{{Route('login')}}">LogIn</a></li>
+							@endif	
 							</li>
 							</ul>
 						</div>
@@ -135,21 +138,14 @@
 									<i class="fa fa-user" aria-hidden="true"></i>
 									<div class="left-info">
 									@if (Session::get('user'))
-										<span class="index"> {{Session::get('user')->name}}</span>
-									@endif	
-										<span class="title"></span>
+										<span class="index"></span>
+										<span class="title"> {{Session::get('user')->name}}</span>
+									@endif											
 									</div>
 								</a>
-							</div>
+							</div>	
+										
 
-							
-							<div class="wrap-icon-section show-up-after-1024">
-								<a href="#" class="mobile-navigation">
-									<span></span>
-									<span></span>
-									<span></span>
-								</a>
-							</div>
 						</div>
 
 					</div>
