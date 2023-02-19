@@ -51,28 +51,33 @@
           <form action="{{ Route('admin.user.store') }}" method="post" class="card-body">
             @csrf
             <div class="form-group">
-              <label for="email">Email</label>
-              <input type="text" id="email" name="email" class="form-control">
+              <label for="email">Email :</label>
+              <input type="email" id="email" name="email" class="form-control" placeholder="example: abc@gmail.com" required>
             </div>
             <div class="form-group">
-              <label for="password">Password</label>
-              <input type="password" id="password" name="password" class="form-control">
+              <label for="password">Password :</label>
+              <input type="password" id="password" name="password" class="form-control" required minlength="3" maxlength="12" placeholder="From [3-12] character example: abc ">
             </div>
+
             <div class="form-group">
-              <label for="confirm">Confirm Password</label>
-              <input type="password" id="confirm" name="confirm" class="form-control">
+              <label for="confirm">Confirm Password:</label>
+              <input type="password" id="confirm" name="confirm" class="form-control" required>
+              
             </div>
+
+            
+    
             <div class="form-group">
-              <label for="name">Full name</label>
-              <input type="text" id="name" name="name" class="form-control">
+              <label for="name">Full name :</label>
+              <input type="text" id="name" name="name" class="form-control" required minlength="3" maxlength="12" placeholder="From [3-12] character example: abc ">
             </div>
             <div class="form-group">
               <label for="phone">Phone</label>
               <input type="text" id="phone" name="phone" class="form-control">
             </div>
             <div class="form-group">
-              <label for="role">Role</label>
-              <select id="role" name="role" class="form-control custom-select">
+              <label for="role">Role :</label>
+              <select id="role" name="role" class="form-control custom-select" required>
                 <option value="1">Admin</option>
                 <option value="2" selected>User</option>
               </select>

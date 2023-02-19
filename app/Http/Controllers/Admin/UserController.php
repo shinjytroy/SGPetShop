@@ -38,9 +38,12 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request) 
     {
-        User::create($request->all());
+   
+            User::create($request->all());
+        
+        
         return redirect()->route('admin.user.index');
     }
 
@@ -73,10 +76,10 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
-    {
-        $user->update($request->all());
-        return redirect()->route('admin.user.index');
+    public function update(Request $request , User $user)
+    {           
+            $user->update($request->all());
+            return redirect()->route('admin.user.index')->with('thongbao','Update Successed!');    
     }
 
     /**
@@ -88,6 +91,6 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-        return redirect()->route('admin.user.index');
+        return redirect()->route('admin.user.index')->with('thongbao','Delete Successed!');
     }
 }

@@ -54,19 +54,22 @@
             <input type="hidden" name="id" value="{{ $user->id }}"/>
             <div class="form-group">
               <label for="email">Email</label>
-              <input type="text" id="email" name="email" class="form-control" value="{{ $user->email }}">
+              
+              <input type="text" id="email" name="email" class="form-control" value="{{ $user->email }}" required>
+            
+             
             </div>
             <div class="form-group">
               <label for="password">Password</label>
-              <input type="password" id="password" name="password" class="form-control" value="{{ $user->password }}">
+              <input type="password" id="password" name="password" class="form-control" value="{{ $user->password }}" required minlength=3>
             </div>
             <div class="form-group">
               <label for="confirm">Confirm Password</label>
-              <input type="password" id="confirm" name="confirm" class="form-control" value="{{ $user->password }}">
+              <input type="password" id="confirm" name="confirm" class="form-control" value="{{ $user->password }}"required>
             </div>
             <div class="form-group">
               <label for="name">Full name</label>
-              <input type="text" id="name" name="name" class="form-control" value="{{ $user->name }}">
+              <input type="text" id="name" name="name" class="form-control" value="{{ $user->name }}" required>
             </div>
             <div class="form-group">
               <label for="phone">Phone</label>
@@ -74,7 +77,7 @@
             </div>
             <div class="form-group">
               <label for="role">Role</label>
-              <select id="role" name="role" class="form-control custom-select">
+              <select id="role" name="role" class="form-control custom-select" required>
                 <option value="1" {{ $user->role!=null && $user->role==1 ? 'selected' : ''}}>Admin</option>
                 <option value="2" {{ $user->role!=null && $user->role==2 ? 'selected' : ''}}>User</option>
               </select>

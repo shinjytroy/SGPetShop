@@ -23,7 +23,7 @@
   <!-- Default box -->
   <div class="card">
     <div class="card-header">
-      <h3 class="card-title">Users</h3>
+      <h3 class="card-title">Users : {{Session::get('user')->name }} </h3>
 
       <div class="card-tools">
         <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -35,14 +35,21 @@
       </div>
     </div>
     <div class="card-body p-0">
+      @if(Session::has('thongbao'))
+      <div class="badge badge-success">
+        {{Session::get('thongbao')}}
+      </div>
+      @endif
       <table class="table table-striped projects">
           <thead>
               <tr>
                   <th style="width: 10%">Id</th>
-                  <th style="width: 20%">Username</th>
-                  <th style="width: 20%">Full name</th>
+                  <th style="width: 22%">Username</th>
+                  <th style="width: 15%">Full name</th>
                   <th style="width: 10%">Phone</th>
                   <th style="width: 10%" class="text-center">Role</th>
+                  <th style="width: 10%">Password</th>
+                  
                   <th></th>
               </tr>
           </thead>
@@ -55,13 +62,15 @@
                   <td>{{ $item->phone }}</td>
                   <td class="project-state">
                    @if(Session::get('user')->name == "Adminshop")
-                    @if ($item->role != null && $item->role == 1)
-                        <span class="badge badge-danger">Admin</span>
-                    @else 
+                   @if ($item->role != null && $item->role == 1 && $item->name !="Adminshop")
+                        <span class="badge badge-danger">Admin-Staff</span>
+                    @elseif ($item->role != null && $item->role == 1 && $item->name =="Adminshop")
+                    <span class="badge badge-danger">Admin</span>
+                    @else
                       <span class="badge badge-success">User</span>
                     @endif
                   </td>
-                 
+                 <td>{{$item->password}}</td>
                   <td class="project-actions text-right">
                       <a class="btn btn-primary btn-sm" href="#">
                           <i class="fas fa-folder">
@@ -85,13 +94,17 @@
                   </td>
                  
                   @else
-                  @if ($item->role != null && $item->role == 1)
-                        <span class="badge badge-danger">Admin</span>
-                    @else 
+                  @if ($item->role != null && $item->role == 1 && $item->name !="Adminshop")
+                        <span class="badge badge-danger">Admin-Staff</span>
+                    @elseif ($item->role != null && $item->role == 1 && $item->name =="Adminshop")
+                    <span class="badge badge-danger">Admin</span>
+                    @else
                       <span class="badge badge-success">User</span>
                     @endif
                   </td>
-                 @if ($item->role != null && $item->name !="Adminshop" )
+                  <td>*****</td>
+                 @if ($item->role != null   && $item->name !="Adminshop" )
+                     
                   <td class="project-actions text-right">
                       <a class="btn btn-primary btn-sm" href="#">
                           <i class="fas fa-folder">
@@ -103,6 +116,17 @@
                           </i>
                           Edit
                       </a>
+                      @if ($item->role ==2)
+                      <form action="{{ Route('admin.user.destroy', $item->id) }}" method="post" style="display:inline-block">
+                        @csrf
+                        @method("delete")
+                        <button type="submit" class="btn btn-danger btn-sm">
+                            <i class="fas fa-trash">
+                            </i>
+                            Delete
+                        </button>
+                      </form>
+                      @endif
                     @endif
                   </td>
                   @endif
