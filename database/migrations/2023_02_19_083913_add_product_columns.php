@@ -13,12 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('orders', function (Blueprint $table) {
-            $table->string('shipping_name')->nullable();
-            $table->string('shipping_phone')->nullable();
-            $table->string('shipping_email')->nullable();
-            $table->string('shipping_address')->nullable();
-            
+        Schema::table('products', function (Blueprint $table) {
+            $table->string('categories')->nullable();
+            $table->string('reviews')->nullable();
+            $table->string('stock')->nullable();
         });
     }
 
@@ -29,8 +27,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('orders', function (Blueprint $table) {
-            //
+        Schema::table('products', function (Blueprint $table) {
+           //
         });
     }
 };

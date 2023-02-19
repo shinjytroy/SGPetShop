@@ -27,7 +27,7 @@ class HomeController extends Controller
         $prod = Product::where('slug', $slug)->first();
         return view('fe.product', compact('prod'));
     }
-
+    
     public function addCart(Request $request) 
     {
         $pid = $request->pid;
@@ -158,7 +158,10 @@ class HomeController extends Controller
     }
      public function shop()
     {
-        return view ('fe.shop');
+        $prods = Product::all();
+        return view('fe.shop', compact(
+            'prods'
+        ));
     }
     public function about()
     {

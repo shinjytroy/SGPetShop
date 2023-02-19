@@ -79,7 +79,7 @@
         @endphp
         <div class="product-info">
           <a href="{{ Route('product.details', $item->slug) }}" class="product-name"><span>{{ $item->name }}</span></a>
-          <div class="wrap-price"><span class="product-price">{{ $price }} VND</span></div>
+          <div class="wrap-price"><span class="product-price">{{ $price }} $</span></div>
           <!-- <div class="wrap-stock"><span class="product-stock">SL: {{ $item->stock }} </span></div> -->
         </div>
       </div>
