@@ -1783,14 +1783,14 @@ li.menu-item .nav-label.sale-label::before{
 }
 .product .product-info .product-name span,
 .product-style-2 .product-info .product-name span{
-    font-size: 13px;
+    font-size: 15px;
     line-height: 18px;
     color: #222222;
     text-align: left;
     display: inline-block;
     width: 100%;
     margin-top: 5px;
-    padding: 5px;
+    padding: 2px;
    
 }
 .product .product-info .product-rating,
@@ -1832,7 +1832,8 @@ li.menu-item .nav-label.sale-label::before{
     width: 100%;
     text-align: left;
     margin-top: 3px;
-    padding-top: 16px;
+    padding-bottom: 5px;
+   margin-bottom: 10px;
 
     
 }
@@ -1841,8 +1842,9 @@ li.menu-item .nav-label.sale-label::before{
     font-size: 14px;
     line-height: 24px;
     display: inline-block;
-    padding-top: 16px;
-    margin: 0;
+    padding-bottom: 16px;
+    margin-top: 0px;
+    padding-top: 0px;
 }
 .product .product-info .wrap-price span.product-price,
 .product-style-2 .product-info .wrap-price span.product-price{

@@ -40,7 +40,7 @@
       <div class="col-md-12">
         <div class="card card-primary">
           <div class="card-header">
-            <h3 class="card-title">Create new User</h3>
+            <h3 class="card-title">Edit Infomation  User</h3>
 
             <div class="card-tools">
               <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -52,12 +52,14 @@
             @csrf
             @method('put')
             <input type="hidden" name="id" value="{{ $user->id }}"/>
+            
             <div class="form-group">
               <label for="email">Email</label>
+              <div > {{ $user->email }}</div>
+              <input type="hidden"  name="email" class="form-control" value="{{ $user->email }}" >
               
-              <input type="text" id="email" name="email" class="form-control" value="{{ $user->email }}" >
-              <span style="color:red"> @error('email'){{$message}}@enderror</span>
-            </div>
+            </div> 
+             
             <div class="form-group">
               <label for="password">Password</label>
               <input type="password" id="password" name="password" class="form-control" value="{{ $user->password }}" >
@@ -71,7 +73,7 @@
             <div class="form-group">
               <label for="name">Full name</label>
               <input type="text" id="name" name="name" class="form-control" value="{{ $user->name }}" >
-              <span style="color:red"> @error('name'){{$message}}@enderror</span>
+              <span style="color:red"> @error('name')is-invalid {{$message}}@enderror</span>
 
             </div>
             <div class="form-group">

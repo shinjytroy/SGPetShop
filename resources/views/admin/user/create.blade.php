@@ -57,17 +57,17 @@
             </div>
             <div class="form-group">
               <label for="password">Password :</label>
-              <input type="password" id="password" name="password" class="form-control"  placeholder="From [3-12] character example: abc ">
+              <input type="password" id="password" name="password" class="form-control"  placeholder="From [6-12] character example: abc ">
               <span style="color:red"> @error('password'){{$message}}@enderror</span>
             </div>
             <div class="form-group">
               <label for="confirm">Confirm Password:</label>
-              <input type="password" id="confirm" name="confirm" class="form-control" >
+              <input type="password" id="confirm" name="confirm" class="form-control"  placeholder="Confirm Password ">
               <span style="color:red"> @error('confirm'){{$message}}@enderror</span>
             </div>
        <div class="form-group">
               <label for="name">Full name :</label>
-              <input type="text" id="name" name="name" class="form-control"  placeholder="From [3-12] character example: abc ">
+              <input type="text" id="name" name="name" class="form-control"  placeholder="Greater than  3 character">
               <span style="color:red"> @error('name'){{$message}}@enderror</span>
             </div>
             <div class="form-group">
