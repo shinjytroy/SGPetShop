@@ -24,8 +24,8 @@
             $countuser=count($user);
             @endphp
 </section>
-    <!-- Main content -->
-    <section class="content">
+<!-- Main content -->
+<section class="content">
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row">
@@ -53,7 +53,7 @@
                 <p>Total Product in Shope </p>
               </div>
               <div class="icon">
-                <i class="ion ion-stats-bars"></i>
+                <i class="fas fa-shopping-cart"></i>
               </div>
               <a href="{{Route('admin.product.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -68,7 +68,7 @@
                 <p>Total Money </p>
               </div>
               <div class="icon">
-                <i class="ion ion-person-add"></i>
+                <i class="fas fa-usd"></i>
               </div>
               <a href="{{Route('admin.orderdetail.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -83,7 +83,7 @@
                 <p>Total Member</p>
               </div>
               <div class="icon">
-                <i class="ion ion-pie-graph"></i>
+                <i class="fas fa-user-plus"></i>
               </div>
               <a href="{{Route('admin.user.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -91,10 +91,16 @@
           <!-- ./col -->
         </div>
       </div><!-- /.container-fluid -->
-    </section>
-    <!-- /.content -->
-  </div>
+</section>
+    
+<!-- /.content -->
+
+
+
+    
+  
   <!-- /.content-wrapper --
+  
 
 
 @endsection

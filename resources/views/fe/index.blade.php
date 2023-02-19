@@ -41,13 +41,13 @@
   
     <div class="banner-item" >
       <a href="#" class="link-banner banner-effect-1">
-        <figure><img src="assets/images/brands/banner1.jpg" alt="royal_cain"  style="height:300px ; width:500px"></figure>
+        <figure><img src="assets/images/brands/banner1.jpg" alt="royal_cain"  style="height:300px ; width:600px"></figure>
       </a>
     </div>
 
     <div class="banner-item">
       <a href="#" class="link-banner banner-effect-1">
-        <figure><img src="assets/images/brands/banner3.jpg" alt="pro_pand"   style="height:300px;  width:500px"></figure>
+        <figure><img src="assets/images/brands/banner3.jpg" alt="pro_pand"   style="height:300px;  width:600px"></figure>
 
       </a>
     </div>
@@ -56,8 +56,8 @@
 
   <!--On Sale-->
   <div class="xwrap-show-advance-info-box style-1 has-countdown">
-    <h3 class="title-box">Featured Products</h3>
-    <div class="wrap-countdown mercado-countdown" data-expire="2020/12/12 12:34:56"></div>
+    <h3 class="title-box">Top Saling</h3>
+    <div class="wrap-countdown mercado-countdown" data-expire="2023/2/30 12:00:00"></div>
     <div class="wrap-products slide-carousel owl-carousel style-nav-1 equal-container " data-items="5" data-loop="false" data-nav="true" data-dots="false" data-responsive='{"0":{"items":"1"},"480":{"items":"2"},"768":{"items":"3"},"992":{"items":"4"},"1200":{"items":"5"}}'>
       @foreach($prods as $item)
       <div class="product product-style-2 equal-elem ">
@@ -66,8 +66,10 @@
             <figure><img src="{{ asset('/images/'. $item->image) }}" width="800" height="800" alt="{{ $item->name }}"></figure>
           </a>
           <div class="group-flash">
-            <span class="flash-item sale-label">sale</span>
+            <span class="flash-item sale-label">sale -10%</span>
+            
           </div>
+          
           <div class="wrap-btn">
             <a href="#" class="function-link">quick view</a>
           </div>
