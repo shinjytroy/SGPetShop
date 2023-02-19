@@ -52,24 +52,23 @@
             @csrf
             <div class="form-group">
               <label for="email">Email :</label>
-              <input type="email" id="email" name="email" class="form-control" placeholder="example: abc@gmail.com" required>
+              <input type="email" id="email" name="email" class="form-control" placeholder="example: abc@gmail.com" >
+              <span style="color:red"> @error('email'){{$message}}@enderror</span>
             </div>
             <div class="form-group">
               <label for="password">Password :</label>
-              <input type="password" id="password" name="password" class="form-control" required minlength="3" maxlength="12" placeholder="From [3-12] character example: abc ">
+              <input type="password" id="password" name="password" class="form-control"  placeholder="From [3-12] character example: abc ">
+              <span style="color:red"> @error('password'){{$message}}@enderror</span>
             </div>
-
             <div class="form-group">
               <label for="confirm">Confirm Password:</label>
-              <input type="password" id="confirm" name="confirm" class="form-control" required>
-              
+              <input type="password" id="confirm" name="confirm" class="form-control" >
+              <span style="color:red"> @error('confirm'){{$message}}@enderror</span>
             </div>
-
-            
-    
-            <div class="form-group">
+       <div class="form-group">
               <label for="name">Full name :</label>
-              <input type="text" id="name" name="name" class="form-control" required minlength="3" maxlength="12" placeholder="From [3-12] character example: abc ">
+              <input type="text" id="name" name="name" class="form-control"  placeholder="From [3-12] character example: abc ">
+              <span style="color:red"> @error('name'){{$message}}@enderror</span>
             </div>
             <div class="form-group">
               <label for="phone">Phone</label>

@@ -55,21 +55,24 @@
             <div class="form-group">
               <label for="email">Email</label>
               
-              <input type="text" id="email" name="email" class="form-control" value="{{ $user->email }}" required>
-            
-             
+              <input type="text" id="email" name="email" class="form-control" value="{{ $user->email }}" >
+              <span style="color:red"> @error('email'){{$message}}@enderror</span>
             </div>
             <div class="form-group">
               <label for="password">Password</label>
-              <input type="password" id="password" name="password" class="form-control" value="{{ $user->password }}" required minlength=3>
+              <input type="password" id="password" name="password" class="form-control" value="{{ $user->password }}" >
+              <span style="color:red"> @error('password'){{$message}}@enderror</span>
             </div>
             <div class="form-group">
               <label for="confirm">Confirm Password</label>
-              <input type="password" id="confirm" name="confirm" class="form-control" value="{{ $user->password }}"required>
+              <input type="password" id="confirm" name="confirm" class="form-control" value="{{ $user->password }}">
+              <span style="color:red"> @error('confirm'){{$message}}@enderror</span>
             </div>
             <div class="form-group">
               <label for="name">Full name</label>
-              <input type="text" id="name" name="name" class="form-control" value="{{ $user->name }}" required>
+              <input type="text" id="name" name="name" class="form-control" value="{{ $user->name }}" >
+              <span style="color:red"> @error('name'){{$message}}@enderror</span>
+
             </div>
             <div class="form-group">
               <label for="phone">Phone</label>

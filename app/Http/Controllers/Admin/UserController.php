@@ -16,6 +16,7 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
+
         return view ("admin.user.index", compact('users'));
         // return view ("admin.user.index")->with([
         //     'users' => $users
@@ -38,13 +39,19 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request) 
+    public function store(Request $request , User $user) 
     {
-   
-            User::create($request->all());
+        $request->validate([
+            'name' => 'required|min:3|max:50',
+            'email' => 'email|required',
+            
+            'password' => 'min:6|required_with:confirm|same:confirm',
+            'confirm' => 'min:6'
+        ]); 
+        $user::create($request->all());
         
         
-        return redirect()->route('admin.user.index');
+        return redirect()->route('admin.user.index')->with('thongbao','Create Successed!');
     }
 
     /**
@@ -66,6 +73,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
+        
         return view('admin.user.edit', compact('user'));
     }
 
@@ -76,10 +84,17 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request , User $user)
-    {           
-            $user->update($request->all());
-            return redirect()->route('admin.user.index')->with('thongbao','Update Successed!');    
+    public function update(Request $request , User $user )
+    {     
+        $request->validate([
+            'name' => 'required|min:3|max:50',
+            'email' => 'email|required',
+            
+            'password' => 'min:6|required_with:confirm|same:confirm',
+            'confirm' => 'min:6'
+        ]);  
+        $user->update($request ->all());
+        return redirect()->route('admin.user.index')->with('thongbao','Update Successed!');              
     }
 
     /**
