@@ -17,7 +17,7 @@
 
 					<div class="banner-shop">
 						<a href="#" class="banner-link">
-							<figure><img src="assets/images/shop-banner.jpg" alt=""></figure>
+							<figure><img src="images/panner-shop.webp" alt=""></figure>
 						</a>
 					</div>
 
@@ -71,9 +71,9 @@
 										</a>
 									</div>
 									<div class="product-info">
-										<a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker [White]</span></a>
-										<div class="wrap-price"><span class="product-price">$250.00</span></div>
-										<a href="#" class="btn add-to-cart">Add To Cart</a>
+										<a href="#" class="product-name"><span>{{ $item->name }}</span></a>
+										<div class="wrap-price"><span class="product-price">{{ $item->price }}</span></div>
+										<a href="{{ Route('product.details', $item->slug) }}" class="btn add-to-cart">Add To Cart</a>
 									</div>
 								</div>
 							</li>

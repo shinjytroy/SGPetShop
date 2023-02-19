@@ -46,7 +46,7 @@
           <div class="wrap-social">
             <a class="link-socail" href="#"><img src="assets/images/social-list.png" alt=""></a>
           </div>
-          <div class="wrap-price"><span class="product-price">{{ $price }} đ</span></div>
+          <div class="wrap-price"><span class="product-price">{{ $price }} $</span></div>
           <br>
           <!-- <div class="wrap-stock"><span class="product-stock">SL: {{ $prod->stock }} </span></div> -->
           <div class="stock-info in-stock">
