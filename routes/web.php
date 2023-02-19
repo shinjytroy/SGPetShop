@@ -25,6 +25,8 @@ Route::get('/', [FEController::class, 'index'])->name('home');
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 
+Route::get('/register', [LoginController::class, 'register'])->name('register');
+
 Route::post('/login', [LoginController::class, 'login'])->name('checkLogin');
 
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
