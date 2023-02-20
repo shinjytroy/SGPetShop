@@ -43,10 +43,10 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required|min:3|max:50',
-            'email' => 'email|required',
+            'email' => 'email|required|unique:users',
             
-            'password' => 'min:6|required_with:confirm|same:confirm',
-            'confirm' => 'min:6'
+            'password' => 'min:6|max:12|required_with:confirm|same:confirm',
+            'confirm' => 'min:6|max:12'
         ]); 
         $user::create($request->all());
         
@@ -88,10 +88,10 @@ class UserController extends Controller
     {     
         $request->validate([
             'name' => 'required|min:3|max:50',
-            'email' => 'email|required',
+            // 'email' => 'email|required','email' => 'email|required',
             
-            'password' => 'min:6|required_with:confirm|same:confirm',
-            'confirm' => 'min:6'
+            'password' => 'min:6|max:12required_with:confirm|same:confirm',
+            'confirm' => 'min:6|max:12'
         ]);  
         $user->update($request ->all());
         return redirect()->route('admin.user.index')->with('thongbao','Update Successed!');              
