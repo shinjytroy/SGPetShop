@@ -72,7 +72,7 @@
 									</div>
 									<div class="product-info">
 										<a href="#" class="product-name"><span>{{ $item->name }}</span></a>
-										<div class="wrap-price"><span class="product-price">{{ $item->price }}</span></div>
+										<div class="wrap-price"><span class="product-price">{{ $item->price }} $</span></div>
 										<a href="{{ Route('product.details', $item->slug) }}" class="btn add-to-cart">Add To Cart</a>
 									</div>
 								</div>
@@ -99,7 +99,7 @@
 						<div class="widget-content">
 							<ul class="list-category">
 								<li class="category-item has-child-cate">
-									<a href="#" class="cate-link">Fashion & Accessories</a>
+									<a href="#" class="cate-link">For Dog</a>
 									<span class="toggle-control">+</span>
 									<ul class="sub-cate">
 										<li class="category-item"><a href="#" class="cate-link">Batteries (22)</a></li>
@@ -108,7 +108,7 @@
 									</ul>
 								</li>
 								<li class="category-item has-child-cate">
-									<a href="#" class="cate-link">Furnitures & Home Decors</a>
+									<a href="#" class="cate-link">For Cat</a>
 									<span class="toggle-control">+</span>
 									<ul class="sub-cate">
 										<li class="category-item"><a href="#" class="cate-link">Batteries (22)</a></li>
@@ -117,7 +117,7 @@
 									</ul>
 								</li>
 								<li class="category-item has-child-cate">
-									<a href="#" class="cate-link">Digital & Electronics</a>
+									<a href="#" class="cate-link">For Other Pets</a>
 									<span class="toggle-control">+</span>
 									<ul class="sub-cate">
 										<li class="category-item"><a href="#" class="cate-link">Batteries (22)</a></li>
@@ -126,13 +126,13 @@
 									</ul>
 								</li>
 								<li class="category-item">
-									<a href="#" class="cate-link">Tools & Equipments</a>
+									<a href="#" class="cate-link">Pet Equipments</a>
 								</li>
 								<li class="category-item">
-									<a href="#" class="cate-link">Kid’s Toys</a>
+									<a href="#" class="cate-link">Pet Toys</a>
 								</li>
 								<li class="category-item">
-									<a href="#" class="cate-link">Organics & Spa</a>
+									<a href="#" class="cate-link">Service & Spa</a>
 								</li>
 							</ul>
 						</div>
@@ -142,9 +142,9 @@
 						<h2 class="widget-title">Brand</h2>
 						<div class="widget-content">
 							<ul class="list-style vertical-list list-limited" data-show="6">
-								<li class="list-item"><a class="filter-link active" href="#">Fashion Clothings</a></li>
-								<li class="list-item"><a class="filter-link " href="#">Laptop Batteries</a></li>
-								<li class="list-item"><a class="filter-link " href="#">Printer & Ink</a></li>
+								<li class="list-item"><a class="filter-link active" href="#">Heka</a></li>
+								<li class="list-item"><a class="filter-link " href="#">Hill's</a></li>
+								<li class="list-item"><a class="filter-link " href="#">Royal</a></li>
 								<li class="list-item"><a class="filter-link " href="#">CPUs & Prosecsors</a></li>
 								<li class="list-item"><a class="filter-link " href="#">Sound & Speaker</a></li>
 								<li class="list-item"><a class="filter-link " href="#">Shop Smartphone & Tablets</a></li>
@@ -169,7 +169,7 @@
 						</div>
 					</div><!-- Price-->
 
-					<div class="widget mercado-widget filter-widget">
+					{{-- <div class="widget mercado-widget filter-widget">
 						<h2 class="widget-title">Color</h2>
 						<div class="widget-content">
 							<ul class="list-style vertical-list has-count-index">
@@ -181,9 +181,9 @@
 								<li class="list-item"><a class="filter-link " href="#">Pink <span>(29)</span></a></li>
 							</ul>
 						</div>
-					</div><!-- Color -->
+					</div><!-- Color --> --}}
 
-					<div class="widget mercado-widget filter-widget">
+					{{-- <div class="widget mercado-widget filter-widget">
 						<h2 class="widget-title">Size</h2>
 						<div class="widget-content">
 							<ul class="list-style inline-round ">
@@ -196,7 +196,7 @@
 								<figure><img src="assets/images/size-banner-widget.jpg" width="270" height="331" alt=""></figure>
 							</div>
 						</div>
-					</div><!-- Size -->
+					</div><!-- Size --> --}}
 
 					<div class="widget mercado-widget widget-product">
 						<h2 class="widget-title">Popular Products</h2>
