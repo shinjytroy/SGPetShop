@@ -25,7 +25,7 @@
     <div class="card-header">
       
                 @php
-                $countCategory = count($categories);
+                $countCategory = count($category);
                 @endphp
       <h3 class="card-title">Having : {{$countCategory}}  Categories in List</h3>
       
@@ -45,19 +45,15 @@
                   <th style="width: 10%">Id</th>
                   <th style="width: 20%">Category Name</th>
                   <th style="width: 30%">Description</th>
-                  <th style="width: 10%">
-                   <a href="{{ Route('admin.category.create' )}}">Create
-                  </th>
                   <th></th>
               </tr>
           </thead>
           <tbody>
-            @foreach($categories as $item)
+            @foreach($category as $item)
               <tr>
-                  <td>{{ $item->category_id }}</td>   
+                  <td>{{ $item->id }}</td>   
                   <td>{{ $item->category_name }}</td>
                   <td>{{ $item->description }}</td>
-                  <td></td>
                   <td class="project-actions text-right">
                     
                       <!-- <a class="btn btn-primary btn-sm" href="#">
@@ -65,12 +61,12 @@
                           </i>
                           View
                       </a> -->
-                      <a class="btn btn-info btn-sm" href="{{ Route('admin.category.edit', $item->category_id) }}">
+                      <a class="btn btn-info btn-sm" href="{{ Route('admin.category.edit', $item->id) }}">
                           <i class="fas fa-pencil-alt">
                           </i>
                           Edit
                       </a>
-                      <form action="{{ Route('admin.product.destroy', $item->category_id) }}" method="post" style="display:inline-block">
+                      <form action="{{ Route('admin.category.destroy', $item->id) }}" method="post" style="display:inline-block">
                         @csrf
                         @method("delete")
                         <button type="submit" class="btn btn-danger btn-sm">
@@ -79,8 +75,7 @@
                             Delete
                         </button>
                       </form>
-                  </td>
-                  
+                  </td> 
               </tr>
             @endforeach
           </tbody>

@@ -44,9 +44,9 @@
               <tr>
                   <th style="width: 5%">Id</th>
                   <th style="width: 10%">Category</th>
-                  <th style="width: 30%">Name</th>
+                  <th style="width: 10%">Brand</th>
+                  <th style="width: 25%">Name</th>
                   <th style="width: 5%">Regular Price</th>  
-                  <th style="width: 5%">Sale Price</th>
                   <th style="width: 5%">Status</th>
                   <th style="width: 5%">Featured</th>
                   <th style="width: 5%">Stock</th>
@@ -58,14 +58,14 @@
             @foreach($prods as $item)
               <tr>
                   <td>{{ $item->id }}</td>
-                  <td>{{ $item->category_id}}</td>   
+                  <td>{{ $item->category_id}}</td>
+                  <td>{{ $item->brand_id}}</td>  
                   <td>{{ $item->name }}</td>
                   <td>{{ $item->price }}</td>
-                  <td>{{ $item->salePrice}}</td>
                   <td>{{ $item->status }}</td>
                   <td>{{ $item->featured }}</td>
                   <td>{{ $item->stock }}</td>
-                  <td >
+                  <td>
                     @if (!empty($item->image))
                     <img src="{{asset('images/'.$item->image)}}" alt="{{$item->name}}" style="width: 100px; height:auto">
                     @endif

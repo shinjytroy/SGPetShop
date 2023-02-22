@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
-use App\Models\Categories;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -17,8 +17,8 @@ class ProductController extends Controller
     public function index()
     {
         $prods = Product::all();
-        $categories = Categories::all();
-        return view('admin.product.index', compact('prods', 'categories'));
+        $category = Category::all();
+        return view('admin.product.index', compact('prods', 'category'));
     }
 
     /**
@@ -37,7 +37,7 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request , Categories $ct)
+    public function store(Request $request)
     {
         $prodData = $request->all();
        

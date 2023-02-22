@@ -10,7 +10,7 @@
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="{{ Route('admin.homedb') }}">Home</a></li>
-          <li class="breadcrumb-item"><a href="{{ Route('admin.product.index') }}">Categories</a></li>
+          <li class="breadcrumb-item"><a href="{{ Route('admin.category.index') }}">Categories</a></li>
           <li class="breadcrumb-item active">Create new Category</li>
         </ol>
       </div>
@@ -51,8 +51,8 @@
           <form action="{{ Route('admin.category.store') }}" method="post" class="card-body" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
-              <label for="name">Category Name</label>
-              <input type="text" id="name" name="name" class="form-control">
+              <label for="category_name">Category Name</label>
+              <input type="text" id="category_name" name="category_name" class="form-control">
             </div>
             <div class="form-group">
               <label for="desc">Description</label>
