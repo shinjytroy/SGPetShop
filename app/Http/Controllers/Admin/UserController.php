@@ -51,7 +51,7 @@ class UserController extends Controller
         $user::create($request->all());
         
         
-        return redirect()->route('admin.user.index')->with('thongbao','Create Successed!');
+        return redirect()->route('admin.user.index')->with('thongbao'.'Create Susccessfully!');
     }
 
     /**
@@ -90,7 +90,7 @@ class UserController extends Controller
             'name' => 'required|min:3|max:50',
             // 'email' => 'email|required','email' => 'email|required',
             
-            'password' => 'min:6|max:12required_with:confirm|same:confirm',
+            'password' => 'min:6|max:12|required_with:confirm|same:confirm',
             'confirm' => 'min:6|max:12'
         ]);  
         $user->update($request ->all());
