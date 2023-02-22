@@ -26,9 +26,10 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Category $category)
     {
-        return view('admin.product.create');
+        $category=Category::all();
+        return view('admin.product.create',compact('category'));
     }
 
     /**
@@ -37,7 +38,7 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request ,Category $category)
     {
         $prodData = $request->all();
        
