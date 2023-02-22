@@ -62,30 +62,15 @@
             </div>
             <div class="form-group">
               <label for="price">Price</label>
+              <!-- @php
+              $price=number_format($product->price) ;
+              @endphp -->
               <input type="text" id="price" name="price" class="form-control" value="{{ $product->price}}">
             </div>
-            <div class="form-group">
-              <label for="salePrice">Price</label>
-              <input type="text" id="salePrice" name="salePrice" class="form-control" value="{{ $product->price}}">
-            </div>
-            <div class="form-group">
-              <label for="category">Category</label>
-              <select name="category" id="category" class="form-control">
-                <option value="{{ $product->category_id }}">{{ $product->category_id }}</option>
-                <option value="">Select Category</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="featured">Featured</label>
-              <select name="featured" id="featured" class="form-control">
-                <option value="Yes">Yes</option>
-                <option value="No">No</option>
-              </select>
-            </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
               <label for="stock">Stock</label>
               <input type="number" id="stock" name="stock" class="form-control" value="{{ $product->stock }}">
-            </div>
+            </div> -->
             <div class="form-group">
               <label for="image">Image</label>
               <img src="{{asset('/images/'.$product->image)}}" width="150px" height="200px">

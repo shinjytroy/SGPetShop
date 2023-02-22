@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Models\Categories;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -16,8 +17,8 @@ class ProductController extends Controller
     public function index()
     {
         $prods = Product::all();
-        
-        return view('admin.product.index', compact('prods'));
+        $categories = Categories::all();
+        return view('admin.product.index', compact('prods', 'categories'));
     }
 
     /**
@@ -36,11 +37,13 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request , Categories $ct)
     {
         $prodData = $request->all();
+       
         $prodData['slug'] = \Str::slug($request->name);
-        
+
+       
         // process upload
 
         if($request->hasFile('photo'))

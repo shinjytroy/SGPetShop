@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\OrderDetailController;
 use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\CategoryController;
 
 use App\Http\Controllers\FE\HomeController as FEController;
 
@@ -58,6 +59,8 @@ Route::group(['middleware'=>'canLogin'], function() {
         Route::get('/', [HomeController::class, 'homedb'])->name('homedb');
 
         Route::resource('/user', UserController::class);
+
+        Route::resource('/category', CategoryController::class);
 
         Route::resource('/product', ProductController::class);
 

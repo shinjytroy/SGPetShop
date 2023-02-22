@@ -5,13 +5,13 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1>Products</h1>
+        <h1>Categories</h1>
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="{{ Route('admin.homedb') }}">Home</a></li>
-          <li class="breadcrumb-item"><a href="{{ Route('admin.product.index') }}">Products</a></li>
-          <li class="breadcrumb-item active">Create new Product</li>
+          <li class="breadcrumb-item"><a href="{{ Route('admin.product.index') }}">Categories</a></li>
+          <li class="breadcrumb-item active">Create new Category</li>
         </ol>
       </div>
     </div>
@@ -24,7 +24,7 @@
   <!-- Default box -->
   <div class="card">
     <div class="card-header">
-      <h3 class="card-title">Product</h3>
+      <h3 class="card-title">Category</h3>
 
       <div class="card-tools">
         <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -40,7 +40,7 @@
       <div class="col-md-12">
         <div class="card card-primary">
           <div class="card-header">
-            <h3 class="card-title">Create new Product</h3>
+            <h3 class="card-title">Create new Category</h3>
 
             <div class="card-tools">
               <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -48,32 +48,15 @@
               </button>
             </div>
           </div>
-          <form action="{{ Route('admin.product.store') }}" method="post" class="card-body" enctype="multipart/form-data">
+          <form action="{{ Route('admin.category.store') }}" method="post" class="card-body" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
-              <label for="name">Name</label>
+              <label for="name">Category Name</label>
               <input type="text" id="name" name="name" class="form-control">
             </div>
             <div class="form-group">
               <label for="desc">Description</label>
               <textarea id="desc" name="description" class="form-control"></textarea>
-            </div>
-            <div class="form-group">
-              <label for="price">Price</label>
-              <input type="number" id="price" name="price" class="form-control">
-            </div>
-            <div class="form-group">
-              <label for="category">Category</label>
-              <select name="category" id="category" class="form-control">
-                <option value="">Select Category</option>
-                @foreach ( $categories as $item)
-                <option value="{{ $item->category_id }}">{{ $item->category_name }}</option>
-                @endforeach
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="image">Image</label>
-              <input type="file" id="image" name="photo" class="form-control">
             </div>
             <input type="submit" value="Create" class="btn btn-success">
           </form>
