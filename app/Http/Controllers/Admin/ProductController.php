@@ -26,9 +26,10 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Category $category)
     {
-        return view('admin.product.create');
+        $category=Category::all();
+        return view('admin.product.create', compact('category'));
     }
 
     /**
@@ -85,9 +86,10 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit(Product $product, Category $category)
     {
-        return view('admin.product.edit', compact('product'));
+        $category=Category::all();
+        return view('admin.product.edit', compact('product', 'category'));
     }
 
     /**

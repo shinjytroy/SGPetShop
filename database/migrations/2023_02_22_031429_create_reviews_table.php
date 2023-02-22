@@ -14,9 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('reviews', function (Blueprint $table) {
-            $table->string('review_id')->nullable();
+            $table->id();
             $table->string('review_name')->nullable();
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

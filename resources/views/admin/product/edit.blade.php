@@ -53,6 +53,24 @@
             @method('put')
             <input type="hidden" name="id" value="{{ $product->id }}"/>
             <div class="form-group">
+              <label for="category">Category</label>
+              <select name="category" id="category" class="form-control">
+                <option value="{{ $product->categories_id }}">{{ $product->categories_id }}</option>
+                @foreach ( $category as $item)
+                <option value="{{ $item->id }}">{{ $item->category_name }}</option>
+                @endforeach
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="brand">Brand</label>
+              <select name="brand" id="brand" class="form-control">
+                <option value="{{ $product->brands_id }}">{{ $product->brands_id }}</option>
+                {{-- @foreach ( $category as $item)
+                <option value="{{ $item->id }}">{{ $item->category_name }}</option>
+                @endforeach --}}
+              </select>
+            </div>
+            <div class="form-group">
               <label for="name">Name</label>
               <input type="text" id="name" name="name" class="form-control" value="{{ $product->name }}">
             </div>
@@ -65,26 +83,28 @@
               <input type="text" id="price" name="price" class="form-control" value="{{ $product->price}}">
             </div>
             <div class="form-group">
-              <label for="salePrice">Price</label>
+              <label for="salePrice">Sale Price</label>
               <input type="text" id="salePrice" name="salePrice" class="form-control" value="{{ $product->price}}">
             </div>
             <div class="form-group">
-              <label for="category">Category</label>
-              <select name="category" id="category" class="form-control">
-                <option value="{{ $product->category_id }}">{{ $product->category_id }}</option>
-                <option value="">Select Category</option>
+              <label for="stock">Stock</label>
+              <input type="number" id="stock" name="stock" class="form-control" value="{{ $product->stock}}">
+            </div>
+            <div class="form-group">
+              <label for="status">Status</label>
+              <select name="status" id="status" class="form-control">
+                <option value="{{ $product->status }}">{{ $product->status }}</option>
+                <option value="In Stock">In Stock</option>
+                <option value="Out of Stock">Out of Stock</option>
               </select>
             </div>
             <div class="form-group">
               <label for="featured">Featured</label>
               <select name="featured" id="featured" class="form-control">
+                <option value="{{ $product->featured }}">{{ $product->featured }}</option>
                 <option value="Yes">Yes</option>
                 <option value="No">No</option>
               </select>
-            </div>
-            <div class="form-group">
-              <label for="stock">Stock</label>
-              <input type="number" id="stock" name="stock" class="form-control" value="{{ $product->stock }}">
             </div>
             <div class="form-group">
               <label for="image">Image</label>

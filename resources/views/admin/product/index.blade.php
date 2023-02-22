@@ -45,9 +45,9 @@
                   <th style="width: 5%">Id</th>
                   <th style="width: 10%">Category</th>
                   <th style="width: 10%">Brand</th>
-                  <th style="width: 25%">Name</th>
+                  <th style="width: 20%">Name</th>
                   <th style="width: 5%">Regular Price</th>  
-                  <th style="width: 5%">Status</th>
+                  <th style="width: 10%">Status</th>
                   <th style="width: 5%">Featured</th>
                   <th style="width: 5%">Stock</th>
                   <th style="width: 10%">Image</th>

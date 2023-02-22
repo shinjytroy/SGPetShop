@@ -12,10 +12,13 @@ class Product extends Model
         'name', 
         'slug', 
         'description', 
-        'price', 
+        'price',
+        'sale_price', 
         'image', 
-        'brand_id',
-        'category_id',
-        'review_id',
-         'stock'];
+        'brands_id',
+        'categories_id',
+        'reviews_id',
+         'stock',
+         'status',
+         'featured'];
 }
