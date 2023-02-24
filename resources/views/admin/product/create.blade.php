@@ -55,7 +55,7 @@
               <select name="categorie_id" id="categorie_id" class="form-control">
                 <option value="">Select Category</option>
                 @foreach ( $category as $item)
-                <option value="{{ $item->categorie_name }}">{{ $item->categorie_name }}</option>
+                <option value="{{ $item->id }}">{{ $item->categorie_name }}</option>
                 @endforeach
               </select>
             </div>
@@ -83,7 +83,7 @@
             </div>
             <div class="form-group">
               <label for="price">Sale Price</label>
-              <input type="number" id="price" name="price" class="form-control">
+              <input type="number" id="sale_price" name="sale_price" class="form-control">
             </div>
             <div class="form-group">
               <label for="stock">Stock</label>

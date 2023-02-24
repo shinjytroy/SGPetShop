@@ -53,11 +53,11 @@
             @method('put')
             <input type="hidden" name="id" value="{{ $product->id }}"/>
             <div class="form-group">
-              <label for="category">Category</label>
-              <select name="category" id="category" class="form-control">
-                <option value="{{ $product->category_id }}">{{ $product->category_name }}</option>
+              <label for="categorie_id">Category</label>
+              <select name="categorie_id" id="categorie_id" class="form-control">
+                <option value="{{ $product->categorie_id }}">{{ $product->categorie_id }}</option>
                 @foreach ( $category as $item)
-                <option value="{{ $item->id }}">{{ $item->category_name }}</option>
+                <option value="{{ $item->id }}">{{ $item->id }} - {{ $item->categorie_name }}</option>
                 @endforeach
               </select>
             </div>
@@ -83,8 +83,8 @@
               <input type="text" id="price" name="price" class="form-control" value="{{ $product->price }}">
             </div>
             <div class="form-group">
-              <label for="salePrice">Sale Price</label>
-              <input type="text" id="salePrice" name="salePrice" class="form-control" value="{{ $product->salePrice }}">
+              <label for="sale_price">Sale Price</label>
+              <input type="text" id="sale_price" name="sale_price" class="form-control" value="{{ $product->sale_price }}">
             </div>
             <div class="form-group">
               <label for="stock">Stock</label>

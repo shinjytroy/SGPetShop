@@ -52,7 +52,7 @@
             @csrf
             <div class="form-group">
               <label for="category_name">Category Name</label>
-              <input type="text" id="category_name" name="category_name" class="form-control">
+              <input type="text" id="categorie_name" name="categorie_name" class="form-control">
             </div>
             <div class="form-group">
               <label for="desc">Description</label>
