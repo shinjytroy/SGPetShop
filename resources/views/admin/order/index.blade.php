@@ -58,7 +58,6 @@
               <tr>
                   <td>{{ $item->user_id }}</td>   
                   <td>{{ $item->order_date }}</td>
-                  
                   <td>{{ $item->shipping_name}}</td>
                   <td>{{ $item->shipping_phone}}</td>
                   <td>{{ $item->shipping_email}}</td>

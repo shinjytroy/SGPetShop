@@ -55,7 +55,7 @@
             <div class="form-group">
               <label for="category">Category</label>
               <select name="category" id="category" class="form-control">
-                <option value="{{ $product->categories_id }}">{{ $product->categories_id }}</option>
+                <option value="{{ $product->category_id }}">{{ $product->category_name }}</option>
                 @foreach ( $category as $item)
                 <option value="{{ $item->id }}">{{ $item->category_name }}</option>
                 @endforeach
@@ -80,15 +80,15 @@
             </div>
             <div class="form-group">
               <label for="price">Price</label>
-              <input type="text" id="price" name="price" class="form-control" value="{{ $product->price}}">
+              <input type="text" id="price" name="price" class="form-control" value="{{ $product->price }}">
             </div>
             <div class="form-group">
               <label for="salePrice">Sale Price</label>
-              <input type="text" id="salePrice" name="salePrice" class="form-control" value="{{ $product->price}}">
+              <input type="text" id="salePrice" name="salePrice" class="form-control" value="{{ $product->salePrice }}">
             </div>
             <div class="form-group">
               <label for="stock">Stock</label>
-              <input type="number" id="stock" name="stock" class="form-control" value="{{ $product->stock}}">
+              <input type="number" id="stock" name="stock" class="form-control" value="{{ $product->stock }}">
             </div>
             <div class="form-group">
               <label for="status">Status</label>

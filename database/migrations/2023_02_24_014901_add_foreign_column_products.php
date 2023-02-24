@@ -13,13 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('reviews', function (Blueprint $table) {
-            $table->id();
-            //$table->foreignId('product_id')->constrained();
-            //$table->foreignId('user_id')->constrained();
-            $table->string('review_name')->nullable();
-            $table->text('description')->nullable();
-            $table->timestamps();
+        Schema::table('products', function (Blueprint $table) {
+            $table->foreignId('categorie_id')->constrained();
+            //$table->foreignId('brand_id')->constrained();
         });
     }
 
@@ -30,6 +26,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reviews');
+        Schema::table('products', function (Blueprint $table) {
+            //
+        });
     }
 };

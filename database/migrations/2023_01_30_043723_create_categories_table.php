@@ -15,8 +15,10 @@ return new class extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->string('category_name')->nullable();
+            //$table->foreignId('product_id')->constrained();
+            $table->string('categorie_name')->nullable();
             $table->text('description')->nullable();
+            $table->string('image_path')->nullable();
             $table->timestamps();
         });
     }

@@ -51,18 +51,19 @@
           <form action="{{ Route('admin.product.store') }}" method="post" class="card-body" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
-              <label for="category">Category</label>
-              <select name="category" id="category" class="form-control">
+              <label for="categorie_id">Category</label>
+              <select name="categorie_id" id="categorie_id" class="form-control">
                 <option value="">Select Category</option>
                 @foreach ( $category as $item)
-                <option value="{{ $item->id }}">{{ $item->category_name }}</option>
+                <option value="{{ $item->categorie_name }}">{{ $item->categorie_name }}</option>
                 @endforeach
               </select>
             </div>
             <div class="form-group">
-              <label for="brand">Brand</label>
-              <select name="brand" id="brand" class="form-control">
+              <label for="brand_id">Brand</label>
+              <select name="brand_id" id="brand_id" class="form-control">
                 <option value="">Select Brand</option>
+                <option value="1">1</option>
                 {{-- @foreach ( $category as $item)
                 <option value="{{ $item->id }}">{{ $item->category_name }}</option>
                 @endforeach --}}

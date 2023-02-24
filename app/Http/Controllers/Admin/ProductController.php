@@ -88,6 +88,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product, Category $category)
     {
+        //$product=Product::all();
         $category=Category::all();
         return view('admin.product.edit', compact('product', 'category'));
     }
@@ -99,9 +100,10 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, Product $product, Category $category)
     {
         $prodData = $request->all();
+        $prodData['category'] = $category->$request->categorie_name;
         $prodData['slug'] = \Str::slug($request->name);
         if($request->hasFile('photo'))
         {
@@ -122,7 +124,7 @@ class ProductController extends Controller
         }
         
         $product->update($prodData);
-        return redirect()->route('admin.product.index');
+        return redirect()->route('admin.product.index', compact('category'));
     }
 
     /**
