@@ -29,7 +29,7 @@
               
               $price=number_format($item->product->price);
               @endphp
-              <div class="price-field produtc-price"><p class="price">{{ $price }} VND</p></div>
+              <div class="price-field produtc-price"><p class="price">{{ $price }} $</p></div>
               <div class="quantity">
                 <div class="quantity-input">
                   <input type="text" name="product-quantity" value="{{ $item->quantity }}" data-max="120" pattern="[0-9]*"  data-id="{{$item->product ->id}}">									
@@ -37,7 +37,7 @@
                   <a class="btn btn-reduce" href="#"></a>
                 </div>
               </div>
-              <div class="price-field sub-total"><p class="price">{{number_format($item->quantity * $item->product->price)}} VND</p></div>
+              <div class="price-field sub-total"><p class="price">{{number_format($item->quantity * $item->product->price)}} $</p></div>
               @php
 
               $total += $item->quantity * $item->product->price;                    
@@ -60,9 +60,9 @@
     <div class="summary">
       <div class="order-summary">
         <h4 class="title-box">Order Summary</h4>
-        <p class="summary-info"><span class="title">Subtotal</span><b class="index">{{ number_format($total) }} VND</b></p>
+        <p class="summary-info"><span class="title">Subtotal</span><b class="index">{{ number_format($total) }} $</b></p>
         <p class="summary-info"><span class="title">Shipping</span><b class="index">Free Shipping</b></p>
-        <p class="summary-info total-info "><span class="title">Total</span><b class="index">{{ number_format($total)}} VND</b></p>
+        <p class="summary-info total-info "><span class="title">Total</span><b class="index">{{ number_format($total)}} $</b></p>
       </div>
       <div class="checkout-info">
         <label class="checkbox-field">

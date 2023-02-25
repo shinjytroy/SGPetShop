@@ -8,6 +8,7 @@ use App\Models\Brand;
 use App\Models\Product;
 use App\Models\Order;
 use App\Models\OrderDetail;
+use App\Models\Review;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -20,9 +21,10 @@ class HomeController extends Controller
         $prods = Product::all();
         $order = Order::all();
         $ord = OrderDetail::all();
+        $review = Review::all();
         $user = User::all();
         
-        return view ('admin.homedb',compact('category','brand','prods' ,'order','user','ord'));
+        return view ('admin.homedb',compact('category','brand','prods' ,'order','ord','review','user'));
     }
 
 }

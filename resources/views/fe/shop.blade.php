@@ -101,12 +101,12 @@
 								@foreach ($categories as $item)
 								<li class="category-item has-child-cate">
 									<a href="#" class="cate-link">{{ $item->categorie_name }}</a>
-									<span class="toggle-control">+</span>
+									{{-- <span class="toggle-control">+</span>
 									<ul class="sub-cate">
 										<li class="category-item"><a href="#" class="cate-link">Batteries (22)</a></li>
 										<li class="category-item"><a href="#" class="cate-link">Headsets (16)</a></li>
 										<li class="category-item"><a href="#" class="cate-link">Screen (28)</a></li>
-									</ul>
+									</ul> --}}
 								@endforeach
 							</ul>
 						</div>

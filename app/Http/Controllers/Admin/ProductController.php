@@ -49,10 +49,10 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Category $category)
     {
         $prodData = $request->all();
-        //$category = Category::all();
+        $category = Category::all();
         $prodData['slug'] = \Str::slug($request->name);
 
 
@@ -73,7 +73,7 @@ class ProductController extends Controller
         $prodData['image'] = $imageName;
 
         Product::create($prodData);
-        return redirect()->route('admin.product.index');
+        return redirect()->route('admin.product.index', compact('category'));
     }
 
     /**

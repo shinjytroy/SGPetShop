@@ -79,14 +79,12 @@
 									<div class="wrap-list-cate">
 										<input type="hidden" name="product-cate" value="0" id="product-cate">
 										<a href="#" class="link-control">All Category</a>
-										<ul class="list-cate">
+										{{-- <ul class="list-cate">
 											<li class="level-0">All Category</li>
 											@foreach ($categories as $item)
 											<li class="level-1" value="{{ $item->id}}">- {{ $item->categorie_name }}</li>
-													<li class="level-2">Food</li>
-													<li class="level-2">Toys</li>
 											@endforeach
-										</ul>
+										</ul> --}}
 									</div>
 								</form>
 							</div>

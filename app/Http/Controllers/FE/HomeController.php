@@ -25,11 +25,12 @@ class HomeController extends Controller
 
     public function product($slug) 
     {
+        $category = Category::all();
         // get() chuyển laravel collection thành php array
         // $prod = Product::where('slug', $slug)->get();
         // hàm first() lấy phần tử đầu
         $prod = Product::where('slug', $slug)->first();
-        return view('fe.product', compact('prod'));
+        return view('fe.product', compact('prod','category'));
     }
     
     public function addCart(Request $request) 
@@ -68,7 +69,8 @@ class HomeController extends Controller
 
     public function viewCart(Request $request) 
     {
-        return view('fe.viewCart');
+        $category = Category::all();
+        return view('fe.viewCart', compact('category'));
         // if ($request->session()->has('cart')) {
         //     $cart = $request->session()->get('cart');
         //     //dd($cart);
@@ -166,7 +168,7 @@ class HomeController extends Controller
         $categories = Category::all();
         $brands = Brand::all();
         return view('fe.shop', compact(
-            'prods', 'categories', 'brands'
+            'prods', 'brands', 'categories'
         ));
     }
     public function about()
@@ -179,7 +181,10 @@ class HomeController extends Controller
     }
     public function person()
     {
-
         return view ('fe.person');
+    }
+    public function history()
+    {
+        return view ('fe.history');
     }
 }

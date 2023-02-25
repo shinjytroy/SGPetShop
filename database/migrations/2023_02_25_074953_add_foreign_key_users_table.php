@@ -13,9 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('products', function (Blueprint $table) {
-            $table->foreignId('categorie_id')->constrained();
-            $table->foreignId('brand_id')->constrained();
+        Schema::table('users', function (Blueprint $table) {
+            $table->foreignId('review_id')->constrained();
         });
     }
 
@@ -26,7 +25,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('products', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             //
         });
     }

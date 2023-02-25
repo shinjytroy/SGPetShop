@@ -10,7 +10,7 @@ class Category extends Model
     use HasFactory;
     protected $primaryKey = 'id';
     protected $table = 'categories';
-    protected $fillable=['categorie_name','description', 'image_path'];
+    protected $fillable=['categorie_name','slug','description', 'image_path'];
     
     public function product(){
         return $this->belongTo(Product::class, 'categorie_id');
