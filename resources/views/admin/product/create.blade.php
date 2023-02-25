@@ -63,10 +63,9 @@
               <label for="brand_id">Brand</label>
               <select name="brand_id" id="brand_id" class="form-control">
                 <option value="">Select Brand</option>
-                <option value="1">1</option>
-                {{-- @foreach ( $category as $item)
-                <option value="{{ $item->id }}">{{ $item->category_name }}</option>
-                @endforeach --}}
+                @foreach ( $brand as $item)
+                <option value="{{ $item->id }}">{{ $item->brand_name }}</option>
+                @endforeach
               </select>
             </div>
             <div class="form-group">

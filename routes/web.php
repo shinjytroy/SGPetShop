@@ -8,7 +8,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\OrderDetailController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\CategoryController;
-
+use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\FE\HomeController as FEController;
 
 /*
@@ -61,6 +61,8 @@ Route::group(['middleware'=>'canLogin'], function() {
         Route::resource('/user', UserController::class);
 
         Route::resource('/category', CategoryController::class);
+
+        Route::resource('/brand', BrandController::class);
 
         Route::resource('/product', ProductController::class);
 

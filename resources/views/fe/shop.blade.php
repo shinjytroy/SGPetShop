@@ -98,42 +98,16 @@
 						<h2 class="widget-title">All Categories</h2>
 						<div class="widget-content">
 							<ul class="list-category">
+								@foreach ($categories as $item)
 								<li class="category-item has-child-cate">
-									<a href="#" class="cate-link">For Dog</a>
+									<a href="#" class="cate-link">{{ $item->categorie_name }}</a>
 									<span class="toggle-control">+</span>
 									<ul class="sub-cate">
 										<li class="category-item"><a href="#" class="cate-link">Batteries (22)</a></li>
 										<li class="category-item"><a href="#" class="cate-link">Headsets (16)</a></li>
 										<li class="category-item"><a href="#" class="cate-link">Screen (28)</a></li>
 									</ul>
-								</li>
-								<li class="category-item has-child-cate">
-									<a href="#" class="cate-link">For Cat</a>
-									<span class="toggle-control">+</span>
-									<ul class="sub-cate">
-										<li class="category-item"><a href="#" class="cate-link">Batteries (22)</a></li>
-										<li class="category-item"><a href="#" class="cate-link">Headsets (16)</a></li>
-										<li class="category-item"><a href="#" class="cate-link">Screen (28)</a></li>
-									</ul>
-								</li>
-								<li class="category-item has-child-cate">
-									<a href="#" class="cate-link">For Other Pets</a>
-									<span class="toggle-control">+</span>
-									<ul class="sub-cate">
-										<li class="category-item"><a href="#" class="cate-link">Batteries (22)</a></li>
-										<li class="category-item"><a href="#" class="cate-link">Headsets (16)</a></li>
-										<li class="category-item"><a href="#" class="cate-link">Screen (28)</a></li>
-									</ul>
-								</li>
-								<li class="category-item">
-									<a href="#" class="cate-link">Pet Equipments</a>
-								</li>
-								<li class="category-item">
-									<a href="#" class="cate-link">Pet Toys</a>
-								</li>
-								<li class="category-item">
-									<a href="#" class="cate-link">Service & Spa</a>
-								</li>
+								@endforeach
 							</ul>
 						</div>
 					</div><!-- Categories widget-->
@@ -142,16 +116,10 @@
 						<h2 class="widget-title">Brand</h2>
 						<div class="widget-content">
 							<ul class="list-style vertical-list list-limited" data-show="6">
-								<li class="list-item"><a class="filter-link active" href="#">Heka</a></li>
-								<li class="list-item"><a class="filter-link " href="#">Hill's</a></li>
-								<li class="list-item"><a class="filter-link " href="#">Royal</a></li>
-								<li class="list-item"><a class="filter-link " href="#">CPUs & Prosecsors</a></li>
-								<li class="list-item"><a class="filter-link " href="#">Sound & Speaker</a></li>
-								<li class="list-item"><a class="filter-link " href="#">Shop Smartphone & Tablets</a></li>
-								<li class="list-item default-hiden"><a class="filter-link " href="#">Printer & Ink</a></li>
-								<li class="list-item default-hiden"><a class="filter-link " href="#">CPUs & Prosecsors</a></li>
-								<li class="list-item default-hiden"><a class="filter-link " href="#">Sound & Speaker</a></li>
-								<li class="list-item default-hiden"><a class="filter-link " href="#">Shop Smartphone & Tablets</a></li>
+								@foreach ($brands as $item)
+								<li class="list-item"><a class="filter-link active" href="#">{{$item->brand_name}}</a></li>
+								@endforeach
+								{{-- <li class="list-item default-hiden"><a class="filter-link " href="#">Shop Smartphone & Tablets</a></li> --}}
 								<li class="list-item"><a data-label='Show less<i class="fa fa-angle-up" aria-hidden="true"></i>' class="btn-control control-show-more" href="#">Show more<i class="fa fa-angle-down" aria-hidden="true"></i></a></li>
 							</ul>
 						</div>

@@ -8,14 +8,18 @@ use App\Models\Product;
 use App\Models\CartItem;
 use App\Models\Order;
 use App\Models\OrderDetail;
+use App\Models\Category;
+use App\Models\Brand;
 
 class HomeController extends Controller
 {
     public function index() 
     {
         $prods = Product::all();
+        $categories = Category::all();
+        $brands = Brand::all();
         return view('fe.index', compact(
-            'prods'
+            'prods', 'categories', 'brands'
         ));
     }
 
@@ -159,8 +163,10 @@ class HomeController extends Controller
      public function shop()
     {
         $prods = Product::all();
+        $categories = Category::all();
+        $brands = Brand::all();
         return view('fe.shop', compact(
-            'prods'
+            'prods', 'categories', 'brands'
         ));
     }
     public function about()

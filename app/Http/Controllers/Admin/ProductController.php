@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Brand;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -18,7 +19,16 @@ class ProductController extends Controller
     {
         $prods = Product::all();
         $category = Category::all();
-        return view('admin.product.index', compact('prods', 'category'));
+        $brand = Brand::all();
+        //Chọn những sản phẩm có categorie_id = 1;
+        //$activeProducts = Product::where('categorie_id', 1)->orderBy('id', 'DESC')->limit(5)->get();
+        //-------------
+        //Loại bỏ những categorie_id =1
+        //$prods = Product::all();
+        // $activeProds = $prods->reject(function ($prod){
+        //     return $prod->categorie_id == 1;
+        // });
+        return view('admin.product.index', compact('prods', 'category', 'brand'));
     }
 
     /**
@@ -26,10 +36,11 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Category $category)
+    public function create(Category $category, Brand $brand)
     {
         $category = Category::all();
-        return view('admin.product.create', compact('category'));
+        $brand = Brand::all();
+        return view('admin.product.create', compact('category', 'brand'));
     }
 
     /**
@@ -38,10 +49,10 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Category $category)
+    public function store(Request $request)
     {
         $prodData = $request->all();
-        $category = Category::all();
+        //$category = Category::all();
         $prodData['slug'] = \Str::slug($request->name);
 
 
@@ -82,11 +93,12 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product, Category $category)
+    public function edit(Product $product, Category $category, Brand $brand)
     {
         //$product=Product::all();
         $category = Category::all();
-        return view('admin.product.edit', compact('product', 'category'));
+        $brand = Brand::all();
+        return view('admin.product.edit', compact('product', 'category', 'brand'));
     }
 
     /**
@@ -96,11 +108,12 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product, Category $category)
+    public function update(Request $request, Product $product, Category $category, Brand $brand)
     {
         $prodData = $request->all();
         $category = Category::all();
-        $prodData['categorie_id'] = $request->categorie_id;
+        $brand = Brand::all();
+        //$prodData['categorie_id'] = $request->categorie_id;
         $prodData['slug'] = \Str::slug($request->name);
         if ($request->hasFile('photo')) {
             $file = $request->file('photo');
@@ -117,7 +130,7 @@ class ProductController extends Controller
         }
 
         $product->update($prodData);
-        return redirect()->route('admin.product.index', compact('category'));
+        return redirect()->route('admin.product.index', compact('category', 'brand'));
     }
 
     /**
@@ -131,4 +144,5 @@ class ProductController extends Controller
         $product->delete();
         return redirect()->route('admin.product.index');
     }
+
 }

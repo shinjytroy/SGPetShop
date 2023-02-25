@@ -200,7 +200,7 @@
               <li class="nav-item">
                 <a href="{{ Route('admin.user.index') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>User List</p>
+                  <p>View User List</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -239,6 +239,30 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
+                Brands
+                <i class="fas fa-angle-left right"></i>
+                <!-- <span class="badge badge-info right">6</span> -->
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ Route('admin.brand.index') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>View Brand List</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ Route('admin.brand.create') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Create Brand</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-copy"></i>
+              <p>
                 Products
                 <i class="fas fa-angle-left right"></i>
                 <!-- <span class="badge badge-info right">6</span> -->
@@ -248,7 +272,7 @@
               <li class="nav-item">
                 <a href="{{ Route('admin.product.index') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Products List</p>
+                  <p>View Products List</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -272,7 +296,7 @@
               <li class="nav-item">
                 <a href="{{ Route('admin.orderdetail.index') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>OrderDetail List</p>
+                  <p>View OrderDetail List</p>
                 </a>
               </li>
             </ul>
@@ -290,7 +314,7 @@
               <li class="nav-item">
                 <a href="{{ Route('admin.order.index') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Order List</p>
+                  <p>View Order List</p>
                 </a>
               </li>
             </ul>

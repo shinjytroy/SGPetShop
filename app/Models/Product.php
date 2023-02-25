@@ -23,7 +23,9 @@ class Product extends Model
          'featured'];
          
     public function category(){
-        
         return $this->hasMany(Category::class, 'categorie_id');
+    }
+    public function brand(){
+        return $this->hasMany(Brand::class, 'brand_id');
     }
 }
