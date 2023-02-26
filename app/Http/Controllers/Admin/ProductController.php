@@ -20,18 +20,6 @@ class ProductController extends Controller
         $prods = Product::all();
         $category = Category::all();
         $brand = Brand::all();
-<<<<<<< HEAD
-        
-=======
-        //Chọn những sản phẩm có categorie_id = 1;
-        //$activeProducts = Product::where('categorie_id', 1)->orderBy('id', 'DESC')->limit(5)->get();
-        //-------------
-        //Loại bỏ những categorie_id =1
-        //$prods = Product::all();
-        // $activeProds = $prods->reject(function ($prod){
-        //     return $prod->categorie_id == 1;
-        // });
->>>>>>> 3c27b15bbae46666cbb382bbf76a0f682499a88e
         return view('admin.product.index', compact('prods', 'category', 'brand'));
     }
 
@@ -67,7 +55,7 @@ class ProductController extends Controller
             $extension = $file->getClientOriginalExtension();
             if ($extension != 'jpg' && $extension != 'png' && $extension != 'jpeg' && $extension != 'webp') {
                 return view('admin.product.create')
-                    ->with('loi', 'Bạn chỉ được chọn file có đuôi jpg,png,jpeg ');
+                    ->with('loi', 'Bạn chỉ được chọn file có đuôi jpg,png,jpeg,webp ');
             }
             $imageName = $file->getClientOriginalName();
             $file->move("images", $imageName);
@@ -119,16 +107,13 @@ class ProductController extends Controller
         $brand = Brand::all();
         //$prodData['categorie_id'] = $request->categorie_id;
         $prodData['slug'] = \Str::slug($request->name);
-<<<<<<< HEAD
-        
-=======
->>>>>>> 3c27b15bbae46666cbb382bbf76a0f682499a88e
+
         if ($request->hasFile('photo')) {
             $file = $request->file('photo');
             $extension = $file->getClientOriginalExtension();
             if ($extension != 'jpg' && $extension != 'png' && $extension != 'jpeg' && $extension != 'webp') {
                 return view('admin.product.create')
-                    ->with('loi', 'Bạn chỉ được chọn file có đuôi jpg,png,jpeg');
+                    ->with('loi', 'Bạn chỉ được chọn file có đuôi jpg,png,jpeg ,webp');
             }
             $imageName = $file->getClientOriginalName();
             $file->move("images", $imageName);
@@ -136,21 +121,13 @@ class ProductController extends Controller
         } else {
             $imageName = null;
         }
-<<<<<<< HEAD
-        
-=======
 
->>>>>>> 3c27b15bbae46666cbb382bbf76a0f682499a88e
+
         $product->update($prodData);
         return redirect()->route('admin.product.index', compact('category', 'brand'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
+   
     public function destroy(Product $product)
     {
         $product->delete();
@@ -158,3 +135,4 @@ class ProductController extends Controller
     }
 
 }
+    

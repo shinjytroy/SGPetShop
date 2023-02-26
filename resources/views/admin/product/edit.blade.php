@@ -58,23 +58,19 @@
 
                 @php
                 $namecate =  DB::table('categories')->where('id',"=",$product->categorie_id)->value('categorie_name');
+                $namebrand =  DB::table('brands')->where('id',"=",$product->brand_id)->value('brand_name');
 
                 @endphp
-                <option value="{{ $product->categorie_id }}">{{$namecate}} - Select</option>
-                
+                <option value="{{ $product->categorie_id }}">{{$namecate}} -- Select--</option>                
                 @foreach ( $category as $item)
                 <option value="{{ $item->id }}">{{ $item->categorie_name }}</option>
-
-                <option value="{{ $product->categorie_id }}">{{ $product->categorie_id }}</option>
-                @foreach ( $category as $item)
-    >            <option value="{{ $item->id }}">{{ $item->id }} - {{ $item->categorie_name }}</option>
                 @endforeach
               </select>
             </div>
             <div class="form-group">
               <label for="brand_id">Brand</label>
               <select name="brand_id" id="brand_id" class="form-control">
-                <option value="{{ $product->brand_id }}">{{ $product->brand_id }}</option>
+                <option value="{{ $product->brand_id }}">{{ $namebrand}}  --Select--</option>
                 @foreach ( $brand as $item)
                 <option value="{{ $item->id }}">{{ $item->brand_name }}</option>
                 @endforeach
