@@ -55,6 +55,7 @@
             <div class="form-group">
               <label for="categorie_id">Category</label>
               <select name="categorie_id" id="categorie_id" class="form-control">
+
                 @php
                 $namecate =  DB::table('categories')->where('id',"=",$product->categorie_id)->value('categorie_name');
 
@@ -63,6 +64,10 @@
                 
                 @foreach ( $category as $item)
                 <option value="{{ $item->id }}">{{ $item->categorie_name }}</option>
+
+                <option value="{{ $product->categorie_id }}">{{ $product->categorie_id }}</option>
+                @foreach ( $category as $item)
+    >            <option value="{{ $item->id }}">{{ $item->id }} - {{ $item->categorie_name }}</option>
                 @endforeach
               </select>
             </div>

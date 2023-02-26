@@ -20,7 +20,18 @@ class ProductController extends Controller
         $prods = Product::all();
         $category = Category::all();
         $brand = Brand::all();
+<<<<<<< HEAD
         
+=======
+        //Chọn những sản phẩm có categorie_id = 1;
+        //$activeProducts = Product::where('categorie_id', 1)->orderBy('id', 'DESC')->limit(5)->get();
+        //-------------
+        //Loại bỏ những categorie_id =1
+        //$prods = Product::all();
+        // $activeProds = $prods->reject(function ($prod){
+        //     return $prod->categorie_id == 1;
+        // });
+>>>>>>> 3c27b15bbae46666cbb382bbf76a0f682499a88e
         return view('admin.product.index', compact('prods', 'category', 'brand'));
     }
 
@@ -48,7 +59,7 @@ class ProductController extends Controller
         $category = Category::all();
         $prodData['slug'] = \Str::slug($request->name);
 
-       
+
         // process upload
 
         if ($request->hasFile('photo')) {
@@ -64,7 +75,7 @@ class ProductController extends Controller
             $imageName = null;
         }
         $prodData['image'] = $imageName;
-        
+
         Product::create($prodData);
         return redirect()->route('admin.product.index', compact('category'));
     }
@@ -108,7 +119,10 @@ class ProductController extends Controller
         $brand = Brand::all();
         //$prodData['categorie_id'] = $request->categorie_id;
         $prodData['slug'] = \Str::slug($request->name);
+<<<<<<< HEAD
         
+=======
+>>>>>>> 3c27b15bbae46666cbb382bbf76a0f682499a88e
         if ($request->hasFile('photo')) {
             $file = $request->file('photo');
             $extension = $file->getClientOriginalExtension();
@@ -122,7 +136,11 @@ class ProductController extends Controller
         } else {
             $imageName = null;
         }
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> 3c27b15bbae46666cbb382bbf76a0f682499a88e
         $product->update($prodData);
         return redirect()->route('admin.product.index', compact('category', 'brand'));
     }

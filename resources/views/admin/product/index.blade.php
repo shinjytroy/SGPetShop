@@ -43,15 +43,14 @@
           <thead>
               <tr>
                   <th style="width: 5%">Id</th>
-                  <th style="width: 5%">Category</th>
-                  <th style="width: 5%">Brand</th>
-                  <th style="width: 15%">Name</th>
-                  <th style="width: 10%">Regular Price</th>  
-                  <th style="width: 10%">Sale Price</th>  
+                  <th style="width: 10%">Category</th>
+                  <th style="width: 10%">Brand</th>
+                  <th style="width: 20%">Name</th>
+                  <th style="width: 5%">Regular Price</th>  
                   <th style="width: 10%">Status</th>
                   <th style="width: 5%">Featured</th>
                   <th style="width: 5%">Stock</th>
-                  <th style="width: 10%">Image</th>
+                  <th style="width: 5%">Image</th>
                   <th></th>
               </tr>
           </thead>
