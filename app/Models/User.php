@@ -44,6 +44,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
     public function review(){
-        return $this->hasMany(Review::class, 'review_id');
+        return $this->hasMany(Review::class, 'user_id');
     }
 }
