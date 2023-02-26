@@ -17,7 +17,15 @@ class ProductController extends Controller
     public function index()
     {
         $prods = Product::all();
-        $category = Category::all();
+        $category=Category::all();
+        $name = Category::select('categorie_name')->where('id','==',$prods['category_id']);
+        if($name != null){
+            $prods['category_id'] ==$name;
+
+        }else{
+
+            
+        }
         return view('admin.product.index', compact('prods', 'category'));
     }
 

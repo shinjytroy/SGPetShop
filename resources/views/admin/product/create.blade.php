@@ -51,25 +51,6 @@
           <form action="{{ Route('admin.product.store') }}" method="post" class="card-body" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
-              <label for="categorie_id">Category</label>
-              <select name="categorie_id" id="categorie_id" class="form-control">
-                <option value="">Select Category</option>
-                @foreach ( $category as $item)
-                <option value="{{ $item->categorie_name }}">{{ $item->categorie_name }}</option>
-                @endforeach
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="brand_id">Brand</label>
-              <select name="brand_id" id="brand_id" class="form-control">
-                <option value="">Select Brand</option>
-                <option value="1">1</option>
-                {{-- @foreach ( $category as $item)
-                <option value="{{ $item->id }}">{{ $item->category_name }}</option>
-                @endforeach --}}
-              </select>
-            </div>
-            <div class="form-group">
               <label for="name">Name</label>
               <input type="text" id="name" name="name" class="form-control">
             </div>
@@ -82,27 +63,17 @@
               <input type="number" id="price" name="price" class="form-control">
             </div>
             <div class="form-group">
-              <label for="price">Sale Price</label>
-              <input type="number" id="price" name="price" class="form-control">
+              <label for="salePrice">SalePrice</label>
+              <input type="number" id="salePrice" name="salePrice" class="form-control">
             </div>
+    
             <div class="form-group">
-              <label for="stock">Stock</label>
-              <input type="number" id="stock" name="stock" class="form-control">
-            </div>
-            <div class="form-group">
-              <label for="status">Status</label>
-              <select name="status" id="status" class="form-control">
-                <option value="">Select Status</option>
-                <option value="In Stock">In Stock</option>
-                <option value="Out of Stock">Out of Stock</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="featured">Featured</label>
-              <select name="featured" id="featured" class="form-control">
-                <option value="">Select Featured</option>
-                <option value="Yes">Yes</option>
-                <option value="No">No</option>
+              <label for="category_id	">Category</label>
+              <select name="category_id	" id="category_id	" class="form-control">
+                <option value="">Select Category</option>
+                @foreach ( $category as $item)
+                <option value="{{ $item->categorie_name }}">{{ $item->category_name }}</option>
+                @endforeach
               </select>
             </div>
             <div class="form-group">

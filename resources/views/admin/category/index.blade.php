@@ -52,7 +52,7 @@
             @foreach($category as $item)
               <tr>
                   <td>{{ $item->id }}</td>   
-                  <td>{{ $item->category_name }}</td>
+                  <td>{{ $item->categorie_name }}</td>
                   <td>{{ $item->description }}</td>
                   <td class="project-actions text-right">
                     

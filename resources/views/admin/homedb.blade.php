@@ -20,7 +20,7 @@
             @php
             $countprods=count($prods);
             $countorder=count($order);
-            
+            $countcate =count($category);
             $countuser=count($user);
             @endphp
 </section>
@@ -89,6 +89,20 @@
             </div>
           </div>
           <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-success">
+              <div class="inner">
+                <h3>{{$countcate}}<sup style="font-size: 20px"></sup></h3>
+
+                <p>Total Category in Shope </p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-shopping-cart"></i>
+              </div>
+              <a href="{{Route('admin.category.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
         </div>
       </div><!-- /.container-fluid -->
 </section>

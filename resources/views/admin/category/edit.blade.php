@@ -53,8 +53,8 @@
             @method('put')
             <input type="hidden" name="category_id" value="{{ $category->id }}"/>
             <div class="form-group">
-              <label for="category_name">Category Name</label>
-              <input type="text" id="category_name" name="category_name" class="form-control" value="{{ $category->category_name }}">
+              <label for="categorie_name">Category Name</label>
+              <input type="text" id="categorie_name" name="categorie_name" class="form-control" value="{{ $category->category_name }}">
             </div>
             <div class="form-group">
               <label for="description">Description</label>

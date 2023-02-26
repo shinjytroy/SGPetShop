@@ -51,8 +51,8 @@
           <form action="{{ Route('admin.category.store') }}" method="post" class="card-body" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
-              <label for="category_name">Category Name</label>
-              <input type="text" id="category_name" name="category_name" class="form-control">
+              <label for="categorie_name">Category Name</label>
+              <input type="text" id="categorie_name" name="categorie_name" class="form-control">
             </div>
             <div class="form-group">
               <label for="desc">Description</label>
