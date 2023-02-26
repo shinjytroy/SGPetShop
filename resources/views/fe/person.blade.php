@@ -10,14 +10,14 @@
 </div>
 <div class=" main-content-area">
 @if (Session::get('user'))
-<h2> Infomation : {{Session::get('user')->name}}</h2>
+<h2> Information : {{Session::get('user')->name}}</h2>
 <h4> Name : {{Session::get('user')->name}} </h4>
 <h4> Email : {{Session::get('user')->email}} </h4>
 <h4> Phone : {{Session::get('user')->phone}} </h4>
 <h4> Address : {{Session::get('user')->address}} </h4>
 
 @else
-<h3> Please Login To Continuce
+<h3> Please Login To Continue
 
 <h4><a href="{{Route('login')}}">Login</a></h4>
 @endif

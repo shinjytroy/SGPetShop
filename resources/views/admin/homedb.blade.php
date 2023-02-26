@@ -20,7 +20,7 @@
             @php
             $countprods=count($prods);
             $countorder=count($order);
-            $countcate =count($category);
+            $countcate=count($category);
             $countuser=count($user);
             @endphp
 </section>
@@ -88,8 +88,10 @@
               <a href="{{Route('admin.user.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
+        
+       
+                  <!-- ./col -->
+                  <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
@@ -103,8 +105,12 @@
               <a href="{{Route('admin.category.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
-        </div>
-      </div><!-- /.container-fluid -->
+      
+        <!-- ./col -->
+      
+      </div>
+</div>
+      <!-- /.container-fluid -->
 </section>
     
 <!-- /.content -->

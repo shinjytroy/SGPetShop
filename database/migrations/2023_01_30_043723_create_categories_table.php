@@ -17,8 +17,10 @@ return new class extends Migration
             $table->id();
             //$table->foreignId('product_id')->constrained();
             $table->string('categorie_name')->nullable();
+            $table->string('slug')->nullable();
             $table->text('description')->nullable();
             $table->string('image_path')->nullable();
+            $table->foreignId('parent_id')->nullable();
             $table->timestamps();
         });
     }

@@ -8,7 +8,8 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\OrderDetailController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\CategoryController;
-
+use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\FE\HomeController as FEController;
 
 /*
@@ -53,7 +54,11 @@ Route::post('/process-checkout', [FEController::class, 'processCheckout'])->name
 Route::group(['middleware'=>'canLogin'], function() {
     // cần login mới truy cập
     Route::post('/process-checkout', [FEController::class, 'processCheckout'])->name('processCheckout');
+    
     Route::get('/checkout', [FEController::class, 'checkout'])->name('checkout');
+    
+    Route::get('/history', [FEController::class, 'history'])->name('history');
+    
     Route::group(['middleware'=>'canAdmin', 'prefix'=> 'admin', 'as' => 'admin.'], function() {
         // cần admin mới truy cập
         Route::get('/', [HomeController::class, 'homedb'])->name('homedb');
@@ -62,11 +67,15 @@ Route::group(['middleware'=>'canLogin'], function() {
 
         Route::resource('/category', CategoryController::class);
 
+        Route::resource('/brand', BrandController::class);
+
         Route::resource('/product', ProductController::class);
 
         Route::resource('/orderdetail', OrderDetailController::class);
 
         Route::resource('/order', OrderController::class);
+
+        Route::resource('/review', ReviewController::class);
     });
         
 });
