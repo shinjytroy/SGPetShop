@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained();
             $table->string('review_name')->nullable();
             $table->text('description')->nullable();
+            $table->string('rate')->nullable();
             $table->tinyInteger('is_accept')->nullable();
             $table->timestamps();
         });

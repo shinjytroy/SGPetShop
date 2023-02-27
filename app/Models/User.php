@@ -22,7 +22,8 @@ class User extends Authenticatable
         'email',
         'password',
         'phone',
-        'role'
+        'role',
+        'address'
     ];
 
     /**
@@ -45,5 +46,8 @@ class User extends Authenticatable
     ];
     public function review(){
         return $this->hasMany(Review::class, 'user_id');
+    }
+    public function favorite(){
+        return $this->belongTo(Favorite::class, 'user_id');
     }
 }
