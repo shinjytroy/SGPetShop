@@ -27,25 +27,19 @@
       <form action="{{Route('createregister')}}" method="post">
       @csrf
           <!--Full Name-->
-    <div class="input-group mb-3">
-          <input type="text"  id="name" name="name" class="form-control" placeholder="Full name">
-          
           <span style="color:red"> @error('name'){{$message}}@enderror</span>
+          <div class="input-group mb-3">
+          <input type="text"  id="name" name="name" class="form-control" placeholder="Full name">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
             </div>
-          </div>
-         
-        </div>
-        
-       
+          </div>        
+        </div>             
           <!--Email-->
-        <div class="input-group mb-3">
-
-          <input type="email" id="email" name="email" class="form-control" placeholder="Email">
           <span style="color:red"> @error('email'){{$message}}@enderror</span>
-
+        <div class="input-group mb-3">
+          <input type="email" id="email" name="email" class="form-control" placeholder="Email">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -53,10 +47,9 @@
           </div>
         </div>
         <!--Password-->
+        <span style="color:red"> @error('password'){{$message}}@enderror</span>
         <div class="input-group mb-3">
           <input type="password" id="password" name="password" class="form-control" placeholder="Password">
-          <span style="color:red"> @error('password'){{$message}}@enderror</span>
-
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -64,10 +57,9 @@
           </div>
         </div>
           <!--Comfirm Password-->
+          <span style="color:red"> @error('confirm'){{$message}}@enderror</span>
         <div class="input-group mb-3">
           <input type="password"  id="confirm" name="confirm"   class="form-control" placeholder="Retype password">
-          <span style="color:red"> @error('confirm'){{$message}}@enderror</span>
-
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -75,10 +67,9 @@
           </div>
         </div>
             <!--Phone-->
+            <span style="color:red"> @error('phone'){{$message}}@enderror</span>
             <div class="input-group mb-3">
           <input type="number" type="text" id="phone" name="phone" class="form-control" placeholder="Phone Number">
-          <span style="color:red"> @error('phone'){{$message}}@enderror</span>
-
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-phone"></span>
@@ -86,21 +77,19 @@
           </div>
         </div>
             <!--Address-->
+            <span style="color:red"> @error('address'){{$message}}@enderror</span>
             <div class="input-group mb-3">
           <input type="text" class="form-control" placeholder="Address">
-          <span style="color:red"> @error('address'){{$message}}@enderror</span>
-
           <div class="input-group-append">
             <div class="input-group-text">
              <span class="fas fa-address-card"></span>
             </div>
           </div>
         </div>
-                 <!--Address-->
-                 <div class="input-group mb-3">
+            <!--Role-->
+            <div class="input-group mb-3">
           <input type="hidden" id="role" name="role" class="form-control" value="2">
-          <div class="input-group-append">
-           
+          <div class="input-group-append">         
           </div>
         </div>
         
