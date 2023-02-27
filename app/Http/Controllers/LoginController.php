@@ -34,8 +34,5 @@ class LoginController extends Controller
         $request->session()->flush();
         return redirect()->route('login');
     }
-    public function register ()
-    {
-        return view ('register');
-    }
+   
 }
