@@ -79,7 +79,7 @@
             <!--Address-->
             <span style="color:red"> @error('address'){{$message}}@enderror</span>
             <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Address">
+          <input type="text" class="form-control" id="address" name="address" placeholder="Address">
           <div class="input-group-append">
             <div class="input-group-text">
              <span class="fas fa-address-card"></span>
