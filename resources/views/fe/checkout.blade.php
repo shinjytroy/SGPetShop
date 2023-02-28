@@ -52,7 +52,7 @@
           <span class="payment-desc">You can pay with your credit</span>
           <span class="payment-desc">card if you don't have a paypal account</span>
         </label> --}}
-        <div id="paypal-button"></div>
+        <div id="paypal-button" class="total"></div>
       </div>
 
       @php
@@ -227,5 +227,49 @@
 
 </div><!--end main content area-->
 </div><!--end container-->
+<script src="https://www.paypalobjects.com/api/checkout.js"></script>
+<script>
+	paypal.Button.render({
+	  // Configure environment
+	  env: 'sandbox',
+	  client: {
+		sandbox: 'AfQkAK-Vb1re9ccSjUXorxkpBmr259PurmV3SoonN5timhx2Nhk43WDqSadA-mSNfiKPce7q-lN0C5vs',
+		production: 'demo_production_client_id'
+	  },
+	  // Customize button (optional)
+	  locale: 'en_US',
+	  style: {
+		size: 'medium',
+		color: 'gold',
+		shape: 'pill',
+	  },
+  
+	  // Enable Pay Now checkout flow (optional)
+	  commit: true,
+  
+	  // Set up a payment
+	  payment: function(data, actions) {
+		return actions.payment.create({
+		  transactions: [{
+			amount: {
+			  total: '{{$total}}',
+			  currency: 'USD'
+			}
+		  }]
+		});
+	  },
+	  // Execute the payment
+	  onAuthorize: function(data, actions) {
+		return actions.payment.execute().then(function() {
+		  // Show a confirmation message to the buyer
+		  window.alert('Thank you for your purchase!');
+		});
+	  }
+
+    // return view('thanksyou');
+	}, '#paypal-button');
+  
+	
+	</script>
 @endsection
 
