@@ -48,14 +48,17 @@ Route::post('/change-cart-item', [FEController::class, 'changeCartItem'])->name(
 Route::post('/remove-cart-item', [FEController::class, 'removeCartItem'])->name('removeCart');
 
 
-Route::post('/process-checkout', [FEController::class, 'processCheckout'])->name('processCheckout');
 
 
 Route::group(['middleware'=>'canLogin'], function() {
     // cần login mới truy cập
     Route::post('/process-checkout', [FEController::class, 'processCheckout'])->name('processCheckout');
+
+    Route::post('/process-review', [FEController::class, 'processReview'])->name('processReview');
     
     Route::get('/checkout', [FEController::class, 'checkout'])->name('checkout');
+
+    Route::get('/review', [FEController::class, 'review'])->name('review');
     
     Route::get('/history', [FEController::class, 'history'])->name('history');
     

@@ -99,23 +99,37 @@
               <div class="wrap-review-form">
                 
                 <div id="comments">
-                  <h2 class="woocommerce-Reviews-title">01 review for <span>Radiant-360 R6 Chainsaw Omnidirectional [Orage]</span></h2>
+                  <h2 class="woocommerce-Reviews-title"> review for <span>{{ $prod->name }}</span></h2>  <!--Count review-->
                   <ol class="commentlist">
                     <li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="li-comment-20">
                       <div id="comment-20" class="comment_container"> 
-                        <img alt="" src="assets/images/author-avata.jpg" height="80" width="80">
+                     
                         <div class="comment-text">
                           <div class="star-rating">
                             <span class="width-80-percent">Rated <strong class="rating">5</strong> out of 5</span>
                           </div>
                           <p class="meta"> 
-                            <strong class="woocommerce-review__author">admin</strong> 
-                            <span class="woocommerce-review__dash">–</span>
-                            <time class="woocommerce-review__published-date" datetime="2008-02-14 20:00" >Tue, Aug 15,  2017</time>
+                          
+                           @foreach($review as $items)
+                           @if($items->product_id == $prod->id)
+                           @php
+                           $nameuser = DB::table('users')->where('id',"=",$items->user_id)->value('name');
+                           @endphp
+                            <strong class="woocommerce-review__author">{{$nameuser}}</strong> 
+                           
+                            <span class="woocommerce-review__dash">:</span>
+                            <time class="woocommerce-review__published-date" >{{$items->created_at}}</time>
+                           
                           </p>
                           <div class="description">
-                            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+                            <p>{{$items->description}}</p>                                              
                           </div>
+                          @endif
+                         @endforeach
+                          
+
+                         
+                          
                         </div>
                       </div>
                     </li>
@@ -125,8 +139,9 @@
                 <div id="review_form_wrapper">
                   <div id="review_form">
                     <div id="respond" class="comment-respond"> 
-
-                      <form action="#" method="post" id="commentform" class="comment-form" novalidate="">
+                      @if(Session::get('user'))
+                      <form action="{{Route('processReview')}}" method="post" id="commentform" class="comment-form" novalidate="">
+                        @csrf
                         <p class="comment-notes">
                           <span id="email-notes">Your email address will not be published.</span> Required fields are marked <span class="required">*</span>
                         </p>
@@ -146,24 +161,40 @@
                             <input type="radio" id="rated-5" name="rating" value="5" checked="checked">
                           </p>
                         </div>
+                        
+
                         <p class="comment-form-author">
-                          <label for="author">Name <span class="required">*</span></label> 
-                          <input id="author" name="author" type="text" value="">
+                        
+                          <input type="hidden" id="product_id" type="text" name="product_id" value="{{$prod->id}}" >
+
                         </p>
-                        <p class="comment-form-email">
-                          <label for="email">Email <span class="required">*</span></label> 
-                          <input id="email" name="email" type="email" value="" >
+
+                        <p class="comment-form-author">
+                          <label for="user_id">Name <span class="required">*</span></label> 
+                          <input id="user_id" type="text" name="user_id" value="{{Session::get('user')->name}}" placeholder="Your name">
+
                         </p>
+
                         <p class="comment-form-comment">
-                          <label for="comment">Your review <span class="required">*</span>
+                          <label for="description">Your review <span class="required">*</span>
                           </label>
-                          <textarea id="comment" name="comment" cols="45" rows="8"></textarea>
+                          <textarea id="description" name="description" cols="45" rows="8"></textarea>
                         </p>
                         <p class="form-submit">
                           <input name="submit" type="submit" id="submit" class="submit" value="Submit">
+                        
                         </p>
+                        @if(Session::has('thongbao'))
+                        <div class="badge badge-success">
+                          {{Session::get('thongbao')}}
+                        </div>
+                        @endif
+                        
                       </form>
-
+                      @else 
+                      <div>Please Login To Review </div>
+                      <a href="{{Route('login')}}">Login</a>
+                      @endif
                     </div><!-- .comment-respond-->
                   </div><!-- #review_form -->
                 </div><!-- #review_form_wrapper -->

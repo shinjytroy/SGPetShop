@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->foreignId('review_id')->constrained();
-        });
+        // Schema::table('users', function (Blueprint $table) {
+        //     $table->foreignId('review_id')->constrained();
+        // });
     }
 
     /**
