@@ -15,7 +15,10 @@
 	<link rel="stylesheet" href="{{ asset('/assets/css/chosen.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('/assets/css/style.css') }}">
 	<link rel="stylesheet" href="{{ asset('/assets/css/color-01.css') }}">
+	<script src="https://www.paypalobjects.com/api/checkout.js"></script>
 </head>
+
+
 <body class="home-page home-01 ">
 	<?php 
 	if (!function_exists('currency_format')) {
@@ -58,6 +61,8 @@
 							@else
 								<li class="menu-item" ><a style="color:white"  title="Register or Login" href="{{Route('login')}}">LogIn</a></li>
 							@endif	
+							<li class="menu-item" ><a style="color:white"  title="Register or Login" href="{{Route('register')}}">Register</a></li>
+
 							</li>
 							</ul>
 						</div>

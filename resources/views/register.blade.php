@@ -1,103 +1,67 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Registration </title>
+@extends('fe.layout')
 
-  <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="{{asset('/plugins/fontawesome-free/css/all.min.css')}}">
-  <!-- icheck bootstrap -->
-  <link rel="stylesheet" href="{{ asset('/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="{{ asset('/css/adminlte.min.css') }}">
-</head>
-<body class="hold-transition register-page">
-<div class="register-box">
-  <div class="register-logo">
-    <a href="../../index2.html">SG Pet Shop</a>
-  </div>
+@section('contents')
+<div class="container">
 
-  <div class="card">
-    <div class="card-body register-card-body">
-      <p class="login-box-msg">Register a new membership</p>
-
-      <form action="../../index.html" method="post">
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Full name">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-user"></span>
-            </div>
-          </div>
-        </div>
-        <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="Email">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-envelope"></span>
-            </div>
-          </div>
-        </div>
-        <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-lock"></span>
-            </div>
-          </div>
-        </div>
-        <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Retype password">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-lock"></span>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-8">
-            <div class="icheck-primary">
-              <input type="checkbox" id="agreeTerms" name="terms" value="agree">
-              <label for="agreeTerms">
-               I agree to the <a href="#">terms</a>
-              </label>
-            </div>
-          </div>
-          <!-- /.col -->
-          <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Register</button>
-          </div>
-          <!-- /.col -->
-        </div>
-      </form>
-
-      <div class="social-auth-links text-center">
-        <p>- OR -</p>
-        <a href="#" class="btn btn-block btn-primary">
-          <i class="fab fa-facebook mr-2"></i>
-          Sign up using Facebook
-        </a>
-        <a href="#" class="btn btn-block btn-danger">
-          <i class="fab fa-google-plus mr-2"></i>
-          Sign up using Google+
-        </a>
-      </div>
-
-      <a href="{{Route('login')}}" class="text-center">I already have a membership</a>
-    </div>
-    <!-- /.form-box -->
-  </div><!-- /.card -->
+<div class="wrap-breadcrumb">
+  <ul>
+    <li class="item-link"><a href="{{Route('home')}}" class="link">home</a></li>
+    <li class="item-link"><span>Register</span></li>
+  </ul>
 </div>
-<!-- /.register-box -->
+<div class="row">
+  <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12 col-md-offset-3">							
+    <div class=" main-content-area">
+      <div class="wrap-login-item ">
+        <div class="register-form form-item ">
+          <form class="form-stl" name="frm-login" action="{{Route('createregister')}}" method="post" >
+          @csrf
+            <fieldset class="wrap-title">
+              <h3 class="form-title">Register a new membership</h3>
+              <h4 class="form-subtitle">Personal infomation</h4>
+            </fieldset>									
+            <fieldset class="wrap-input">
+              <label for="frm-reg-lname">Full Name :</label>
+              <span style="color:red"> @error('name'){{$message}}@enderror</span>
+              <input type="text"  id="name" name="name" placeholder="Greater than  3 character" placeholder="Last name*">
+            </fieldset>
+            <fieldset class="wrap-input">
+              <label for="frm-reg-email">Email Address :</label>
+              <span style="color:red"> @error('email'){{$message}}@enderror</span>
+              <input type="email"id="email" name="email" placeholder="Example: abc@gmail.com">
+            </fieldset>
+            <fieldset class="wrap-input">
+              <label for="frm-reg-password">Password :</label>
+              <span style="color:red"> @error('password'){{$message}}@enderror</span>
+              <input type="password"id="password" name="password" placeholder="From [6-12] character ">
+            </fieldset>
+            <fieldset class="wrap-input">
+              <label for="frm-reg-password">Confirm Password :</label>
+              <span style="color:red"> @error('confirm'){{$message}}@enderror</span>
+              <input  type="password"  id="confirm" name="confirm"   placeholder="Comfirm password">
+            </fieldset>
+            <fieldset class="wrap-input">
+              <label for="frm-reg-password">Phone :</label>
+              <span style="color:red"> @error('phone'){{$message}}@enderror</span>
+              <input type="number" id="phone" name="phone" class="form-control" placeholder="Phone Number">
+            </fieldset>
+            <fieldset class="wrap-input">
+              <label for="frm-reg-password">Address :</label>
+              <span style="color:red"> @error('address'){{$message}}@enderror</span>
+              <input type="text" id="address" name="address" placeholder="Address">
+            </fieldset>
+            <fieldset class="wrap-input">                        
+              <input type="hidden" id="role" name="role" class="form-control" value="2">
+            </fieldset>
+            <input type="submit" class="btn btn-sign" value="Register" name="register">
+            <a class="btn btn-submit" href="{{Route('login')}}">Log In Here</a>
+          </form>
+        </div>											
+      </div>
+    </div><!--end main products area-->		
+  </div>
+</div><!--end row-->
 
-<!-- jQuery -->
-<script src="../../plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<script src="../../dist/js/adminlte.min.js"></script>
-</body>
-</html>
+</div><!--end container-->
+     
+@endsection

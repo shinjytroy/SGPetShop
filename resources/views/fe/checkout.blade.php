@@ -37,26 +37,28 @@
       <p class="summary-info"><span class="title">Credit Cart (saved)</span></p>
       <div class="choose-payment-methods">
         <label class="payment-method">
-          <input name="payment-method" id="payment-method-bank" value="bank" type="radio">
+          <input name="payment-method" id="payment-method-bank" value="bank" type="radio" >
           <span>Direct Bank Transder</span>
           <span class="payment-desc">But the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable</span>
         </label>
         <label class="payment-method">
-          <input name="payment-method" id="payment-method-visa" value="visa" type="radio">
+          <input name="payment-method" id="payment-method-visa" value="visa" type="radio" >
           <span>visa</span>
           <span class="payment-desc">There are many variations of passages of Lorem Ipsum available</span>
         </label>
-        <label class="payment-method">
+        {{-- <label class="payment-method">
           <input name="payment-method" id="payment-method-paypal" value="paypal" type="radio">
           <span>Paypal</span>
           <span class="payment-desc">You can pay with your credit</span>
           <span class="payment-desc">card if you don't have a paypal account</span>
-        </label>
+        </label> --}}
+        <div id="paypal-button" class="total"></div>
       </div>
+
       @php
       $total=number_format($total);
       @endphp
-      <p class="summary-info grand-total"><span>Grand Total</span> <span class="grand-total-price">{{$total}}</span></p>
+      <p class="summary-info grand-total"><span>Grand Total</span> <span id="totalpaypal" class="grand-total-price">{{$total}}</span></p>
       <button type="submit" class="btn btn-medium">Place order now</button>
     </div>
     <div class="summary-item shipping-method">
@@ -225,5 +227,49 @@
 
 </div><!--end main content area-->
 </div><!--end container-->
+<script src="https://www.paypalobjects.com/api/checkout.js"></script>
+<script>
+	paypal.Button.render({
+	  // Configure environment
+	  env: 'sandbox',
+	  client: {
+		sandbox: 'AfQkAK-Vb1re9ccSjUXorxkpBmr259PurmV3SoonN5timhx2Nhk43WDqSadA-mSNfiKPce7q-lN0C5vs',
+		production: 'demo_production_client_id'
+	  },
+	  // Customize button (optional)
+	  locale: 'en_US',
+	  style: {
+		size: 'medium',
+		color: 'gold',
+		shape: 'pill',
+	  },
+  
+	  // Enable Pay Now checkout flow (optional)
+	  commit: true,
+  
+	  // Set up a payment
+	  payment: function(data, actions) {
+		return actions.payment.create({
+		  transactions: [{
+			amount: {
+			  total: '{{$total}}',
+			  currency: 'USD'
+			}
+		  }]
+		});
+	  },
+	  // Execute the payment
+	  onAuthorize: function(data, actions) {
+		return actions.payment.execute().then(function() {
+		  // Show a confirmation message to the buyer
+		  window.alert('Thank you for your purchase!');
+		});
+	  }
+
+    // return view('thanksyou');
+	}, '#paypal-button');
+  
+	
+	</script>
 @endsection
 

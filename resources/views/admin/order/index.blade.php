@@ -74,7 +74,7 @@
                           </i>
                           View
                       </a>
-                      <form action=" #" method="post" style="display:inline-block">
+                      <!-- <form action=" #" method="post" style="display:inline-block">
                         @csrf
                         @method("delete")
                         <button type="submit" class="btn btn-danger btn-sm">
@@ -82,7 +82,7 @@
                             </i>
                             Delete
                         </button>
-                      </form>
+                      </form> -->
                   </td>
               </tr>
             @endforeach

@@ -22,7 +22,8 @@ class User extends Authenticatable
         'email',
         'password',
         'phone',
-        'role'
+        'role',
+        'address'
     ];
 
     /**
@@ -44,6 +45,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
     public function review(){
-        return $this->hasMany(Review::class, 'review_id');
+        return $this->hasMany(Review::class, 'user_id');
+    }
+    public function favorite(){
+        return $this->belongTo(Favorite::class, 'user_id');
     }
 }

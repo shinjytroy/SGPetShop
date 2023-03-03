@@ -13,9 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        // Schema::table('users', function (Blueprint $table) {
-        //     $table->foreignId('review_id')->constrained();
-        // });
+        Schema::create('favorites', function (Blueprint $table) {
+            $table->id();
+            $table->text('description')->nullable();
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('product_id')->constrained();
+            $table->timestamps();
+        });
     }
 
     /**
@@ -25,8 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('favorites');
     }
 };

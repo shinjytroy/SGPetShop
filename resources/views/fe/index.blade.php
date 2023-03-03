@@ -55,9 +55,12 @@
   </div>
 
   <!--On Sale-->
+  @php
+  $datetime= "2023/2/30 12:00:00";
+  @endphp
   <div class="xwrap-show-advance-info-box style-1 has-countdown">
     <h3 class="title-box">Top Saling</h3>
-    <div class="wrap-countdown mercado-countdown" data-expire="2023/2/30 12:00:00"></div>
+    <div class="wrap-countdown mercado-countdown" data-expire="{{$datetime}}"></div>
     <div class="wrap-products slide-carousel owl-carousel style-nav-1 equal-container " data-items="5" data-loop="false" data-nav="true" data-dots="false" data-responsive='{"0":{"items":"1"},"480":{"items":"2"},"768":{"items":"3"},"992":{"items":"4"},"1200":{"items":"5"}}'>
       @foreach($prods as $item)
       <div class="product product-style-2 equal-elem ">
