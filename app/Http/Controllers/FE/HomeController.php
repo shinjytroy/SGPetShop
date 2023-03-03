@@ -10,6 +10,8 @@ use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\Category;
 use App\Models\Brand;
+use App\Models\Review;
+use Illuminate\Contracts\Session\Session;
 
 class HomeController extends Controller
 {
@@ -18,9 +20,11 @@ class HomeController extends Controller
         $prods = Product::all();
         $categories = Category::all();
         $brands = Brand::all();
+        $order=Order::all();
         return view('fe.index', compact(
-            'prods', 'categories', 'brands'
+            'prods', 'categories', 'brands','order'
         ));
+        
     }
 
     public function product($slug) 
@@ -30,7 +34,8 @@ class HomeController extends Controller
         // $prod = Product::where('slug', $slug)->get();
         // hàm first() lấy phần tử đầu
         $prod = Product::where('slug', $slug)->first();
-        return view('fe.product', compact('prod','category'));
+        $review=Review::all();
+        return view('fe.product', compact('prod','category','review'));
     }
     
     public function addCart(Request $request) 
@@ -186,5 +191,28 @@ class HomeController extends Controller
     public function history()
     {
         return view ('fe.history');
+    }
+    public function review(Request $request){     
+        return view('fe.review');        
+    }
+    public function processReview(Request $request){
+
+      
+
+        $rv =$request->all();
+  
+        $rv['user_id']=$request->session()->get('user')->id;
+        
+        $review = Review::create($rv);
+        // luu review
+        
+         $request->session()->forget('review');
+         return view ('fe.thankyou')->with('thongbao','Thank you ');
+        
+     
+           
+        
+       
+     
     }
 }
