@@ -44,9 +44,10 @@
           <thead>
               <tr>
                   <th style="width: 10%">Id</th>
-                  <th style="width: 22%">Username</th>
+                  <th style="width: 15%">Email</th>
                   <th style="width: 15%">Full name</th>
                   <th style="width: 10%">Phone</th>
+                  <th style="width: 15%">Address</th>
                   <th style="width: 10%" class="text-center">Role</th>
                   <th style="width: 10%">Password</th>
                   
@@ -60,6 +61,7 @@
                   <td>{{ $item->email }}</td>
                   <td>{{ $item->name }}</td>
                   <td>{{ $item->phone }}</td>
+                  <td>{{ $item->address }}</td>
                   <td class="project-state">
                    @if(Session::get('user')->name == "Adminshop")
                    @if ($item->role != null && $item->role == 1 && $item->name !="Adminshop")

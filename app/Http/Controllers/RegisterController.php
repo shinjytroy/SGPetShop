@@ -39,10 +39,10 @@ class RegisterController extends Controller
         $request->validate([
             'name' => 'required|min:3|max:50',
             'email' => 'email|required|unique:users',
-           
+            'address' =>'max:40',
             'password' => 'min:6|max:12|required_with:confirm|same:confirm',
             'confirm' => 'min:6|max:12' ,
-            'phone' =>'min:8|max:15'
+            'phone' =>'min:8|max:15|required'
         ]); 
        
         $user::create($request->all());
