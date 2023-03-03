@@ -24,8 +24,7 @@
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
-      <p class="login-box-msg">Sign in to continuce</p>
-
+      <p class="login-box-msg">Sign in to continue</p>
       <form action="{{ Route('checkLogin') }}" method="post">
         @csrf
         <div class="input-group mb-3">
