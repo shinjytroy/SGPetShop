@@ -61,6 +61,8 @@
 							@else
 								<li class="menu-item" ><a style="color:white"  title="Register or Login" href="{{Route('login')}}">LogIn</a></li>
 							@endif	
+							<li class="menu-item" ><a style="color:white"  title="Register or Login" href="{{Route('register')}}">Register</a></li>
+
 							</li>
 							</ul>
 						</div>
