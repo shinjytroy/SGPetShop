@@ -51,7 +51,7 @@ class UserController extends Controller
         $user::create($request->all());
         
         
-        return redirect()->route('admin.user.index')->with('thongbao'.'Create Successfully!');
+        return redirect()->route('admin.user.index')->with('messagecreate','');
     }
 
     /**
@@ -94,7 +94,7 @@ class UserController extends Controller
             'confirm' => 'min:6|max:12'
         ]);  
         $user->update($request ->all());
-        return redirect()->route('admin.user.index')->with('thongbao','Update Successfully!');              
+        return redirect()->route('admin.user.index')->with('messageupdate','');              
     }
 
     /**
@@ -106,6 +106,6 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-        return redirect()->route('admin.user.index')->with('thongbao','Delete Successfully!');
+        return redirect()->route('admin.user.index')->with('messagedelete','');
     }
 }

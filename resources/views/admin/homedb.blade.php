@@ -5,7 +5,17 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
+      @if(Session::has('messagelogin'))
+    <script>
+      Swal.fire(
+  'Welcome to Dashboard !!',
+  'You clicked the button to continue!',
+  'success'
+    )
+    </script>
+   @endif
       @if (Session::get('user'))
+
         <h1 style="color:green"> Welcome :: {{Session::get('user')->name }}</h1>
         @endif	
       </div>

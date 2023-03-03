@@ -35,11 +35,34 @@
       </div>
     </div>
     <div class="card-body p-0">
-      @if(Session::has('thongbao'))
-      <div class="badge badge-success">
-        {{Session::get('thongbao')}}
-      </div>
-      @endif
+      @if(Session::has('messageupdate'))
+    <script>
+      Swal.fire(
+  'Update Success !!',
+  'You clicked the button to continue!',
+  'success'
+    )
+    </script>
+   @endif
+
+   @if(Session::has('messagedelete'))
+    <script>
+      Swal.fire(
+  'Delete Success !!',
+  'You clicked the button to continue!',
+  'success'
+    )
+    </script>
+   @endif
+   @if(Session::has('messagecreate'))
+    <script>
+      Swal.fire(
+  'Create Success !!',
+  'You clicked the button to continue!',
+  'success'
+    )
+    </script>
+   @endif
       <table class="table table-striped projects">
           <thead>
               <tr>
