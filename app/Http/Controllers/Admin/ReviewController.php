@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Review;
+use App\Models\User;
+use App\Models\Product;
+
 use Illuminate\Http\Request;
 
 class ReviewController extends Controller
@@ -16,7 +19,11 @@ class ReviewController extends Controller
     public function index()
     {
         $review = Review::all();
-        return view('admin.review.index', compact('review'));
+        $product=Product::all();
+        $user=User::all();
+        return view('admin.review.index', compact(
+            'review','product','user'
+        ));
     }
 
     /**
@@ -24,9 +31,11 @@ class ReviewController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create( User $user , Product $product)
     {
-        //
+        $user=User::all();
+        $product=Product::all();
+        return view ('admin.review.create',compact('user','product'));
     }
 
     /**
@@ -35,11 +44,13 @@ class ReviewController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store (Request $request , User $user , Product $product)
     {
         $reviewData = $request->all();
+        $user=User::all();
+        $product=Product::all();
         Review::create($reviewData);
-        return redirect()->route('admin.review.index');
+        return redirect()->route('admin.review.index',compact('user','product'));
     }
 
     /**

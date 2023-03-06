@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\ReviewController;
+use App\Http\Controllers\Admin\CouponsController;
 use App\Http\Controllers\FE\HomeController as FEController;
 
 /*
@@ -54,14 +55,17 @@ Route::post('/change-cart-item', [FEController::class, 'changeCartItem'])->name(
 Route::post('/remove-cart-item', [FEController::class, 'removeCartItem'])->name('removeCart');
 
 
-Route::post('/process-checkout', [FEController::class, 'processCheckout'])->name('processCheckout');
 
 
 Route::group(['middleware'=>'canLogin'], function() {
     // cần login mới truy cập
     Route::post('/process-checkout', [FEController::class, 'processCheckout'])->name('processCheckout');
+
+    Route::post('/process-review', [FEController::class, 'processReview'])->name('processReview');
     
     Route::get('/checkout', [FEController::class, 'checkout'])->name('checkout');
+
+    Route::get('/review', [FEController::class, 'review'])->name('review');
     
     Route::get('/history', [FEController::class, 'history'])->name('history');
     
@@ -82,6 +86,8 @@ Route::group(['middleware'=>'canLogin'], function() {
         Route::resource('/order', OrderController::class);
 
         Route::resource('/review', ReviewController::class);
+
+        Route::resource('/coupons', CouponsController::class);
     });
         
 });

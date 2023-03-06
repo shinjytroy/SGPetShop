@@ -20,12 +20,12 @@ class LoginController extends Controller
             // save user to session
             $request->session()->put('user', $user);
             if ($user->role == 1) {
-                return redirect()->route('admin.homedb');
+                return redirect()->route('admin.homedb')->with("messagelogin","");
             } else {
                 return redirect('/');
             }
         }
-        return redirect()->route('login');
+        return redirect()->route('login')->with("messagelogin","");
     }
 
     public function logout(Request $request) 
