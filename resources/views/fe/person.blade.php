@@ -17,9 +17,9 @@
 <h4> Address : {{Session::get('user')->address}} </h4>
 
 @else
-<h3> Please Login To Continue
+<h3> Please Log in To Continue
 
-<h4><a href="{{Route('login')}}">Login</a></h4>
+<h4><a href="{{Route('login')}}">Log in</a></h4>
 @endif
 
   <div class="wrap-show-advance-info-box style-1 box-in-site">

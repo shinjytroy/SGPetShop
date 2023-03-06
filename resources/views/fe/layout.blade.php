@@ -57,9 +57,9 @@
 							<li class="menu-item" >
 							<a style="color:white" title="Hotline: (+123) 456 789" href="#" ><span  class="icon  fa fa-mobile"></span> Hotline: (+123) 456 789</a>
 							@if (Session::get('user'))
-								<li class="menu-item" ><a style="color:white" title="Register or Login" href="{{Route('logout')}}">LogOut</a></li>
+								<li class="menu-item" ><a style="color:white" title="Register or Login" href="{{Route('logout')}}">Log Out</a></li>
 							@else
-								<li class="menu-item" ><a style="color:white"  title="Register or Login" href="{{Route('login')}}">LogIn</a></li>
+								<li class="menu-item" ><a style="color:white"  title="Register or Login" href="{{Route('login')}}">Log In</a></li>
 							@endif	
 							<li class="menu-item" ><a style="color:white"  title="Register or Login" href="{{Route('register')}}">Register</a></li>
 

@@ -47,8 +47,8 @@
 								 data-saturation="-100"
 								 data-modify-coloring="false"
 								 data-title_maps="Kute themes"
-								 data-phone="088-465 9965 02"
-								 data-email="kutethemes@gmail.com"
+								 data-phone="+123456789"
+								 data-email="info@sgpetshop.com"
 								 data-address="Z115 TP. Thai Nguyen"
 								 data-longitude="-0.120850"
 								 data-latitude="51.508742"
@@ -73,7 +73,7 @@
 								<i class="fa fa-phone" aria-hidden="true"></i>
 								<div class="right-info">
 									<b>Phone</b>
-									<p>0123-465-789-111</p>
+									<p>sd0123-465-789-111</p>
 								</div>
 							</div>
 
