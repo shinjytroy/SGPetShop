@@ -45,6 +45,7 @@
                   <th style="width: 10%">Id</th>
                   <th style="width: 20%">Brand Name</th>
                   <th style="width: 30%">Description</th>
+                  <th>Image</th>
                   <th></th>
               </tr>
           </thead>
@@ -54,6 +55,11 @@
                   <td>{{ $item->id }}</td>   
                   <td>{{ $item->brand_name }}</td>
                   <td>{{ $item->description }}</td>
+                  <td>
+                    @if (!empty($item->brand_image_path))
+                    <img src="{{asset('images/'.$item->brand_image_path)}}" alt="{{$item->brand_name}}" style="width: 100px; height:auto">
+                    @endif
+                  </td>
                   <td class="project-actions text-right">
                     
                       <!-- <a class="btn btn-primary btn-sm" href="#">

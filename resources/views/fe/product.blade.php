@@ -99,22 +99,22 @@
               <div class="wrap-review-form">
                 
                 <div id="comments">
-                  <h2 class="woocommerce-Reviews-title">01 review for <span>Radiant-360 R6 Chainsaw Omnidirectional [Orage]</span></h2>
+                  <h2 class="woocommerce-Reviews-title">01 review for <span>{{$prod->name}}</span></h2>
                   <ol class="commentlist">
                     <li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="li-comment-20">
                       <div id="comment-20" class="comment_container"> 
-                        <img alt="" src="assets/images/author-avata.jpg" height="80" width="80">
+                        <img alt="" src="assets/images/avatar-Thao.png" height="80" width="80">
                         <div class="comment-text">
                           <div class="star-rating">
                             <span class="width-80-percent">Rated <strong class="rating">5</strong> out of 5</span>
                           </div>
                           <p class="meta"> 
-                            <strong class="woocommerce-review__author">admin</strong> 
+                            <strong class="woocommerce-review__author">Thai Thao</strong> 
                             <span class="woocommerce-review__dash">–</span>
-                            <time class="woocommerce-review__published-date" datetime="2008-02-14 20:00" >Tue, Aug 15,  2017</time>
+                            <time class="woocommerce-review__published-date" datetime="2008-02-14 20:00" >Fri, Mar 03,  2023</time>
                           </p>
                           <div class="description">
-                            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+                            <p>Good service quality, I will continue to shop at SG Pet Shop many more times.</p>
                           </div>
                         </div>
                       </div>

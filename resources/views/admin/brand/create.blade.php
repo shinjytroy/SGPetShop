@@ -58,6 +58,10 @@
               <label for="desc">Description</label>
               <textarea id="desc" name="description" class="form-control"></textarea>
             </div>
+            <div class="form-group">
+              <label for="brand_image_path">Image</label>
+              <input type="file" id="brand_image_path" name="photo" class="form-control">
+            </div>
             <input type="submit" value="Create" class="btn btn-success">
           </form>
           <!-- /.card-body -->

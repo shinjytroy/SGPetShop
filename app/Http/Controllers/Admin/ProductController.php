@@ -47,15 +47,13 @@ class ProductController extends Controller
         $category = Category::all();
         $prodData['slug'] = \Str::slug($request->name);
 
-
         // process upload
-
         if ($request->hasFile('photo')) {
             $file = $request->file('photo');
             $extension = $file->getClientOriginalExtension();
-            if ($extension != 'jpg' && $extension != 'png' && $extension != 'jpeg' && $extension != 'webp') {
+            if ($extension != 'jpg' && $extension != 'png' && $extension != 'jpeg' && $extension != 'webp' && $extension != 'jfif') {
                 return view('admin.product.create')
-                    ->with('loi', 'Bạn chỉ được chọn file có đuôi jpg,png,jpeg,webp ');
+                    ->with('loi', 'You can only select files with the extension: jpg, png, jpeg, webp, jfif ');
             }
             $imageName = $file->getClientOriginalName();
             $file->move("images", $imageName);
@@ -111,9 +109,9 @@ class ProductController extends Controller
         if ($request->hasFile('photo')) {
             $file = $request->file('photo');
             $extension = $file->getClientOriginalExtension();
-            if ($extension != 'jpg' && $extension != 'png' && $extension != 'jpeg' && $extension != 'webp') {
+            if ($extension != 'jpg' && $extension != 'png' && $extension != 'jpeg' && $extension != 'webp' && $extension != 'jfif') {
                 return view('admin.product.create')
-                    ->with('loi', 'Bạn chỉ được chọn file có đuôi jpg,png,jpeg ,webp');
+                    ->with('loi', 'Bạn chỉ được chọn file có đuôi jpg, png, jpeg, webp, jfif');
             }
             $imageName = $file->getClientOriginalName();
             $file->move("images", $imageName);

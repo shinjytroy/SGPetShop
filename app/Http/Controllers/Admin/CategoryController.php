@@ -75,6 +75,7 @@ class CategoryController extends Controller
     {
         $cateData = $request->all();
         $category->update($cateData);
+
         return redirect()->route('admin.category.index');
     }
 
