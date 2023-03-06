@@ -583,11 +583,11 @@ input,textarea{
 	width: 182px;
 }
 .header .main-info-area .right-section{
-	width: 280px;
+	width: 300px;
 }
 .main-info-area .right-section .wrap-icon-section{
 	display: inline-block;
-	width: 50%;
+	width: 30%;
 	float: left;
 }
 header.fill-color .right-section .wrap-icon-section .title{
@@ -7170,4 +7170,21 @@ background-color: #888888;
 	padding-right: 40px;
 	margin-bottom: 65px;
 	padding-left: 40px;
+}
+
+.product-wish{
+    position: absolute;
+    top: 1%;
+    left: 0%;
+    z-index: 99;
+    right: 30px;
+    text-align: right;
+    padding-top: 0;
+}
+.product-wish .fa{
+    color: rgb(121, 121, 121);
+    font-size: 30px;
+}
+.product-wish .fa:hover{
+    color: rgb(255, 0, 43);
 }
