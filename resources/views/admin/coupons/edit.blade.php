@@ -49,7 +49,7 @@
               </button>
             </div>
           </div>
-          <form action="{{ Route('admin.coupons.update'), $coupon->id }}" method="post" class="card-body" enctype="multipart/form-data">
+          <form action="{{ Route('admin.coupons.update', $coupon->id) }}" method="post" class="card-body" enctype="multipart/form-data">
             @csrf
             @method('put')
             <input type="hidden" name="id" value="{{$coupon->id}}">
@@ -61,13 +61,13 @@
                 <label for="coupon_type">Coupon Type</label>
                 <select class="form-control" name="type" id="type">
                     <option value="">Select</option>
-                    <option value="">Fixed</option>
-                    <option value="">Percent</option>
+                    <option value="Fixed">Fixed</option>
+                    <option value="Percent">Percent</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="categorie_name">Coupon Value</label>
-                <input type="text" id="couponValue" name="value" class="value" value="{{$coupon->value}}">
+                <input type="text" id="couponValue" name="value" class="form-control" value="{{$coupon->value}}">
             </div>
             <div class="form-group">
                 <label for="categorie_name">Cart Name</label>

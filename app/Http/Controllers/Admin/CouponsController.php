@@ -73,7 +73,7 @@ class CouponsController extends Controller
     {
         $coupons = $request->all();
         $coupon->update($coupons);
-        return redirect()->route('admin.coupons.index');
+        return redirect()->route('admin.coupons.index', compact('coupon'));
     }
 
     /**
