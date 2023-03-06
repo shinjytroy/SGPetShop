@@ -47,7 +47,7 @@
                   <th style="width: 10%">Brand</th>
                   <th style="width: 20%">Name</th>
                   <th style="width: 5%">Regular Price</th>
-                  <th style="width: 5%">Sale Price</th>  
+                  <th style="width: 5%">Sale Price (%)</th>  
                   <th style="width: 5%">Status</th>
                   <th style="width: 5%">Featured</th>
                   <th style="width: 5%">Stock</th>
@@ -67,7 +67,7 @@
                   <td>{{ $namecate}}</td>
                   <td>{{ $namebrand}}</td>  
                   <td>{{ $item->name }}</td>
-                  <td>{{ $item->price }}</td>
+                  <td>{{ $item->price }} $</td>
                   <td>{{ $item->sale_price }} %</td>
                   <td>{{ $item->status }}</td>
                   <td>{{ $item->featured }}</td>

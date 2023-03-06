@@ -60,6 +60,11 @@
               <label for="description">Description</label>
               <textarea rows="4" cols="50" type="text" id="description" name="description" class="form-control" >{{$brand->description}}</textarea>
             </div>
+            <div class="form-group">
+              <label for="image">Image</label>
+              <img src="{{asset('/images/'.$brand->brand_image_path)}}" width="150px" height="200px">
+            <input type="file" id="image" name="photo" class="form-control-file" value="{{$brand->brand_image_path}}">
+            </div>
             <input type="submit" value="Update" class="btn btn-success">
           </form>
           <!-- /.card-body -->

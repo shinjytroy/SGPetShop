@@ -39,7 +39,11 @@
             <input type="submit" class="btn btn-submit" value="Login" name="submit"><br>
           
             <a class="btn btn-submit" href="{{Route('register')}}">Register a new membership"</a>
+<<<<<<< HEAD
+           
+=======
             
+>>>>>>> 9ee159a524aba69f3486e775bcb1bcdd7228a850
           </form>
           
         </div>	

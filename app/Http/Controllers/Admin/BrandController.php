@@ -38,6 +38,23 @@ class BrandController extends Controller
     public function store(Request $request)
     {
         $brandData = $request->all();
+
+        $brandData['slug'] = \Str::slug($request->brand_name);
+
+        if ($request->hasFile('photo')) {
+            $file = $request->file('photo');
+            $extension = $file->getClientOriginalExtension();
+            if ($extension != 'jpg' && $extension != 'png' && $extension != 'jpeg' && $extension != 'webp' && $extension != 'jfif') {
+                return view('admin.brand.create')
+                    ->with('loi', 'You can only select files with the extension: jpg ,png, jpeg, webp, jfif ');
+            }
+            $imageName = $file->getClientOriginalName();
+            $file->move("images", $imageName);
+        } else {
+            $imageName = null;
+        }
+        $brandData['brand_image_path'] = $imageName;
+
         Brand::create($brandData);
         return redirect()->route('admin.brand.index');
     }
@@ -74,6 +91,22 @@ class BrandController extends Controller
     public function update(Request $request, Brand $brand)
     {
         $brandData = $request->all();
+        $brandData['slug'] = \Str::slug($request->brand_name);
+
+        if ($request->hasFile('photo')) {
+            $file = $request->file('photo');
+            $extension = $file->getClientOriginalExtension();
+            if ($extension != 'jpg' && $extension != 'png' && $extension != 'jpeg' && $extension != 'webp' && $extension != 'jfif') {
+                return view('admin.brand.create')
+                    ->with('loi', 'You can only select files with the extension: jpg ,png, jpeg, webp, jfif ');
+            }
+            $imageName = $file->getClientOriginalName();
+            $file->move("images", $imageName);
+            $brandData['brand_image_path'] = $imageName;
+        } else {
+            $imageName = null;
+        }
+
         $brand->update($brandData);
         return redirect()->route('admin.brand.index');
     }

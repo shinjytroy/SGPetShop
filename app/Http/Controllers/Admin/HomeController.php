@@ -10,6 +10,7 @@ use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\Review;
 use App\Models\User;
+use App\Models\Coupon;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,8 +24,9 @@ class HomeController extends Controller
         $ord = OrderDetail::all();
         $review = Review::all();
         $user = User::all();
+        $coupon = Coupon::all();
         
-        return view ('admin.homedb',compact('category','brand','prods' ,'order','ord','review','user'));
+        return view ('admin.homedb',compact('category','brand','prods' ,'order','ord','review','user', 'coupon'));
     }
 
 }
