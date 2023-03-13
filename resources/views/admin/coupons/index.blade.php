@@ -1,4 +1,3 @@
-@@ -0,0 +1,99 @@
 @extends('admin.layout.layout')
 
 @section('contents')
@@ -59,7 +58,7 @@
                   <td>{{ $coupon->id }}</td>   
                   <td>{{ $coupon->code }}</td>
                   <td>{{ $coupon->type}}</td>
-                  @if($coupon->type == 'fixed')
+                  @if($coupon->type == 'Fixed')
                     <td>${{ $coupon->value}}</td>
                   @else
                     <td>{{ $coupon->value}}%</td>

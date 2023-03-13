@@ -60,7 +60,7 @@
 					</div><!--end wrap shop control-->
 
 					<div class="row">
-
+						
 						<ul class="product-list grid-products equal-container">
 						@foreach($prods as $item)
 							<li class="col-lg-4 col-md-6 col-sm-6 col-xs-6 ">
@@ -75,6 +75,9 @@
 										<div class="wrap-price"><span class="product-price">{{ $item->price }} $</span></div>
 										<a href="{{ Route('product.details', $item->slug) }}" class="btn add-to-cart">Add To Cart</a>
 									</div>
+								</div>
+								<div class="product-wish">
+									<a href="#"><i class="fa fa-heart"></i></a>
 								</div>
 							</li>
 						@endforeach	

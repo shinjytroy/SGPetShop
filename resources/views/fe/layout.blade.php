@@ -17,10 +17,20 @@
 	<link rel="stylesheet" href="{{ asset('/assets/css/color-01.css') }}">
 	<script src="https://www.paypalobjects.com/api/checkout.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.3/sweetalert2.min.js" integrity="sha512-eN8dd/MGUx/RgM4HS5vCfebsBxvQB2yI0OS5rfmqfTo8NIseU+FenpNoa64REdgFftTY4tm0w8VMj5oJ8t+ncQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 </head>
 
 
 <body class="home-page home-01 ">
+@if(Session::has('messagelogin'))
+<script>
+   Swal.fire(
+  'The Internet?',
+  'That thing is still around?',
+  'question'
+)
+    </script>
+   @endif
 	<?php 
 	if (!function_exists('currency_format')) {
 		function currency_format($price, $suffix = 'đ') {
@@ -58,9 +68,9 @@
 							<li class="menu-item" >
 							<a style="color:white" title="Hotline: (+123) 456 789" href="#" ><span  class="icon  fa fa-mobile"></span> Hotline: (+123) 456 789</a>
 							@if (Session::get('user'))
-								<li class="menu-item" ><a style="color:white" title="Register or Login" href="{{Route('logout')}}">LogOut</a></li>
+								<li class="menu-item" ><a style="color:white" title="Register or Login" href="{{Route('logout')}}">Log Out</a></li>
 							@else
-								<li class="menu-item" ><a style="color:white"  title="Register or Login" href="{{Route('login')}}">LogIn</a></li>
+								<li class="menu-item" ><a style="color:white"  title="Register or Login" href="{{Route('login')}}">Log In</a></li>
 							@endif	
 							<li class="menu-item" ><a style="color:white"  title="Register or Login" href="{{Route('register')}}">Register</a></li>
 
@@ -97,15 +107,7 @@
 						</div>
 
 						<div class="wrap-icon right-section">
-							<!-- <div class="wrap-icon-section wishlist">
-								<a href="#" class="link-direction">
-									<i class="fa fa-heart" aria-hidden="true"></i>
-									<div class="left-info">
-										<span class="index">0 item</span>
-										<span class="title">Wishlist</span>
-									</div>
-								</a>
-							</div> -->
+							
 							@php
 							$count = 0 ;
 							@endphp
@@ -137,7 +139,15 @@
 									</div>
 								</a>
 							</div>	
-										
+							<div class="wrap-icon-section wishlist">
+								<a href="#" class="link-direction">
+									<i class="fa fa-heart" aria-hidden="true"></i>
+									<div class="left-info">
+										<span class="index">0 item</span>
+										<span class="title">Wishlist</span>
+									</div>
+								</a>
+							</div>
 
 						</div>
 
@@ -455,6 +465,9 @@
 	<script src="{{ asset('/assets/js/jquery.countdown.min.js') }}"></script>
 	<script src="{{ asset('/assets/js/jquery.sticky.js') }}"></script>
 	<script src="{{ asset('/assets/js/functions.js') }}"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
 	@yield('myjs')
 </body>
 </html>

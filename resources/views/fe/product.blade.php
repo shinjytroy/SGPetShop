@@ -99,19 +99,13 @@
               <div class="wrap-review-form">
                 
                 <div id="comments">
-<<<<<<< HEAD
+
                   <h2 class="woocommerce-Reviews-title">01 review for <span>{{$prod->name}}</span></h2>
                   <ol class="commentlist">
                     <li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="li-comment-20">
                       <div id="comment-20" class="comment_container"> 
                         <img alt="" src="assets/images/avatar-Thao.png" height="80" width="80">
-=======
-                  <h2 class="woocommerce-Reviews-title"> review for <span>{{ $prod->name }}</span></h2>  <!--Count review-->
-                  <ol class="commentlist">
-                    <li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="li-comment-20">
-                      <div id="comment-20" class="comment_container"> 
-                     
->>>>>>> 68a29bf48b172e4a9c84fddae3f67beb3f53a0af
+
                         <div class="comment-text">
                           <div class="star-rating">
                             <span class="width-80-percent">Rated <strong class="rating">5</strong> out of 5</span>

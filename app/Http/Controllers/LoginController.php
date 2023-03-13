@@ -22,7 +22,7 @@ class LoginController extends Controller
             if ($user->role == 1) {
                 return redirect()->route('admin.homedb')->with("messagelogin","");
             } else {
-                return redirect('/');
+                return redirect()->route('home')->with("messagelogin","");
             }
         }
         return redirect()->route('login')->with("messagelogin","");
@@ -32,7 +32,7 @@ class LoginController extends Controller
     {
         // xóa session
         $request->session()->flush();
-        return redirect()->route('login');
+        return redirect()->route('login')->with("messagelogout","");
     }
    
 }

@@ -1,5 +1,25 @@
 @extends('fe.layout')
 @section('contents')
+@if(Session::has('messagelogin'))
+    <script>
+   const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+})
+
+Toast.fire({
+  icon: 'success',
+  title: 'Signed in successfully'
+})
+    </script>
+   @endif
 <div class="container">
 
   <!--MAIN SLIDE-->
@@ -56,7 +76,7 @@
 
   <!--On Sale-->
   @php
-  $datetime= "2023/3/15 12:00:00";
+  $datetime= "2023/3/10 12:00:00";
   @endphp
   <div class="xwrap-show-advance-info-box style-1 has-countdown">
     <h3 class="title-box">Top Saling</h3>
