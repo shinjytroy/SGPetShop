@@ -49,7 +49,7 @@
               </button>
             </div>
           </div>
-          <form action="{{ Route('admin.coupons.update'), $coupon->id }}" method="post" class="card-body" enctype="multipart/form-data">
+          <form action="{{ Route('admin.coupons.update',$coupon->id)}}" method="post" class="card-body" enctype="multipart/form-data">
             @csrf
             @method('put')
             <input type="hidden" name="id" value="{{$coupon->id}}">
