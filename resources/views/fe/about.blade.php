@@ -112,85 +112,21 @@
 					data-dots="false"
 					data-margin="30"
 					data-responsive='{"0":{"items":"1"},"480":{"items":"2"},"768":{"items":"3"},"992":{"items":"3"},"1200":{"items":"4"}}' >
-
+					@foreach($mems as $item)
 					<div class="team-member equal-elem">
 						<div class="media">
-							<a href="#" title="LEONA">
-								<figure><img src="assets/images/member-leona.jpg" alt="LEONA"></figure>
+							<a href="#" title="{{$item->name}}">
+								<figure><img src="{{ asset('/images/'. $item->image) }}" alt="{{$item->name}}"></figure>
 							</a>
 						</div>
 						<div class="info">
-							<b class="name">leona</b>
-							<span class="title">Director</span>
-							<p class="desc">Contrary to popular belief, Lorem Ipsum is not simply random text...</p>
+							<b class="name">{{$item->name}}</b>
+							<span class="title">{{$item->position}}</span>
+							<p class="age">Year Of Birth :{{$item->age}}</p>
+							<p class="desc">{{$item->description}}</p>
 						</div>
-					</div>
-
-					<div class="team-member equal-elem">
-						<div class="media">
-							<a href="#" title="LUCIA">
-								<figure><img src="assets/images/member-lucia.jpg" alt="LUCIA"></figure>
-							</a>
-						</div>
-						<div class="info">
-							<b class="name">LUCIA</b>
-							<span class="title">Manager</span>
-							<p class="desc">Contrary to popular belief, Lorem Ipsum is not simply random text...</p>
-						</div>
-					</div>
-
-					<div class="team-member equal-elem">
-						<div class="media">
-							<a href="#" title="NANA">
-								<figure><img src="assets/images/member-nana.jpg" alt="NANA"></figure>
-							</a>
-						</div>
-						<div class="info">
-							<b class="name">NANA</b>
-							<span class="title">Marketer</span>
-							<p class="desc">Contrary to popular belief, Lorem Ipsum is not simply random text...</p>
-						</div>
-					</div>
-
-					<div class="team-member equal-elem">
-						<div class="media">
-							<a href="#" title="BRAUM">
-								<figure><img src="assets/images/member-braum.jpg" alt="BRAUM"></figure>
-							</a>
-						</div>
-						<div class="info">
-							<b class="name">BRAUM</b>
-							<span class="title">Member</span>
-							<p class="desc">Contrary to popular belief, Lorem Ipsum is not simply random text...</p>
-						</div>
-					</div>
-
-					<div class="team-member equal-elem">
-						<div class="media">
-							<a href="#" title="LUCIA">
-								<figure><img src="assets/images/member-lucia.jpg" alt="LUCIA"></figure>
-							</a>
-						</div>
-						<div class="info">
-							<b class="name">LUCIA</b>
-							<span class="title">Manager</span>
-							<p class="desc">Contrary to popular belief, Lorem Ipsum is not simply random text...</p>
-						</div>
-					</div>
-
-					<div class="team-member equal-elem">
-						<div class="media">
-							<a href="#" title="NANA">
-								<figure><img src="assets/images/member-nana.jpg" alt="NANA"></figure>
-							</a>
-						</div>
-						<div class="info">
-							<b class="name">NANA</b>
-							<span class="title">Marketer</span>
-							<p class="desc">Contrary to popular belief, Lorem Ipsum is not simply random text...</p>
-						</div>
-					</div>
-
+					</div>	
+					@endforeach		
 				</div>
 
 			</div>

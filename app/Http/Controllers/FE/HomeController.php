@@ -10,6 +10,7 @@ use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\Category;
 use App\Models\Brand;
+use App\Models\Membership;
 use App\Models\Review;
 use Illuminate\Contracts\Session\Session;
 
@@ -178,7 +179,10 @@ class HomeController extends Controller
     }
     public function about()
     {
-        return view ('fe.about');
+        $mems = Membership::all();
+       
+        return view('fe.about', compact('mems' ));
+     
     }
     public function contact()
     {

@@ -11,6 +11,10 @@ use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\ReviewController;
+use App\Http\Controllers\Admin\MemberController;
+use App\Http\Controllers\Admin\BlogController;
+use App\Http\Controllers\Admin\InformationController;
+
 use App\Http\Controllers\Admin\CouponsController;
 use App\Http\Controllers\FE\HomeController as FEController;
 
@@ -88,6 +92,12 @@ Route::group(['middleware'=>'canLogin'], function() {
         Route::resource('/review', ReviewController::class);
 
         Route::resource('/coupons', CouponsController::class);
+
+        Route::resource('/member', MemberController::class);
+
+        Route::resource('/blog', BlogController::class);
+
+        Route::resource('/information', InformationController::class);
     });
         
 });
