@@ -61,18 +61,20 @@ class HomeController extends Controller
         $review = Review::all();
         $categories = Category::all();
         $brands = Brand::all();
+        $footer = Footer::all();
         //$prods = Product::where('categorie_id', $id);
         $prods = Product::where('categorie_id', 'LIKE', "%{$id}%")->get();
-
-        return view('fe.shop.search-result', compact('prods','review', 'categories', 'brands'));
+        
+        return view('fe.shop.search-result', compact('prods','review', 'categories', 'brands','footer'));
     }
 
     public function searchProducts(Request $request){
         $review = Review::all();
         $categories = Category::all();
         $brands = Brand::all();
+        $footer = Footer::all();
         $prods = Product::whereBetween('price',[$request->start_price, $request->end_price])->get();
-        return view('fe.shop.search-result', compact('prods', 'review', 'categories', 'brands'))->render();
+        return view('fe.shop.search-result', compact('prods', 'review', 'categories', 'brands','footer'))->render();
     }
 
     public function addCart(Request $request) 
@@ -215,7 +217,7 @@ class HomeController extends Controller
         $max_price = Product::max('price');
         $footer = Footer::all();
         return view('fe.shop.search-result', compact(
-            'prods', 'brands', 'categories', 'footer', 'min_price', 'max_price'
+            'prods', 'brands', 'categories', 'footer', 'min_price', 'max_price' , 
         ));
     }
     public function about()
@@ -244,8 +246,9 @@ class HomeController extends Controller
     }
     public function person()
     {
+        $orderdetail = OrderDetail::all();
         $footer= Footer::all();
-        return view ('fe.person' , compact('footer'));
+        return view ('fe.person' , compact('footer','orderdetail'));
     }
     public function history()
     {

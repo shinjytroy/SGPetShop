@@ -1,6 +1,15 @@
 @extends('fe.layout')
 
 @section('contents') 
+@if(Session::has('messagesuccess'))
+    <script>
+      Swal.fire(
+  'You have successfully registered !!',
+  'You clicked the button to continue!',
+  'success'
+    )
+    </script>
+   @endif
 @if(Session::has('messagelogout'))
     <script>
  const Toast = Swal.mixin({
@@ -21,6 +30,7 @@ Toast.fire({
 })
     </script>
     @endif
+
 @if(Session::has('messagelogin'))
     <script>
      Swal.fire({

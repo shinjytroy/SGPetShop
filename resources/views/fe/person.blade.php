@@ -16,6 +16,32 @@
 <h4> Phone : {{Session::get('user')->phone}} </h4>
 <h4> Address : {{Session::get('user')->address}} </h4>
 
+<div class="wrap-iten-in-cart">
+  <h3 class="box-title"> History Order</h3>
+  <ul class="products-cart">
+    
+    @foreach($orderdetail as $item)
+    @php 
+      $productname = DB::table('products')->where('id',"=",$item->product_id)->value('name');   
+      $productimage = DB::table  ('products')   ->where('id',"=",$item->product_id)->value('image')     
+    @endphp
+        <li class="pr-cart-item">
+          <div class="price-field produtc-price"><p class="price">{{ $item->order_id }} </p></div>
+          <div class="product-image">
+            <figure><img src="{{ asset('/images/' .$productimage) }}" alt=""></figure>
+          </div>
+         
+          
+          <div class="price-field produtc-price"><p class="price">{{ $item->price }} $</p></div>
+          <div class="price-field produtc-price"><p class="price">{{ $item->quantity }} </p></div>
+
+          <div class="price-field sub-total"><p class="price">{{($item->price )* ($item->quantity)}} $</p></div>
+          
+        </li>
+      @endforeach  
+  </ul>
+</div>
+
 @else
 <h3> Please Log in To Continue
 
