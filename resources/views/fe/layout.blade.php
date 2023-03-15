@@ -56,9 +56,10 @@
 				<div class="topbar-menu-area" style="padding-top:9px ; padding-bottom:9px ;background-color:#dc3545 ; font-size:15px ;">
 					<div class="container"  >
 						<div class="topbar-menu left-menu">
+							@foreach($footer as $item)
 							<ul>
 								<li class="menu-item" >
-									<a style="color:white" title="Address : 590 Cach Mang Thang Tam, Ward 11, District 3, City. Ho Chi Minh City" href="#" ><span class="icon label-before fa fa-home"></span>Address : 590 Cach Mang Thang Tam, Ward 11, District 3, City. Ho Chi Minh City</a>
+									<a style="color:white" title="{{$item->address}}" href="#" ><span class="icon label-before fa fa-home"></span>Address : {{$item->address}}</a>
 								</li>
 							</ul>
 							
@@ -66,7 +67,9 @@
 						 <div class="topbar-menu right-menu">
 							<ul>
 							<li class="menu-item" >
-							<a style="color:white" title="Hotline: (+123) 456 789" href="#" ><span  class="icon  fa fa-mobile"></span> Hotline: (+123) 456 789</a>
+							<a style="color:white" title="{{$item->hotline}}" href="#" ><span  class="icon  fa fa-mobile"></span> Hotline: {{$item->hotline}}</a>
+							
+							@endforeach
 							@if (Session::get('user'))
 								<li class="menu-item" ><a style="color:white" title="Register or Login" href="{{Route('logout')}}">Log Out</a></li>
 							@else
@@ -254,23 +257,26 @@
 						<div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
 							<div class="wrap-footer-item">
 								<h3 class="item-header">Contact Details</h3>
-								<div class="item-content">
-									<div class="wrap-contact-detail">
+								<div class="item-content">	
+									<div class="wrap-contact-detail"
+									@foreach ($footer as $item)				
 										<ul>
 											<li>
 												<i class="fa fa-map-marker" aria-hidden="true"></i>
-												<p class="contact-txt">45 Grand Central Terminal New York,NY 1017 United State USA</p>
+												<p class="contact-txt">{{$item->address}}</p>
 											</li>
 											<li>
 												<i class="fa fa-phone" aria-hidden="true"></i>
-												<p class="contact-txt">(+123) 456 789 - (+123) 666 888</p>
+												<p class="contact-txt">{{$item->phone}}</p>
 											</li>
 											<li>
 												<i class="fa fa-envelope" aria-hidden="true"></i>
-												<p class="contact-txt">Contact@yourcompany.com</p>
+												<p class="contact-txt">{{$item->email}}</p>
 											</li>											
 										</ul>
+									@endforeach
 									</div>
+									
 								</div>
 							</div>
 						</div>
@@ -280,11 +286,14 @@
 							<div class="wrap-footer-item">
 								<h3 class="item-header">Hot Line</h3>
 								<div class="item-content">
+									@foreach ($footer as $item)	
 									<div class="wrap-hotline-footer">
 										<span class="desc">Call Us toll Free</span>
-										<b class="phone-number">(+123) 456 789 - (+123) 666 888</b>
+										<b class="phone-number">{{$item->hotline}}</b>
 									</div>
+									@endforeach
 								</div>
+								
 							</div>
 
 							<div class="wrap-footer-item footer-item-second">

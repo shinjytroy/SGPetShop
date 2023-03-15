@@ -12,8 +12,10 @@ use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\Category;
 use App\Models\Brand;
+use App\Models\Contact;
 use App\Models\Membership;
 use App\Models\Review;
+use App\Models\Footer;
 use Illuminate\Contracts\Session\Session;
 
 class HomeController extends Controller
@@ -24,8 +26,18 @@ class HomeController extends Controller
         $categories = Category::all();
         $brands = Brand::all();
         $order=Order::all();
+        $footer = Footer::all();
         return view('fe.index', compact(
-            'prods', 'categories', 'brands','order'
+            'prods', 'categories', 'brands','order' ,'footer'
+        ));
+        
+    }
+    public function layout() 
+    {
+        
+        $footer = Footer::all();
+        return view('fe.layout', compact(
+            'footer'
         ));
         
     }
@@ -190,7 +202,18 @@ class HomeController extends Controller
     }
     public function contact()
     {
-        return view ('fe.contact');
+        $footer = Footer::all();
+
+        return view ('fe.contact',compact('footer'));
+    }
+    public function processContact(Request $request){
+        $contactData =$request->all();  
+        $contact = Contact::create($contactData);
+        // luu review
+        
+         $request->session()->forget('contact');
+         return  redirect()->route ('contact',compact('contact'))->with('messagesuccess','');
+   
     }
     public function person()
     {
@@ -203,10 +226,7 @@ class HomeController extends Controller
     public function review(Request $request){     
         return view('fe.review');        
     }
-    public function processReview(Request $request){
-
-      
-
+    public function processReview(Request $request){   
         $rv =$request->all();
   
         $rv['user_id']=$request->session()->get('user')->id;
@@ -215,12 +235,6 @@ class HomeController extends Controller
         // luu review
         
          $request->session()->forget('review');
-         return view ('fe.thankyou')->with('thongbao','Thank you ');
-        
-     
-           
-        
-       
-     
+         return view ('fe.review')->with('thongbao','Thank you ');    
     }
 }

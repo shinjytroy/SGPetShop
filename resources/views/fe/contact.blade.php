@@ -4,7 +4,15 @@
 <main id="main" class="main-site left-sidebar">
 
 <div class="container">
-
+	@if(Session::has('messagesuccess'))
+    <script>
+      Swal.fire(
+  'Send Contact Success !!',
+  'You clicked the button to continue!',
+  'success'
+    )
+    </script>
+	@endif
 	<div class="wrap-breadcrumb">
 		<ul>
 			<li class="item-link"><a href="{{Route('home')}}" class="link">home</a></li>
@@ -17,8 +25,8 @@
 				<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
 					<div class="contact-box contact-form">
 						<h2 class="box-title">Leave a Message</h2>
-						<form action="#" method="get" name="frm-contact">
-
+						<form action="{{Route('processContact')}}" method="post" name="frm-contact">
+							@csrf
 							<label for="name">Name<span>*</span></label>
 							<input type="text" value="" id="name" name="name" >
 
@@ -39,41 +47,30 @@
 				<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
 					<div class="contact-box contact-info">
 						<div class="wrap-map">
-							<div class="mercado-google-maps"
-								 id="az-google-maps57341d9e51968"
-								 data-hue=""
-								 data-lightness="1"
-								 data-map-style="2"
-								 data-saturation="-100"
-								 data-modify-coloring="false"
-								 data-title_maps="Kute themes"
-								 data-phone="+123456789"
-								 data-email="info@sgpetshop.com"
-								 data-address="Z115 TP. Thai Nguyen"
-								 data-longitude="-0.120850"
-								 data-latitude="51.508742"
-								 data-pin-icon=""
-								 data-zoom="16"
-								 data-map-type="ROADMAP"
-								 data-map-height="263">
-							</div>
+							
+							<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1107.7927949741493!2d106.66556686688527!3d10.786516357722308!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752edac37c5025%3A0xd5fab66e51e1049d!2sFPT%20Arena%20Multimedia!5e0!3m2!1sen!2s!4v1678851352097!5m2!1sen!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 						</div>
 						<h2 class="box-title">Contact Detail</h2>
 						<div class="wrap-icon-box">
-
+							@foreach ($footer as $item)
+								
+						
 							<div class="icon-box-item">
 								<i class="fa fa-envelope" aria-hidden="true"></i>
 								<div class="right-info">
 									<b>Email</b>
-									<p>Support1@Mercado.com</p>
+									<p>{{$item->email}}</p>
 								</div>
 							</div>
+							
+
+							
 
 							<div class="icon-box-item">
 								<i class="fa fa-phone" aria-hidden="true"></i>
 								<div class="right-info">
 									<b>Phone</b>
-									<p>sd0123-465-789-111</p>
+									<p>{{$item->phone}}</p>
 								</div>
 							</div>
 
@@ -81,10 +78,10 @@
 								<i class="fa fa-map-marker" aria-hidden="true"></i>
 								<div class="right-info">
 									<b>Mail Office</b>
-									<p>Sed ut perspiciatis unde omnis<br />Street Name, Los Angeles</p>
+									<p>{{$item->address}}</p>
 								</div>
 							</div>
-
+							@endforeach
 						</div>
 					</div>
 				</div>
