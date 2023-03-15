@@ -97,53 +97,36 @@
             <div class="tab-content-item " id="review">
               
               <div class="wrap-review-form">
-                
+              
                 <div id="comments">
-<<<<<<< HEAD
-                  <h2 class="woocommerce-Reviews-title">01 review for <span>{{$prod->name}}</span></h2>
-                  <ol class="commentlist">
-                    <li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="li-comment-20">
-                      <div id="comment-20" class="comment_container"> 
-                        <img alt="" src="assets/images/avatar-Thao.png" height="80" width="80">
-=======
                   <h2 class="woocommerce-Reviews-title"> review for <span>{{ $prod->name }}</span></h2>  <!--Count review-->
                   <ol class="commentlist">
                     <li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="li-comment-20">
                       <div id="comment-20" class="comment_container"> 
-                     
->>>>>>> 68a29bf48b172e4a9c84fddae3f67beb3f53a0af
                         <div class="comment-text">
                           <div class="star-rating">
                             <span class="width-80-percent">Rated <strong class="rating">5</strong> out of 5</span>
                           </div>
                           <p class="meta"> 
-                     
                            @foreach($review as $items)
-                           @if($items->product_id == $prod->id)
-                           @php
-                           $nameuser = DB::table('users')->where('id',"=",$items->user_id)->value('name');
-                           @endphp
-                            <strong class="woocommerce-review__author">{{$nameuser}}</strong> 
-                           
-                            <span class="woocommerce-review__dash">:</span>
-                            <time class="woocommerce-review__published-date" >{{$items->created_at}}</time>
-                           
-                          </p>
-                          <div class="description">
-                            <p>{{$items->description}}</p>                                              
-                          </div>
-                          @endif
+                            @if($items->product_id == $prod->id)
+                            @php
+                            $user_name = DB::table('users')->where('id',"=",$items->user_id)->value('name');
+                            @endphp
+                              <strong class="woocommerce-review__author">{{$user_name}}</strong> 
+                              <span class="woocommerce-review__dash">:</span>
+                              <time class="woocommerce-review__published-date" >{{$items->created_at}}</time>
+                            </p>
+                            <div class="description">
+                              <p>{{$items->description}}</p>                                              
+                            </div>
+                            @endif
                          @endforeach
-                          
-
-                         
-                          
                         </div>
                       </div>
                     </li>
                   </ol>
                 </div><!-- #comments -->
-
                 <div id="review_form_wrapper">
                   <div id="review_form">
                     <div id="respond" class="comment-respond"> 
@@ -170,11 +153,8 @@
                           </p>
                         </div>
                         
-
                         <p class="comment-form-author">
-                        
                           <input type="hidden" id="product_id" type="text" name="product_id" value="{{$prod->id}}" >
-
                         </p>
 
                         <p class="comment-form-author">
@@ -218,7 +198,6 @@
       <div class="widget widget-our-services ">
         <div class="widget-content">
           <ul class="our-services">
-
             <li class="service">
               <a class="link-to-service" href="#">
                 <i class="fa fa-truck" aria-hidden="true"></i>

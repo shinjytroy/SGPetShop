@@ -15,6 +15,9 @@ use Illuminate\Contracts\Session\Session;
 
 class HomeController extends Controller
 {
+    public $sorting;
+    public $pagesize;
+    
     public function index() 
     {
         $prods = Product::all();
@@ -34,10 +37,28 @@ class HomeController extends Controller
         // $prod = Product::where('slug', $slug)->get();
         // hàm first() lấy phần tử đầu
         $prod = Product::where('slug', $slug)->first();
-        $review=Review::all();
+        $review = Review::all();
         return view('fe.product', compact('prod','category','review'));
     }
     
+    public function shopByCategory($id){
+        $review = Review::all();
+        $categories = Category::all();
+        $brands = Brand::all();
+        //$prods = Product::where('categorie_id', $id);
+        $prods = Product::where('categorie_id', 'LIKE', "%{$id}%")->get();
+
+        return view('fe.shop.search-result', compact('prods','review', 'categories', 'brands'));
+    }
+
+    public function searchProducts(Request $request){
+        $review = Review::all();
+        $categories = Category::all();
+        $brands = Brand::all();
+        $prods = Product::whereBetween('price',[$request->start_price, $request->end_price])->get();
+        return view('fe.shop.search-result', compact('prods', 'review', 'categories', 'brands'))->render();
+    }
+
     public function addCart(Request $request) 
     {
         $pid = $request->pid;
@@ -172,8 +193,10 @@ class HomeController extends Controller
         $prods = Product::all();
         $categories = Category::all();
         $brands = Brand::all();
-        return view('fe.shop', compact(
-            'prods', 'brands', 'categories'
+        $min_price = Product::min('price');
+        $max_price = Product::max('price');
+        return view('fe.shop.search-result', compact(
+            'prods', 'brands', 'categories', 'min_price', 'max_price'
         ));
     }
     public function about()

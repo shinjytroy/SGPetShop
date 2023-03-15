@@ -7171,3 +7171,16 @@ background-color: #888888;
 	margin-bottom: 65px;
 	padding-left: 40px;
 }
+
+#rangeValue {
+    position: relative;
+    text-align: center;
+    width: 60px;
+    font-size: 1.25em;
+    color: #fff;
+    background: #27a0ff;
+    margin-left: 15px;
+    border-radius: 25px;
+    font-weight: 500;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1), -5px -5px 10px #fff, inset 5px 5px 10px rgba(0, 0, 0, 0.1), inset -5px -5px 5px rgba(255, 255, 255, 0.05);
+}

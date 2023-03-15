@@ -13,7 +13,7 @@ use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\CouponsController;
 use App\Http\Controllers\FE\HomeController as FEController;
-
+use App\Http\Controllers\SearchController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,12 +31,11 @@ Route::get('/login', [LoginController::class, 'index'])->name('login');
 
 Route::post('/login', [LoginController::class, 'login'])->name('checkLogin');
 
+Route::post('/product/search', [SearchController::class, 'search'])->name('search');
 
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
 
 Route::post('/register', [RegisterController::class, 'store'])->name('createregister');
-
-
 
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
@@ -45,6 +44,9 @@ Route::get('/product/{slug}', [FEController::class, 'product'])->name('product.d
 
 Route::post('/add-cart', [FEController::class, 'addCart'])->name('addCart');
 Route::get('/shop', [FEController::class, 'shop'])->name('shop');
+Route::get('/shop/category/{id}', [FEController::class, 'shopByCategory'])->name('shop.category');
+Route::get('/shop/search-products', [FEController::class, 'searchProducts'])->name('search.products');
+
 Route::get('/about', [FEController::class, 'about'])->name('about');
 Route::get('/contact', [FEController::class, 'contact'])->name('contact');
 Route::get('/person', [FEController::class, 'person'])->name('person');

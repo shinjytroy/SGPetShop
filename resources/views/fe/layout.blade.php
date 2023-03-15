@@ -4,10 +4,12 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<title>Home</title>	
     <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.ico">
 	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400italic,700,700italic,900,900italic&amp;subset=latin,latin-ext" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Open%20Sans:300,400,400italic,600,600italic,700,700italic&amp;subset=latin,latin-ext" rel="stylesheet">
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 	<link rel="stylesheet" href="{{ asset('/assets/css/animate.css') }}">
 	<link rel="stylesheet" href="{{ asset('/assets/css/font-awesome.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('/assets/css/bootstrap.min.css') }}">
@@ -79,19 +81,21 @@
 
 						<div class="wrap-search center-section">
 							<div class="wrap-search-form">
-								<form action="#" id="form-search-top" name="form-search-top">
-									<input type="text" name="search" value="" placeholder="Search here...">
-									<button form="form-search-top" type="button"><i class="fa fa-search" aria-hidden="true"></i></button>
-									<div class="wrap-list-cate">
+								<form action="{{ Route('search') }}" method="POST" id="form-search-top" name="form-search-top" style="width:0;">
+									@csrf
+									<input type="text" id="search-box" name="search" value="" placeholder="Search here...">
+									<div id="suggestion-box"></div>
+									<button form="form-search-top" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+									{{-- <div class="wrap-list-cate">
 										<input type="hidden" name="product-cate" value="0" id="product-cate">
 										<a href="#" class="link-control">All Category</a>
-										{{-- <ul class="list-cate">
+										<ul class="list-cate">
 											<li class="level-0">All Category</li>
 											@foreach ($categories as $item)
 											<li class="level-1" value="{{ $item->id}}">- {{ $item->categorie_name }}</li>
 											@endforeach
-										</ul> --}}
-									</div>
+										</ul>
+									</div> --}}
 								</form>
 							</div>
 						</div>
@@ -455,6 +459,48 @@
 	<script src="{{ asset('/assets/js/jquery.countdown.min.js') }}"></script>
 	<script src="{{ asset('/assets/js/jquery.sticky.js') }}"></script>
 	<script src="{{ asset('/assets/js/functions.js') }}"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#search-box").keyup(function(){
+                $.ajax({
+                    type: "GET",
+                    url: "{{ route('search') }}",
+                    data: { query: $(this).val() },
+                    beforeSend: function(){
+                        $("#search-box").css("background","#FFF url(LoaderIcon.gif) no-repeat 165px");
+                    },
+                    success: function(data){
+                        $("#suggestion-box").show();
+                        $("#suggestion-box").html("");
+                        $.each(data, function(index, product){
+                            $("#suggestion-box").append("<div class='suggestionList' onClick='selectProduct(\""+product.name+"\")'>"+product.name+"</div>");
+                        });
+                        $("#search-box").css("background","#FFF");
+                    }
+                });
+            });
+        });
+        function selectProduct(val) {
+            $("#search-box").val(val);
+            $("#suggestion-box").hide();
+        }
+    </script>
+	<script>
+		$.ajaxSetup({
+			headers: {
+				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			}
+		});
+	</script>
+	<style>
+        #search-box{width:500px;border:solid 1px #000;padding:10px;}
+        #suggestion-box{position:relative;width: 500px; margin: 0 auto;}
+        .suggestionList{margin: 0;padding: 10px 0;border-bottom:1px solid #000;font-size:14px;}
+        .suggestionList:hover{background:#f2f2f2;cursor:pointer;}
+    </style>
+	
 	@yield('myjs')
 </body>
 </html>

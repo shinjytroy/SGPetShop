@@ -8,7 +8,7 @@
 			<div class="wrap-breadcrumb">
 				<ul>
 					<li class="item-link"><a href="{{Route('home')}}" class="link">Home</a></li>
-					<li class="item-link"><span>Categories Product</span></li>
+					<li class="item-link"><span>Category Products</span></li>
 				</ul>
 			</div>
 			<div class="row">
@@ -58,29 +58,11 @@
 						</div>
 
 					</div><!--end wrap shop control-->
-
-					<div class="row">
-
-						<ul class="product-list grid-products equal-container">
-						@foreach($prods as $item)
-							<li class="col-lg-4 col-md-6 col-sm-6 col-xs-6 ">
-								<div class="product product-style-3 equal-elem ">
-									<div class="product-thumnail">
-										<a href="{{ Route('product.details', $item->slug) }}" title="{{ $item->name }}">
-											<figure><img src="{{ asset('/images/'. $item->image) }}" alt="{{ $item->name }}"></figure>
-										</a>
-									</div>
-									<div class="product-info">
-										<a href="#" class="product-name"><span>{{ $item->name }}</span></a>
-										<div class="wrap-price"><span class="product-price">{{ $item->price }} $</span></div>
-										<a href="{{ Route('product.details', $item->slug) }}" class="btn add-to-cart">Add To Cart</a>
-									</div>
-								</div>
-							</li>
-						@endforeach	
-						</ul>
-
+					
+					<div class="search-result">
+						
 					</div>
+					@yield('products')
 
 					<div class="wrap-pagination-info">
 						<ul class="page-numbers">
@@ -95,12 +77,12 @@
 
 				<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 sitebar">
 					<div class="widget mercado-widget categories-widget">
-						<h2 class="widget-title">All Categories</h2>
+						<h2 class="widget-title"><a href="{{ Route('shop') }}" class="cate-link">All Categories</a></h2>
 						<div class="widget-content">
 							<ul class="list-category">
 								@foreach ($categories as $item)
 								<li class="category-item has-child-cate">
-									<a href="#" class="cate-link">{{ $item->categorie_name }}</a>
+									<a href="{{ Route('shop.category', $item->id) }}" class="cate-link">{{ $item->categorie_name }}</a>
 									{{-- <span class="toggle-control">+</span>
 									<ul class="sub-cate">
 										<li class="category-item"><a href="#" class="cate-link">Batteries (22)</a></li>
@@ -128,12 +110,37 @@
 					<div class="widget mercado-widget filter-widget price-filter">
 						<h2 class="widget-title">Price</h2>
 						<div class="widget-content">
-							<div id="slider-range"></div>
-							<p>
-								<label for="amount">Price:</label>
-								<input type="text" id="amount" readonly>
-								<button class="filter-submit">Filter</button>
-							</p>
+							{{-- <form method="POST" action="">
+								@csrf
+								<label for="slider-range">Slider Range:</label>
+								<input type="range" name="slider-range" id="slider-range" min="0" max="100" step="1">
+								<button type="submit">Submit</button>
+							</form> --}}
+							{{-- <div class="middle">
+								<div id="multi_range">
+									<span id="left_value">25</span><span> ~ </span><span id="right_value">75</span>
+								</div>
+								<div class="multi-range-slider my-2">
+									<input type="range" id="input_left" class="range_slider" min="0" max="100" value="25" onmousemove="left_slider(this.value)">
+									<input type="range" id="input_right" class="range_slider" min="0" max="100" value="75" onmousemove="right_slider(this.value)">
+									<div class="slider">
+										<div class="track"></div>
+										<div class="range"></div>
+										<div class="thumb left"></div>
+										<div class="thumb right"></div>
+									</div>
+								</div>
+							</div> --}}
+							<form method="GET" action="{{ Route('search.products')}}">
+								
+								<div id="slider-range1"></div>
+								<p>
+									<label for="amount">Price:</label>
+									<input type="text" id="amount" readonly>
+									<input type="hidden" name="start_price" id="start_price">
+									<input type="hidden" name="end_price" id="end_price">
+									<button type="submit" class="filter-submit">Filter</button>
+								</p>
 						</div>
 					</div><!-- Price-->
 
@@ -239,4 +246,35 @@
 	</main>
 	<!--main area-->
 
+@endsection
+
+@section('myjs')
+<script>
+	$( function() {
+	  $( "#slider-range1" ).slider({
+		orientation: "horizontal",
+		range: true,
+		min: {{$min_price}},
+		max: {{$max_price}},
+		values: [ {{$min_price}}, {{$max_price}} ],
+		slide: function( event, ui ) {
+		  $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+		let start_price = $( "#start_price" ).val( ui.values[ 0 ] );
+		let end_price =  $( "#end_price" ).val( ui.values[ 1 ] );
+		}
+		
+	  });
+	//   $.ajax({
+	// 		url: "{{ Route('search.products') }}",
+	// 		method: "GET",
+	// 		data: {start_price:start_price, end_price:end_price},
+	// 		success: function (response) {
+	// 			$('.search-result').html(response);
+	// 		}
+	// 	});
+	  $( "#amount" ).val( "$" + $( "#slider-range1" ).slider( "values", 0 ) +
+		" - $" + $( "#slider-range1" ).slider( "values", 1 ) );
+	
+	} );
+	</script>
 @endsection
