@@ -94,6 +94,8 @@ Route::group(['middleware'=>'canLogin'], function() {
 
         Route::resource('/orderdetail', OrderDetailController::class);
 
+        Route::get('/orderdetail/view/{id}', [OrderDetailController::class, 'view'])->name('orderdetail.view');
+
         Route::resource('/order', OrderController::class);
 
         Route::resource('/review', ReviewController::class);

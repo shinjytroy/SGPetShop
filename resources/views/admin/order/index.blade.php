@@ -41,7 +41,8 @@
       <table class="table table-striped projects">
           <thead>
               <tr>
-                  <th style="width: 5%">User_id</th>
+              <th style="width: 5%">Id</th>
+                  <th style="width: 5%">User_Name</th>
                   <th style="width: 15%">order_date</th>
                   <th style="width: 10%">shipping_name</th>  
                   <th style="width: 10%">shipping_phone</th>
@@ -55,34 +56,24 @@
 
           <tbody>
             @foreach($order as $item)
+            @php
+            $userName = DB::table('users')->where('id',"=",$item->user_id)->value('name');  
+
+            @endphp
               <tr>
-                  <td>{{ $item->user_id }}</td>   
+              <td>{{ $item->id }}</td>   
+                  <td>{{ $userName }}</td>   
                   <td>{{ $item->order_date }}</td>
                   <td>{{ $item->shipping_name}}</td>
                   <td>{{ $item->shipping_phone}}</td>
                   <td>{{ $item->shipping_email}}</td>
                   <td>{{ $item->shipping_address}}</td>        
-                  <td class="project-actions text-right">
-                    
-                      <!-- <a class="btn btn-primary btn-sm" href="#">
-                          <i class="fas fa-folder">
-                          </i>
-                          View
-                      </a> -->
-                      <a class="btn btn-info btn-sm" href="{{ Route('admin.orderdetail.index', $item->id) }}">
+                  <td class="project-actions text-right">      
+                      <a class="btn btn-info btn-sm" href="{{ Route('admin.orderdetail.view', $item->id) }}">
                           <i class="fas fa-pencil-alt">
                           </i>
                           View
-                      </a>
-                      <!-- <form action=" #" method="post" style="display:inline-block">
-                        @csrf
-                        @method("delete")
-                        <button type="submit" class="btn btn-danger btn-sm">
-                            <i class="fas fa-trash">
-                            </i>
-                            Delete
-                        </button>
-                      </form> -->
+                      </>                 
                   </td>
               </tr>
             @endforeach

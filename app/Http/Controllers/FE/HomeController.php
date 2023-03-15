@@ -116,13 +116,7 @@ class HomeController extends Controller
         $category = Category::all();
         $footer = Footer::all();
         return view('fe.viewCart', compact('category','footer'));
-        // if ($request->session()->has('cart')) {
-        //     $cart = $request->session()->get('cart');
-        //     //dd($cart);
-        //     echo "Product Name: " . $cart[0]->product->name;
-        // } else{
-        //     echo 'No Product';
-        // }
+       
     }
 
     public function clearCart(Request $request) 
@@ -244,11 +238,13 @@ class HomeController extends Controller
          return  redirect()->route ('contact',compact('contact'))->with('messagesuccess','');
    
     }
-    public function person()
+    public function person(Request $request)
     {
-        $orderdetail = OrderDetail::all();
-        $footer= Footer::all();
-        return view ('fe.person' , compact('footer','orderdetail'));
+       
+        $footer= Footer::all();   
+        $order = Order::all()   ;
+         return view ('fe.person' , compact('footer','order'));
+       
     }
     public function history()
     {
