@@ -345,7 +345,8 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item">
+          <!--Coupon-->
+           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
@@ -371,6 +372,7 @@
               </li>
             </ul>
           </li>
+          <!-- End Coupon -->
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tree"></i>
@@ -469,9 +471,50 @@
                 </ul>
               </li>
             </ul>
-             <!--End Blog-->
+            
              <!--End Content-->
           </li>
+          <!-- End About -->
+          <!--Contact-->
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-address-book"></i>
+              <p>
+                Contact
+                <i class="fas fa-angle-left right"></i>
+                <!-- <span class="badge badge-info right">6</span> -->
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ Route('admin.contact.index') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Contact List</p>
+                </a>
+              </li>
+            </ul>         
+          </li>
+          <!-- End Contact -->
+                    <!--Footer-->
+                    <li class="nav-item">
+                      <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-building"></i>
+                        <p>
+                          Footer
+                          <i class="fas fa-angle-left right"></i>
+                          <!-- <span class="badge badge-info right">6</span> -->
+                        </p>
+                      </a>
+                      <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                          <a href="{{ Route('admin.footer.index') }}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Information of company</p>
+                          </a>
+                        </li>
+                      </ul>         
+                    </li>
+                    <!-- End Contact -->
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

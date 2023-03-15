@@ -21,6 +21,9 @@
 <section class="content">
 
   <!-- Default box -->
+  <!-- Search -->
+ 
+ <!--End Search -->
   <div class="card">
     <div class="card-header">
       <h3 class="card-title">Users : {{Session::get('user')->name }} </h3>

@@ -14,7 +14,8 @@ use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\InformationController;
-
+use App\Http\Controllers\Admin\ContactController;
+use App\Http\Controllers\Admin\FooterController;
 use App\Http\Controllers\Admin\CouponsController;
 use App\Http\Controllers\FE\HomeController as FEController;
 
@@ -30,6 +31,9 @@ use App\Http\Controllers\FE\HomeController as FEController;
 */
 
 Route::get('/', [FEController::class, 'index'])->name('home');
+
+Route::get('/layout', [FEController::class, 'layout'])->name('layout');
+
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 
@@ -58,6 +62,7 @@ Route::get('/clear-cart', [FEController::class, 'clearCart'])->name('clearCart')
 Route::post('/change-cart-item', [FEController::class, 'changeCartItem'])->name('changeCart');
 Route::post('/remove-cart-item', [FEController::class, 'removeCartItem'])->name('removeCart');
 
+Route::post('/process-contact', [FEController::class, 'processContact'])->name('processContact');
 
 
 
@@ -98,6 +103,10 @@ Route::group(['middleware'=>'canLogin'], function() {
         Route::resource('/blog', BlogController::class);
 
         Route::resource('/information', InformationController::class);
+
+        Route::resource('/contact', ContactController::class);
+
+        Route::resource('/footer', FooterController::class);
     });
         
 });
