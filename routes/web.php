@@ -11,6 +11,11 @@ use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\ReviewController;
+use App\Http\Controllers\Admin\MemberController;
+use App\Http\Controllers\Admin\BlogController;
+use App\Http\Controllers\Admin\InformationController;
+use App\Http\Controllers\Admin\ContactController;
+use App\Http\Controllers\Admin\FooterController;
 use App\Http\Controllers\Admin\CouponsController;
 use App\Http\Controllers\FE\HomeController as FEController;
 use App\Http\Controllers\SearchController;
@@ -26,6 +31,9 @@ use App\Http\Controllers\SearchController;
 */
 
 Route::get('/', [FEController::class, 'index'])->name('home');
+
+Route::get('/layout', [FEController::class, 'layout'])->name('layout');
+
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 
@@ -56,6 +64,7 @@ Route::get('/clear-cart', [FEController::class, 'clearCart'])->name('clearCart')
 Route::post('/change-cart-item', [FEController::class, 'changeCartItem'])->name('changeCart');
 Route::post('/remove-cart-item', [FEController::class, 'removeCartItem'])->name('removeCart');
 
+Route::post('/process-contact', [FEController::class, 'processContact'])->name('processContact');
 
 
 
@@ -90,6 +99,16 @@ Route::group(['middleware'=>'canLogin'], function() {
         Route::resource('/review', ReviewController::class);
 
         Route::resource('/coupons', CouponsController::class);
+
+        Route::resource('/member', MemberController::class);
+
+        Route::resource('/blog', BlogController::class);
+
+        Route::resource('/information', InformationController::class);
+
+        Route::resource('/contact', ContactController::class);
+
+        Route::resource('/footer', FooterController::class);
     });
         
 });

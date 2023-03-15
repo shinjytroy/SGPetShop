@@ -583,11 +583,11 @@ input,textarea{
 	width: 182px;
 }
 .header .main-info-area .right-section{
-	width: 280px;
+	width: 300px;
 }
 .main-info-area .right-section .wrap-icon-section{
 	display: inline-block;
-	width: 50%;
+	width: 30%;
 	float: left;
 }
 header.fill-color .right-section .wrap-icon-section .title{
@@ -7172,6 +7172,7 @@ background-color: #888888;
 	padding-left: 40px;
 }
 
+
 #rangeValue {
     position: relative;
     text-align: center;
@@ -7184,3 +7185,21 @@ background-color: #888888;
     font-weight: 500;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1), -5px -5px 10px #fff, inset 5px 5px 10px rgba(0, 0, 0, 0.1), inset -5px -5px 5px rgba(255, 255, 255, 0.05);
 }
+
+.product-wish{
+    position: absolute;
+    top: 1%;
+    left: 0%;
+    z-index: 99;
+    right: 30px;
+    text-align: right;
+    padding-top: 0;
+}
+.product-wish .fa{
+    color: rgb(121, 121, 121);
+    font-size: 30px;
+}
+.product-wish .fa:hover{
+    color: rgb(255, 0, 43);
+}
+

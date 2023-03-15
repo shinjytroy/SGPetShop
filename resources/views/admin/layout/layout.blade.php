@@ -345,7 +345,8 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item">
+          <!--Coupon-->
+           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
@@ -371,6 +372,149 @@
               </li>
             </ul>
           </li>
+          <!-- End Coupon -->
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-tree"></i>
+              <p>
+                About Us
+                <i class="fas fa-angle-left right"></i>
+                <!-- <span class="badge badge-info right">6</span> -->
+              </p>
+            </a>
+            <!--Membership-->
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="fas fa-bars"></i>
+                  <p>
+                   MemberShip
+                    <i class="fas fa-angle-left right"></i>
+                    <!-- <span class="badge badge-info right">6</span> -->
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="{{ Route('admin.member.index') }}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>                   
+                        <p>Member List</p>
+                    </a>
+                  </li>
+                </ul>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="{{ Route('admin.member.create') }}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Create Member</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+             <!--End Membership-->
+             <!--Blog-->
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="fas fa-star"></i>
+                  <p>
+                  Blog
+                    <i class="fas fa-angle-left right"></i>
+                    <!-- <span class="badge badge-info right">6</span> -->
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="{{ Route('admin.blog.index') }}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>                   
+                        <p>Blog List</p>
+                    </a>
+                  </li>
+                </ul>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="{{ Route('admin.blog.create') }}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Create Blog</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+             <!--End Blog-->
+             <!-- Content -->
+             <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="fas fa-filter"></i>
+                  <p>
+                  Content Information
+                    <i class="fas fa-angle-left right"></i>
+                    <!-- <span class="badge badge-info right">6</span> -->
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="{{ Route('admin.information.index') }}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>                   
+                        <p>Content List</p>
+                    </a>
+                  </li>
+                </ul>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="{{ Route('admin.information.create') }}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Create Content </p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            
+             <!--End Content-->
+          </li>
+          <!-- End About -->
+          <!--Contact-->
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-address-book"></i>
+              <p>
+                Contact
+                <i class="fas fa-angle-left right"></i>
+                <!-- <span class="badge badge-info right">6</span> -->
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ Route('admin.contact.index') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Contact List</p>
+                </a>
+              </li>
+            </ul>         
+          </li>
+          <!-- End Contact -->
+                    <!--Footer-->
+                    <li class="nav-item">
+                      <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-building"></i>
+                        <p>
+                          Footer
+                          <i class="fas fa-angle-left right"></i>
+                          <!-- <span class="badge badge-info right">6</span> -->
+                        </p>
+                      </a>
+                      <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                          <a href="{{ Route('admin.footer.index') }}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Information of company</p>
+                          </a>
+                        </li>
+                      </ul>         
+                    </li>
+                    <!-- End Contact -->
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -411,5 +555,8 @@
 <script src="{{ asset('/js/demo.js') }}"></script>
 <!--Sweet alert -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-</body>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
 </html>

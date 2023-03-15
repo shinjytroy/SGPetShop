@@ -13,9 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('address')->nullable();
+        Schema::create('contacts', function (Blueprint $table) {
+            $table->id();
+            $table->string('name')->nullable();           
+            $table->string('email')->nullable();  
+            $table->integer('phone')->nullable(); 
+            $table->string('comment')->nullable();     
+            $table->timestamps();
         });
     }
 
@@ -26,8 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            //
-        });
+        //
     }
 };

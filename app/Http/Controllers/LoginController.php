@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Footer;
 
 class LoginController extends Controller
 {
     public function index() {
-        return view('login');
+        $footer = Footer::all();
+        return view('login',compact('footer'));
     }
 
     public function login(Request $request) 
@@ -22,7 +24,7 @@ class LoginController extends Controller
             if ($user->role == 1) {
                 return redirect()->route('admin.homedb')->with("messagelogin","");
             } else {
-                return redirect('/');
+                return redirect()->route('home')->with("messagelogin","");
             }
         }
         return redirect()->route('login')->with("messagelogin","");
@@ -32,7 +34,7 @@ class LoginController extends Controller
     {
         // xóa session
         $request->session()->flush();
-        return redirect()->route('login');
+        return redirect()->route('login')->with("messagelogout","");
     }
    
 }

@@ -60,9 +60,8 @@
 					</div><!--end wrap shop control-->
 					
 					<div class="search-result">
-						
+						@yield('products')
 					</div>
-					@yield('products')
 
 					<div class="wrap-pagination-info">
 						<ul class="page-numbers">
