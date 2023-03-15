@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Footer;
 
 class LoginController extends Controller
 {
     public function index() {
-        return view('login');
+        $footer = Footer::all();
+        return view('login',compact('footer'));
     }
 
     public function login(Request $request) 

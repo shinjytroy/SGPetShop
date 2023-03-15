@@ -50,7 +50,8 @@ class HomeController extends Controller
         // hàm first() lấy phần tử đầu
         $prod = Product::where('slug', $slug)->first();
         $review=Review::all();
-        return view('fe.product', compact('prod','category','review'));
+        $footer = Footer::all();
+        return view('fe.product', compact('prod','category','review','footer'));
     }
     
     public function addCart(Request $request) 
@@ -90,7 +91,8 @@ class HomeController extends Controller
     public function viewCart(Request $request) 
     {
         $category = Category::all();
-        return view('fe.viewCart', compact('category'));
+        $footer = Footer::all();
+        return view('fe.viewCart', compact('category','footer'));
         // if ($request->session()->has('cart')) {
         //     $cart = $request->session()->get('cart');
         //     //dd($cart);
@@ -153,13 +155,14 @@ class HomeController extends Controller
     }
     public function checkout(Request $request){
         $total=0;
+        $footer = Footer::all();
         if ($request->session()->has('cart')) {
             $cart = $request->session()->get('cart');
             foreach($cart as $item){
                 $total += $item->product->price * $item ->quantity;
             }
         }
-        return view('fe.checkout',compact('total'));
+        return view('fe.checkout',compact('total','footer'));
     }
     public function processCheckout(Request $request){
        $cart =$request->all();
@@ -179,16 +182,17 @@ class HomeController extends Controller
 
        }
         $request->session()->forget('cart');
-        
-        return view('fe.thankyou');
+        $footer = Footer::all();
+        return view('fe.thankyou' , compact('footer'));
     }
      public function shop()
     {
         $prods = Product::all();
         $categories = Category::all();
         $brands = Brand::all();
+        $footer = Footer::all();
         return view('fe.shop', compact(
-            'prods', 'brands', 'categories'
+            'prods', 'brands', 'categories','footer'
         ));
     }
     public function about()
@@ -196,8 +200,8 @@ class HomeController extends Controller
         $mems = Membership::all();
         $blogs = Blog::all();
         $infors=Informations::all();
-       
-        return view('fe.about', compact('mems','blogs','infors' ));
+        $footer = Footer::all();
+        return view('fe.about', compact('mems','blogs','infors','footer' ));
      
     }
     public function contact()
@@ -217,18 +221,21 @@ class HomeController extends Controller
     }
     public function person()
     {
-        return view ('fe.person');
+        $footer= Footer::all();
+        return view ('fe.person' , compact('footer'));
     }
     public function history()
     {
-        return view ('fe.history');
+        $footer= Footer::all();
+        return view ('fe.history',compact('footer'));
     }
-    public function review(Request $request){     
-        return view('fe.review');        
+    public function review(Request $request){   
+        $footer= Footer::all();  
+        return view('fe.review',compact('footer'));        
     }
     public function processReview(Request $request){   
         $rv =$request->all();
-  
+        $footer= Footer::all();  
         $rv['user_id']=$request->session()->get('user')->id;
         
         $review = Review::create($rv);
