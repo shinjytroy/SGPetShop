@@ -28,9 +28,7 @@ Toast.fire({
       <div class="item-slide">
         <img src="assets/images/cat.png" alt="" class="img-slide">
         <div class="slide-info slide-1">
-          <!-- <h2 class="f-title">Kid Smart <b>Watches</b></h2> -->
-          <!-- <span class="subtitle">Compra todos tus productos Smart por internet.</span>
-          <p class="sale-info">Only price: <span class="price">$59.99</span></p> -->
+          
           <a href="{{Route('shop')}}" class="btn-link">Shop Now</a>
         </div>
       </div>
@@ -43,16 +41,7 @@ Toast.fire({
           <h4 class="s-title">Get Free</h4>
           <p class="s-subtitle">TRansparent Bra Straps</p>
         </div>
-      </div>
-      <!-- <div class="item-slide">
-        <img src="assets/images/main-slider-1-3.jpg" alt="" class="img-slide">
-        <div class="slide-info slide-3">
-          <h2 class="f-title">Great Range of <b>Exclusive Furniture Packages</b></h2>
-          <span class="f-subtitle">Exclusive Furniture Packages to Suit every need.</span>
-          <p class="sale-info">Stating at: <b class="price">$225.00</b></p>
-          <a href="#" class="btn-link">Shop Now</a>
-        </div>
-      </div> -->
+      </div>    
     </div>
   </div>
 

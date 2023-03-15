@@ -421,9 +421,56 @@
                     <!-- <span class="badge badge-info right">6</span> -->
                   </p>
                 </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="{{ Route('admin.blog.index') }}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>                   
+                        <p>Blog List</p>
+                    </a>
+                  </li>
+                </ul>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="{{ Route('admin.blog.create') }}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Create Blog</p>
+                    </a>
+                  </li>
+                </ul>
               </li>
             </ul>
              <!--End Blog-->
+             <!-- Content -->
+             <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="fas fa-filter"></i>
+                  <p>
+                  Content Information
+                    <i class="fas fa-angle-left right"></i>
+                    <!-- <span class="badge badge-info right">6</span> -->
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="{{ Route('admin.information.index') }}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>                   
+                        <p>Content List</p>
+                    </a>
+                  </li>
+                </ul>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="{{ Route('admin.information.create') }}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Create Content </p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+             <!--End Blog-->
+             <!--End Content-->
           </li>
         </ul>
       </nav>

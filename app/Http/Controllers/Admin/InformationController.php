@@ -4,15 +4,15 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Information;
+use App\Models\Informations;
 
 class InformationController extends Controller
 {
     public function index()
     {
-        $infors =Information::all();
+        $infs = Informations::all();
 
-        return view ("admin.information.index", compact('infors'));
+        return view ("admin.information.index", compact('infs'));
         
     }
     public function create()
@@ -23,14 +23,14 @@ class InformationController extends Controller
     {
         $request->validate([
             'title' => 'required|min:3|max:50',
-                     
+               
             'content' => 'required|min:3|max:200',          
         ]); 
         $inforData = $request->all();
-        Information::create($inforData);
+        Informations::create($inforData);
         return redirect()->route('admin.information.index')->with('messagecreate','');
     }
-    public function edit(Information $infor)
+    public function edit(Informations $infor)
     {
         return view('admin.information.edit', compact('infor'));
     }
@@ -42,10 +42,10 @@ class InformationController extends Controller
      * @param  \App\Models\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Information $infor)
+    public function update(Request $request, Informations $infor)
     {
         $inforData = $request->all(); 
-        $infor->update($inforData = $request->all() );
+        $infor->update($inforData);
         return redirect()->route('admin.information.index')->with('messageupdate','');
     }
 
@@ -55,11 +55,9 @@ class InformationController extends Controller
      * @param  \App\Models\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Information $infor)
+    public function destroy(Informations $infor)
     {
         $infor->delete();
         return redirect()->route('admin.information.index')->with('messagedelete','');
     }
-
 }
-

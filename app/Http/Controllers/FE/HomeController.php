@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\FE;
 
 use App\Http\Controllers\Controller;
+use App\Models\Blog;
+use App\Models\Informations;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\CartItem;
@@ -180,8 +182,10 @@ class HomeController extends Controller
     public function about()
     {
         $mems = Membership::all();
+        $blogs = Blog::all();
+        $infors=Informations::all();
        
-        return view('fe.about', compact('mems' ));
+        return view('fe.about', compact('mems','blogs','infors' ));
      
     }
     public function contact()

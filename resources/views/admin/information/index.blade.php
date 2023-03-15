@@ -78,7 +78,7 @@
               </tr>
           </thead>
           <tbody>
-            @foreach($infors as $item)
+            @foreach($infs as $item)
               <tr>
                   <td>{{ $item->id }}</td>
                   
