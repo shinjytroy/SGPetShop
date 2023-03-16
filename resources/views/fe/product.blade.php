@@ -138,28 +138,17 @@
                   <div id="review_form">
                     <div id="respond" class="comment-respond"> 
                       @if(Session::get('user'))
+                     @php
+                     $Order_id = DB::table('orders')->where('user_id','=',Session::get('user')->id)->value('id');
+                      $product_Id = DB::table('order_details')->where('order_id','=',$Order_id )->value('product_id');
+                     @endphp
+                    @if( $product_Id == $prod->id)
                       <form action="{{Route('processReview')}}" method="post" id="commentform" class="comment-form" novalidate="">
                         @csrf
                         <p class="comment-notes">
                           <span id="email-notes">Your email address will not be published.</span> Required fields are marked <span class="required">*</span>
-                        </p>
-                        <div class="comment-form-rating">
-                          <span>Your rating</span>
-                          <p class="stars">
-                            
-                            <label for="rated-1"></label>
-                            <input type="radio" id="rated-1" name="rating" value="1">
-                            <label for="rated-2"></label>
-                            <input type="radio" id="rated-2" name="rating" value="2">
-                            <label for="rated-3"></label>
-                            <input type="radio" id="rated-3" name="rating" value="3">
-                            <label for="rated-4"></label>
-                            <input type="radio" id="rated-4" name="rating" value="4">
-                            <label for="rated-5"></label>
-                            <input type="radio" id="rated-5" name="rating" value="5" checked="checked">
-                          </p>
-                        </div>
-                        
+                        </p>      
+                                
                         <p class="comment-form-author">
                           <input type="hidden" id="product_id" type="text" name="product_id" value="{{$prod->id}}" >
                         </p>
@@ -178,14 +167,11 @@
                         <p class="form-submit">
                           <input name="submit" type="submit" id="submit" class="submit" value="Submit">
                         
-                        </p>
-                        @if(Session::has('thongbao'))
-                        <div class="badge badge-success">
-                          {{Session::get('thongbao')}}
-                        </div>
-                        @endif
-                        
+                        </p>                                           
                       </form>
+                   @else
+                   <div>Please Buy To Review </div>
+                   @endif
                       @else 
                       <div>Please Login To Review </div>
                       <a href="{{Route('login')}}">Login</a>

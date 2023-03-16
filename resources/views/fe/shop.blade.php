@@ -2,10 +2,19 @@
 @section('contents')
 	<!--main area-->
 	<main id="main" class="main-site left-sidebar">
-	@if(Session::has('messagereview'))
+	@if(Session::has('messagereviewsucess'))
     <script>
       Swal.fire(
   'Thank you review ,Continue Shpping!!',
+  'You clicked the button to continue!',
+  'success'
+    )
+    </script>
+   @endif
+   @if(Session::has('messagereviewfail'))
+    <script>
+      Swal.fire(
+  'Err!!',
   'You clicked the button to continue!',
   'success'
     )

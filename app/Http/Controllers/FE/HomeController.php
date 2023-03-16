@@ -57,9 +57,9 @@ class HomeController extends Controller
         $categorie_id = $prod->categorie_id;
         $relatedProds = Product::where('categorie_id',$categorie_id)->whereNotIn('slug',[$slug])->get();
         $review=Review::all();
-        $order = Order::all();
+        $orderdetail =  OrderDetail::where('product_id',$categorie_id)->get();
         $footer = Footer::all();
-        return view('fe.product', compact('prod','relatedProds','category','review','footer','order'));
+        return view('fe.product', compact('prod','relatedProds','category','review','footer','orderdetail'));
     }
 
     public function sortProducts($sortOption) {
@@ -158,9 +158,12 @@ class HomeController extends Controller
 
     public function viewCart(Request $request) 
     {
+        $prods = Product::all();
+        $brands = Brand::all();
+        $order=Order::all();
         $category = Category::all();
         $footer = Footer::all();
-        return view('fe.viewCart', compact('category','footer'));
+        return view('fe.viewCart', compact('category','footer','prods','order','brands'));
        
     }
 
@@ -217,6 +220,10 @@ class HomeController extends Controller
     }
     public function checkout(Request $request){
         $total=0;
+        $prods = Product::all();
+        $brands = Brand::all();
+        $order=Order::all();
+        $category = Category::all();
         $footer = Footer::all();
         if ($request->session()->has('cart')) {
             $cart = $request->session()->get('cart');
@@ -224,7 +231,7 @@ class HomeController extends Controller
                 $total += $item->product->price * $item ->quantity;
             }
         }
-        return view('fe.checkout',compact('total','footer'));
+        return view('fe.checkout',compact('total','footer','category','prods','order','brands'));
     }
     public function processCheckout(Request $request){
        $cart =$request->all();
@@ -294,19 +301,14 @@ class HomeController extends Controller
     }
     public function processReview(Request $request){   
         $rv =$request->all();
-        $footer= Footer::all();  
+        $footer= Footer::all();   
+        
         $rv['user_id']=$request->session()->get('user')->id;
-        if ($request->session()->has('order')) {
         $review = Review::create($rv);
         // luu review
         $request->session()->forget('review');
-
-         return redirect()->route('shop',compact('footer'))->with('messagereviewsucess','');  
-        }
-        else{
-            return redirect()->route('shop',compact('footer'))->with('messagereviewfalse','');    
-
-        }    
+         return redirect()->route('shop',compact('footer'))->with('messagereviewsucess','');              
+       
     }
 
 }

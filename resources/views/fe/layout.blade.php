@@ -146,15 +146,7 @@
 									</div>
 								</a>
 							</div>	
-							<div class="wrap-icon-section wishlist">
-								<a href="#" class="link-direction">
-									<i class="fa fa-heart" aria-hidden="true"></i>
-									<div class="left-info">
-										<span class="index">0 item</span>
-										<span class="title">Wishlist</span>
-									</div>
-								</a>
-							</div>
+							
 
 						</div>
 
@@ -428,7 +420,6 @@
 	<script src="{{ asset('/assets/js/jquery.countdown.min.js') }}"></script>
 	<script src="{{ asset('/assets/js/jquery.sticky.js') }}"></script>
 	<script src="{{ asset('/assets/js/functions.js') }}"></script>
-<<<<<<< HEAD
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script>
