@@ -30,21 +30,23 @@
         <input id="add" type="text" name="shipping_address" value="{{Session::get('user')->address}}" placeholder="Street at apartment number" required>
       </p>
   </div>
+  <input id="status" type="hidden" name="status" value="1" placeholder="Street at apartment number" required>
+
   <div class="summary summary-checkout">
     <div class="summary-item payment-method">
       <h4 class="title-box">Payment Method</h4>
-      <p class="summary-info"><span class="title">Check / Money order</span></p>
+      <p class="summary-info"><span class="title" >Check / Money order</span></p>
       <p class="summary-info"><span class="title">Credit Cart (saved)</span></p>
       <div class="choose-payment-methods">
         <label class="payment-method">
-          <input name="payment-method" id="payment-method-bank" value="bank" type="radio" >
-          <span>Direct Bank Transder</span>
-          <span class="payment-desc">But the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable</span>
+          <input name="payment" id="payment" value="cod" type="radio" >
+          <span>Cash on Delivery</span>
+          <span class="payment-desc"> </span>
         </label>
         <label class="payment-method">
-          <input name="payment-method" id="payment-method-visa" value="visa" type="radio" >
-          <span>visa</span>
-          <span class="payment-desc">There are many variations of passages of Lorem Ipsum available</span>
+          <input name="payment" id="payment" value="paypal"type="radio"  >
+          <span>Paypal</span>
+          <span class="payment-desc"><div id="paypal-button" class="total"></div></span>
         </label>
         {{-- <label class="payment-method">
           <input name="payment-method" id="payment-method-paypal" value="paypal" type="radio">
