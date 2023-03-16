@@ -246,22 +246,7 @@ class HomeController extends Controller
         $footer = Footer::all();
         return view('fe.thankyou' , compact('footer'));
     }
-<<<<<<< HEAD
-     
-=======
-     public function shop()
-    {
-        $prods = Product::all();
-        $categories = Category::all();
-        $brands = Brand::all();
-        $min_price = Product::min('price');
-        $max_price = Product::max('price');
-        $footer = Footer::all();
-        return view('fe.shop.search-result', compact(
-            'prods', 'brands', 'categories', 'footer', 'min_price', 'max_price' , 
-        ));
-    }
->>>>>>> f3453013b9685584956ef6f731b02cb5aec9e25e
+
     public function about()
     {
         $mems = Membership::all();
