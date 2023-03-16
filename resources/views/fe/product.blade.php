@@ -72,28 +72,14 @@
         <div class="advance-info">
           <div class="tab-control normal">
             <a href="#description" class="tab-control-item active">description</a>
-            <a href="#add_infomation" class="tab-control-item">Addtional Infomation</a>
+           
             <a href="#review" class="tab-control-item">Reviews</a>
           </div>
           <div class="tab-contents">
             <div class="tab-content-item active" id="description">
               {{ $prod->description }}
             </div>
-            <div class="tab-content-item " id="add_infomation">
-              <table class="shop_attributes">
-                <tbody>
-                  <tr>
-                    <th>Weight</th><td class="product_weight">1 kg</td>
-                  </tr>
-                  <tr>
-                    <th>Dimensions</th><td class="product_dimensions">12 x 15 x 23 cm</td>
-                  </tr>
-                  <tr>
-                    <th>Color</th><td><p>Black, Blue, Grey, Violet, Yellow</p></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+            
             <div class="tab-content-item " id="review">
               
               <div class="wrap-review-form">
@@ -102,25 +88,24 @@
               
                 @php
                 $review = DB::table('reviews')->where('product_id',"=",$prod->id)->get();        
-                $count = count($review);
+                
                 @endphp
-                  <h2 class="woocommerce-Reviews-title"> {{$count}}review for <span>{{$prod->name}}</span></h2>
+                  <h2 class="woocommerce-Reviews-title"> Review for <span>{{$prod->name}}</span></h2>
                   <ol class="commentlist">
                     <li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="li-comment-20">
                       <div id="comment-20" class="comment_container"> 
-                        <img alt="" src="assets/images/avatar-Thao.png" height="80" width="80">
+                        <img src="{{ asset('/images/' . $prod->image) }}" alt="{{ $prod->name }}" height="80" width="80">
 
                         <div class="comment-text">
-                          <div class="star-rating">
-                            <span class="width-80-percent">Rated <strong class="rating">5</strong> out of 5</span>
-                          </div>
-                          <p class="meta"> 
+                          
+                         
                            @foreach($review as $items)
                             @if($items->product_id == $prod->id)
                             @php
                             $user_name = DB::table('users')->where('id',"=",$items->user_id)->value('name');
                             @endphp
                             @if($items -> is_accept != 1 )
+                            <p class="meta"> 
                               <strong class="woocommerce-review__author">{{$user_name}}</strong> 
                               <span class="woocommerce-review__dash">:</span>
                               <time class="woocommerce-review__published-date" >{{$items->created_at}}</time>
