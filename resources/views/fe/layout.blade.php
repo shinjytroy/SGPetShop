@@ -428,7 +428,7 @@
 	<script src="{{ asset('/assets/js/jquery.countdown.min.js') }}"></script>
 	<script src="{{ asset('/assets/js/jquery.sticky.js') }}"></script>
 	<script src="{{ asset('/assets/js/functions.js') }}"></script>
-<<<<<<< HEAD
+
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script>
@@ -457,10 +457,24 @@
             $("#suggestion-box").hide();
         }
     </script>
+	
 	<script>
 		$.ajaxSetup({
 			headers: {
-				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		}
+		});
+		$.ajax({
+			type: "POST",
+			cache: false,
+			url: "URL_POST",
+			data: {DATA_REQUEST},
+			dataType: "json",
+			success: function(data){
+			//Code của bạn
+			},
+			error: function(error){
+			//Code của bạn
 			}
 		});
 	</script>
