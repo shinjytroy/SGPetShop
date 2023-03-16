@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Footer;
 use Illuminate\Support\ServiceProvider;
 use App\Models\Product;
 class AppServiceProvider extends ServiceProvider
@@ -26,7 +27,9 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('*', function($view){
             $min_price = Product::min('price');
             $max_price = Product::max('price');
-            $view -> with('min_price', $min_price)->with('max_price', $max_price);
+            $footer = Footer::all();
+            $featProds= Product::where('featured','=','Yes')->get();
+            $view -> with('min_price', $min_price)->with('max_price', $max_price)->with('featProds',$featProds)->with('footer',$footer);
         });
     }
 }

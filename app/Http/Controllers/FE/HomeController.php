@@ -22,7 +22,7 @@ use Illuminate\Contracts\Session\Session;
 
 class HomeController extends Controller
 {
-    public $sorting;
+    public $orderBy = 'Default sorting';
     public $pagesize;
     
     public function index() 
@@ -54,11 +54,53 @@ class HomeController extends Controller
         // $prod = Product::where('slug', $slug)->get();
         // hàm first() lấy phần tử đầu
         $prod = Product::where('slug', $slug)->first();
+        $categorie_id = $prod->categorie_id;
+        $relatedProds = Product::where('categorie_id',$categorie_id)->whereNotIn('slug',[$slug])->get();
         $review=Review::all();
         $footer = Footer::all();
-        return view('fe.product', compact('prod','category','review','footer'));
+        return view('fe.product', compact('prod','relatedProds','category','review','footer'));
     }
-    
+
+    public function sortProducts($sortOption) {
+        if($sortOption == 'price_asc') {
+          $prods = Product::orderBy('sale_price', 'asc')->get();
+        } else if($sortOption == 'price_desc') {
+          $prods = Product::orderBy('sale_price', 'desc')->get();
+        }else if($sortOption == 'name_asc') {
+            $prods = Product::orderBy('name', 'asc')->get();
+        }else if($sortOption == 'name_desc') {
+            $prods = Product::orderBy('name', 'desc')->get();
+        return view('fe.shop.search-result', compact('prods'));
+        }
+    }
+    public function shop()
+    {
+        $prods = Product::all();
+        $categories = Category::all();
+        $brands = Brand::all();
+        $min_price = Product::min('price');
+        $max_price = Product::max('price');
+        $featProds= Product::where('featured','=','Yes')->get();
+        if($this->orderBy == 'Sort By Price: ASC'){
+            $prods = Product::orderBy('sale_price', 'ASC');
+        }
+        else if($this->orderBy == 'Sort By Price: DESC'){
+            $prods = Product::orderBy('sale_price', 'DESC');
+        }
+        else if($this->orderBy == 'Sort By Name: A to Z'){
+            $prods = Product::orderBy('name', 'ASC');
+        }
+        else if($this->orderBy == 'Sort By Name: Z to A'){
+            $prods = Product::orderBy('name', 'ASC');
+        }else{
+            $prods = Product::all();
+        }
+        $footer = Footer::all();
+        return view('fe.shop.search-result', compact(
+            'prods', 'brands', 'categories', 'footer', 'min_price', 'max_price', 'featProds',
+        ));
+    }
+
     public function shopByCategory($id){
         $review = Review::all();
         $categories = Category::all();
@@ -69,7 +111,7 @@ class HomeController extends Controller
         
         return view('fe.shop.search-result', compact('prods','review', 'categories', 'brands','footer'));
     }
-
+    
     public function searchProducts(Request $request){
         $review = Review::all();
         $categories = Category::all();
@@ -204,6 +246,9 @@ class HomeController extends Controller
         $footer = Footer::all();
         return view('fe.thankyou' , compact('footer'));
     }
+<<<<<<< HEAD
+     
+=======
      public function shop()
     {
         $prods = Product::all();
@@ -216,6 +261,7 @@ class HomeController extends Controller
             'prods', 'brands', 'categories', 'footer', 'min_price', 'max_price' , 
         ));
     }
+>>>>>>> f3453013b9685584956ef6f731b02cb5aec9e25e
     public function about()
     {
         $mems = Membership::all();
@@ -271,4 +317,13 @@ class HomeController extends Controller
          $request->session()->forget('review');
          return redirect()->route('shop',compact('footer'))->with('messagereview','');    
     }
+
+    // public function featuredProducts(){
+    //     $categories = Category::all();
+    //     $brands = Brand::all();
+    //     $prods= Product::where('featured','=', 'Yes')->get();
+    //     return view('fe.shop', compact(
+    //         'featProds', 'brands', 'categories', 'footer',
+    //     ));
+    // }
 }
