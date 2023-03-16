@@ -120,6 +120,7 @@
                             @php
                             $user_name = DB::table('users')->where('id',"=",$items->user_id)->value('name');
                             @endphp
+                            @if($items -> is_accept != 1 )
                               <strong class="woocommerce-review__author">{{$user_name}}</strong> 
                               <span class="woocommerce-review__dash">:</span>
                               <time class="woocommerce-review__published-date" >{{$items->created_at}}</time>
@@ -127,6 +128,7 @@
                             <div class="description">
                               <p>{{$items->description}}</p>                                              
                             </div>
+                            @endif
                             @endif
                          @endforeach
                         </div>
@@ -138,11 +140,13 @@
                   <div id="review_form">
                     <div id="respond" class="comment-respond"> 
                       @if(Session::get('user'))
-                     @php
-                     $Order_id = DB::table('orders')->where('user_id','=',Session::get('user')->id)->value('id');
-                      $product_Id = DB::table('order_details')->where('order_id','=',$Order_id )->value('product_id');
-                     @endphp
-                    @if( $product_Id == $prod->id)
+
+                    
+                          @php
+                          $Order_id = DB::table('orders')->where('user_id','=',Session::get('user')->id)->value('id');
+                            $product_Id = DB::table('order_details')->where('order_id','=',$Order_id )->value('product_id');
+                          @endphp
+                    @if( $product_Id == $prod->id )
                       <form action="{{Route('processReview')}}" method="post" id="commentform" class="comment-form" novalidate="">
                         @csrf
                         <p class="comment-notes">
