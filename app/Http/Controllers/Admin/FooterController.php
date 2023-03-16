@@ -40,8 +40,8 @@ class FooterController extends Controller
      */
     public function update(Request $request, Footer $footer)
     {
-        $blogData =Footer::where ('id','=',$request->id)->get();
-        $footer->update($blogData);
+        $footerData = $request->all();
+        $footer->update($footerData);
         return redirect()->route('admin.footer.index',compact('footer'))->with('messageupdate','');
     }
 
