@@ -32,14 +32,16 @@
           <td></td>
         </tr>
         @php 
-    $id =Session::get('user')->id;
-    $count = 0 ;
-    $order = DB::table('orders')->where('user_id','=',$id)->get();   
-    @endphp
-    @foreach($order as $item )
-    @php
-    $count++;
-    @endphp
+           $id =Session::get('user')->id;
+           $count = 0 ;
+           $order = DB::table('orders')->where('user_id','=',$id)->get();   
+        @endphp
+            @foreach($order as $item )
+              @php
+              $count++;
+                        
+            
+            @endphp
         <tr>
           <td> <div class="price-field produtc-price"><p class="price">{{$count}}</p></div></td>
           <td> <div class="price-field produtc-price"><p class="price">{{ $item->order_date }} </p></div></td>
@@ -52,9 +54,9 @@
         </tr>
         
      @endforeach
+     
     </table>
-
-    
+   
       
    
   </ul>

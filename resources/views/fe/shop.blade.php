@@ -2,7 +2,15 @@
 @section('contents')
 	<!--main area-->
 	<main id="main" class="main-site left-sidebar">
-
+	@if(Session::has('messagereview'))
+    <script>
+      Swal.fire(
+  'Thank you review ,Continue Shpping!!',
+  'You clicked the button to continue!',
+  'success'
+    )
+    </script>
+   @endif
 		<div class="container">
 
 			<div class="wrap-breadcrumb">

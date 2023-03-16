@@ -57,8 +57,9 @@ class HomeController extends Controller
         $categorie_id = $prod->categorie_id;
         $relatedProds = Product::where('categorie_id',$categorie_id)->whereNotIn('slug',[$slug])->get();
         $review=Review::all();
+        $order = Order::all();
         $footer = Footer::all();
-        return view('fe.product', compact('prod','relatedProds','category','review','footer'));
+        return view('fe.product', compact('prod','relatedProds','category','review','footer','order'));
     }
 
     public function sortProducts($sortOption) {
@@ -295,20 +296,17 @@ class HomeController extends Controller
         $rv =$request->all();
         $footer= Footer::all();  
         $rv['user_id']=$request->session()->get('user')->id;
-        
+        if ($request->session()->has('order')) {
         $review = Review::create($rv);
         // luu review
-        
-         $request->session()->forget('review');
-         return view ('fe.review')->with('thongbao','Thank you ');    
+        $request->session()->forget('review');
+
+         return redirect()->route('shop',compact('footer'))->with('messagereviewsucess','');  
+        }
+        else{
+            return redirect()->route('shop',compact('footer'))->with('messagereviewfalse','');    
+
+        }    
     }
 
-    // public function featuredProducts(){
-    //     $categories = Category::all();
-    //     $brands = Brand::all();
-    //     $prods= Product::where('featured','=', 'Yes')->get();
-    //     return view('fe.shop', compact(
-    //         'featProds', 'brands', 'categories', 'footer',
-    //     ));
-    // }
 }

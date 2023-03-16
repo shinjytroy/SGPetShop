@@ -27,9 +27,8 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('*', function($view){
             $min_price = Product::min('price');
             $max_price = Product::max('price');
-            $footer = Footer::all();
             $featProds= Product::where('featured','=','Yes')->get();
-            $view -> with('min_price', $min_price)->with('max_price', $max_price)->with('featProds',$featProds)->with('footer',$footer);
+            $view -> with('min_price', $min_price)->with('max_price', $max_price)->with('featProds',$featProds);
         });
     }
 }
