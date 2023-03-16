@@ -28,14 +28,17 @@
 						<div class="wrap-right">
 
 							<div class="sort-item orderby ">
-								<select name="orderby" class="use-chosen" >
-									<option value="menu_order" selected="selected">Default sorting</option>
-									<option value="popularity">Sort by popularity</option>
-									<option value="rating">Sort by average rating</option>
-									<option value="date">Sort by newness</option>
-									<option value="price">Sort by price: low to high</option>
-									<option value="price-desc">Sort by price: high to low</option>
-								</select>
+								<form action="">
+									@csrf
+									<select id="sort-select" class="use-chosen" >
+										<option value="" selected="selected">Default sorting</option>
+										<option value="price_asc">Sort By Price: ASC</option>
+										<option value="price_desc">Sort By Price: DESC</option>
+										<option value="name_asc">Sort by Name: A to Z</option>
+										<option value="name_desc">Sort by Name: Z to A</option>
+									</select>
+								</form>
+								
 							</div>
 
 							<div class="sort-item product-per-page">
@@ -59,7 +62,7 @@
 
 					</div><!--end wrap shop control-->
 					
-					<div class="search-result">
+					<div class="search-result" >
 						@yield('products')
 					</div>
 
@@ -109,29 +112,8 @@
 					<div class="widget mercado-widget filter-widget price-filter">
 						<h2 class="widget-title">Price</h2>
 						<div class="widget-content">
-							{{-- <form method="POST" action="">
-								@csrf
-								<label for="slider-range">Slider Range:</label>
-								<input type="range" name="slider-range" id="slider-range" min="0" max="100" step="1">
-								<button type="submit">Submit</button>
-							</form> --}}
-							{{-- <div class="middle">
-								<div id="multi_range">
-									<span id="left_value">25</span><span> ~ </span><span id="right_value">75</span>
-								</div>
-								<div class="multi-range-slider my-2">
-									<input type="range" id="input_left" class="range_slider" min="0" max="100" value="25" onmousemove="left_slider(this.value)">
-									<input type="range" id="input_right" class="range_slider" min="0" max="100" value="75" onmousemove="right_slider(this.value)">
-									<div class="slider">
-										<div class="track"></div>
-										<div class="range"></div>
-										<div class="thumb left"></div>
-										<div class="thumb right"></div>
-									</div>
-								</div>
-							</div> --}}
+
 							<form method="GET" action="{{ Route('search.products')}}">
-								
 								<div id="slider-range1"></div>
 								<p>
 									<label for="amount">Price:</label>
@@ -173,65 +155,24 @@
 					</div><!-- Size --> --}}
 
 					<div class="widget mercado-widget widget-product">
-						<h2 class="widget-title">Popular Products</h2>
+						<h2 class="widget-title">Featured Products</h2>
 						<div class="widget-content">
 							<ul class="products">
+								@foreach ($featProds as $item)
 								<li class="product-item">
 									<div class="product product-widget-style">
 										<div class="thumbnnail">
-											<a href="detail.html" title="Radiant-360 R6 Wireless Omnidirectional Speaker [White]">
-												<figure><img src="assets/images/products/digital_01.jpg" alt=""></figure>
+											<a href="{{ Route('featured.products')}}" title="{{$item->name}}">
+												<figure><img src="{{ asset('/images/'. $item->image) }}" alt="{{ $item->name }}"></figure>
 											</a>
 										</div>
 										<div class="product-info">
-											<a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker...</span></a>
-											<div class="wrap-price"><span class="product-price">$168.00</span></div>
+											<a href="{{ Route('product.details', $item->slug) }}" class="product-name"><span>{{$item->name}}</span></a>
+											<div class="wrap-price"><span class="product-price">${{ $item->sale_price }}</span></div>
 										</div>
 									</div>
 								</li>
-
-								<li class="product-item">
-									<div class="product product-widget-style">
-										<div class="thumbnnail">
-											<a href="detail.html" title="Radiant-360 R6 Wireless Omnidirectional Speaker [White]">
-												<figure><img src="assets/images/products/digital_17.jpg" alt=""></figure>
-											</a>
-										</div>
-										<div class="product-info">
-											<a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker...</span></a>
-											<div class="wrap-price"><span class="product-price">$168.00</span></div>
-										</div>
-									</div>
-								</li>
-
-								<li class="product-item">
-									<div class="product product-widget-style">
-										<div class="thumbnnail">
-											<a href="detail.html" title="Radiant-360 R6 Wireless Omnidirectional Speaker [White]">
-												<figure><img src="assets/images/products/digital_18.jpg" alt=""></figure>
-											</a>
-										</div>
-										<div class="product-info">
-											<a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker...</span></a>
-											<div class="wrap-price"><span class="product-price">$168.00</span></div>
-										</div>
-									</div>
-								</li>
-
-								<li class="product-item">
-									<div class="product product-widget-style">
-										<div class="thumbnnail">
-											<a href="detail.html" title="Radiant-360 R6 Wireless Omnidirectional Speaker [White]">
-												<figure><img src="assets/images/products/digital_20.jpg" alt=""></figure>
-											</a>
-										</div>
-										<div class="product-info">
-											<a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional Speaker...</span></a>
-											<div class="wrap-price"><span class="product-price">$168.00</span></div>
-										</div>
-									</div>
-								</li>
-
+								@endforeach
 							</ul>
 						</div>
 					</div><!-- brand widget-->
@@ -276,4 +217,18 @@
 	
 	} );
 	</script>
+	<script>
+		$(document).ready(function() {
+		  $('#sort-select').change(function() {
+			var sortOption = $(this).val();
+			$.ajax({
+			  url: '/products/sort/' + sortOption,
+			  type: 'GET',
+			  success: function(response) {
+				$('.search-result').html(response);
+			  }
+			});
+		  });
+		});
+		</script>
 @endsection

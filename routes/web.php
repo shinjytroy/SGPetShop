@@ -51,9 +51,12 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/product/{slug}', [FEController::class, 'product'])->name('product.details');
 
 Route::post('/add-cart', [FEController::class, 'addCart'])->name('addCart');
+
 Route::get('/shop', [FEController::class, 'shop'])->name('shop');
 Route::get('/shop/category/{id}', [FEController::class, 'shopByCategory'])->name('shop.category');
 Route::get('/shop/search-products', [FEController::class, 'searchProducts'])->name('search.products');
+Route::get('/shop/featured-products', [FEController::class, 'featuredProducts'])->name('featured.products');
+Route::get('/products/sort/{sortOption}', [FEController::class,'sortProducts'])->name('sort.products');
 
 Route::get('/about', [FEController::class, 'about'])->name('about');
 Route::get('/contact', [FEController::class, 'contact'])->name('contact');
