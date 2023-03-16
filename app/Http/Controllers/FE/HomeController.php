@@ -300,19 +300,8 @@ class HomeController extends Controller
         // luu review
         
          $request->session()->forget('review');
-<<<<<<< HEAD
-         return view ('fe.review',compact('footer','review'))->with('thongbao','Thank you ');    
-=======
-         return redirect()->route('shop',compact('footer'))->with('messagereview','');    
->>>>>>> ac859731ecb8fbcd89ca42779f1e08b783ef9c01
+         return redirect()->route('shop',compact('footer'))->with('messagereview','');
     }
 
-    // public function featuredProducts(){
-    //     $categories = Category::all();
-    //     $brands = Brand::all();
-    //     $prods= Product::where('featured','=', 'Yes')->get();
-    //     return view('fe.shop', compact(
-    //         'featProds', 'brands', 'categories', 'footer',
-    //     ));
-    // }
+   
 }
