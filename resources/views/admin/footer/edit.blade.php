@@ -11,7 +11,7 @@
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="{{ Route('admin.homedb') }}">Home</a></li>
           <li class="breadcrumb-item"><a href="{{ Route('admin.footer.index') }}">Footer</a></li>
-          <li class="breadcrumb-item active">Edit Blogs</li>
+          <li class="breadcrumb-item active">Edit Footer</li>
         </ol>
       </div>
     </div>

@@ -38,12 +38,12 @@
 							<div class="sort-item orderby ">
 								<form action="">
 									@csrf
-									<select id="sort-select" class="use-chosen" >
-										<option value="" selected="selected">Default sorting</option>
-										<option value="price_asc">Sort By Price: ASC</option>
-										<option value="price_desc">Sort By Price: DESC</option>
-										<option value="name_asc">Sort by Name: A to Z</option>
-										<option value="name_desc">Sort by Name: Z to A</option>
+									<select name="sort1" id="sort1" class="use-chosen" >
+										<option value="{{ Request::fullUrl() }}?sort_by=none" selected="selected">Default sorting</option>
+										<option value="{{ Request::fullUrl() }}?sort_by=price-asc">Sort By Price: ASC</option>
+										<option value="{{ Request::fullUrl() }}?sort_by=price-desc">Sort By Price: DESC</option>
+										<option value="{{ Request::fullUrl() }}?sort_by=name-asc">Sort by Name: A to Z</option>
+										<option value="{{ Request::fullUrl() }}?sort_by=name-desc">Sort by Name: Z to A</option>
 									</select>
 								</form>
 								
@@ -70,7 +70,7 @@
 
 					</div><!--end wrap shop control-->
 					
-					<div class="search-result" >
+					<div class="search-result">
 						@yield('products')
 					</div>
 
@@ -225,18 +225,16 @@
 	
 	} );
 	</script>
-	<script>
-		$(document).ready(function() {
-		  $('#sort-select').change(function() {
-			var sortOption = $(this).val();
-			$.ajax({
-			  url: '/products/sort/' + sortOption,
-			  type: 'GET',
-			  success: function(response) {
-				$('.search-result').html(response);
-			  }
-			});
-		  });
-		});
-		</script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('#sort1').on('change', function(){
+				var url = $(this).val();
+				alert(url);
+				if(url){
+					window.location = url;
+				}
+				return false;
+			})
+		})
+	</script>
 @endsection

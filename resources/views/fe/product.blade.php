@@ -99,8 +99,12 @@
               <div class="wrap-review-form">
               
                 <div id="comments">
-
-                  <h2 class="woocommerce-Reviews-title">01 review for <span>{{$prod->name}}</span></h2>
+              
+                @php
+                $review = DB::table('reviews')->where('product_id',"=",$prod->id)->get();        
+                $count = count($review);
+                @endphp
+                  <h2 class="woocommerce-Reviews-title"> {{$count}}review for <span>{{$prod->name}}</span></h2>
                   <ol class="commentlist">
                     <li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="li-comment-20">
                       <div id="comment-20" class="comment_container"> 

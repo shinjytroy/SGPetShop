@@ -51,26 +51,26 @@
           <form action="{{ Route('admin.review.store') }}" method="post" class="card-body" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
-              <label for="user_id">User Id</label>
+              <label for="user_id">User Name</label>
               <select name="user_id" id="user_id" class="form-control">
 
               <option value="">Select User</option>
               @foreach ( $user as $item)
-              <option value="{{ $item->id }}">{{  $item->id }}</option>
+              <option value="{{ $item->id }}">{{ $item->name }}</option>
               @endforeach
             </select>
             </div>
             <div class="form-group">
-              <label for="product_id">product Id</label>
+              <label for="product_id">Product Name</label>
               <select name="product_id" id="product_id" class="form-control">
                 <option value="">Select Product</option>
                 @foreach ( $product as $item)
-                <option value="{{ $item->id }}">{{  $item->id }}</option>
+                <option value="{{ $item->id }}">{{  $item->name}}</option>
                 @endforeach
               </select>
             </div>
             <div class="form-group">
-              <label for="review_name">review Name</label>
+              <label for="review_name">Review Name</label>
               <input type="text" id="review_name" name="review_name" class="form-control">
             </div>
             <div class="form-group">
