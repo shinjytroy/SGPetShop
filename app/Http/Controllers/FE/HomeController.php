@@ -269,6 +269,6 @@ class HomeController extends Controller
         // luu review
         
          $request->session()->forget('review');
-         return view ('fe.review')->with('thongbao','Thank you ');    
+         return view ('fe.review',compact('footer','review'))->with('thongbao','Thank you ');    
     }
 }
