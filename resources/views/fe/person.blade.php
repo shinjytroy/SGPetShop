@@ -10,11 +10,55 @@
 </div>
 <div class=" main-content-area">
 @if (Session::get('user'))
-<h2> Information : {{Session::get('user')->name}}</h2>
+<div class="wrap-iten-in-cart">
+  <h3 class="box-title"> Information Member</h3>
 <h4> Name : {{Session::get('user')->name}} </h4>
 <h4> Email : {{Session::get('user')->email}} </h4>
 <h4> Phone : {{Session::get('user')->phone}} </h4>
 <h4> Address : {{Session::get('user')->address}} </h4>
+</div>
+<div class="wrap-iten-in-cart">
+  <h3 class="box-title"> History Order</h3>
+  <ul class="products-cart">  
+ 
+    <table>
+        <tr>
+        <td> <div class="price-field produtc-price"><p class="price">STT</p></div> </td>
+          <td> <div class="price-field produtc-price"><p class="price">Date Order </p></div> </td>
+          <td> <div class="price-field produtc-price"><p class="price">Shipping Name </p></div></td>
+          <td> <div class="price-field produtc-price"><p class="price">Shipping Address </p></div></td>
+          <td> <div class="price-field produtc-price"><p class="price">Phone Number  </p></div></td>
+          <td> <div class="price-field produtc-price"><p class="price">Email  </p></div></td>
+          <td></td>
+        </tr>
+        @php 
+    $id =Session::get('user')->id;
+    $count = 0 ;
+    $order = DB::table('orders')->where('user_id','=',$id)->get();   
+    @endphp
+    @foreach($order as $item )
+    @php
+    $count++;
+    @endphp
+        <tr>
+          <td> <div class="price-field produtc-price"><p class="price">{{$count}}</p></div></td>
+          <td> <div class="price-field produtc-price"><p class="price">{{ $item->order_date }} </p></div></td>
+          <td> <div class="price-field produtc-price"><p class="price">{{ $item->shipping_name }} </p></div></td>
+          <td><div class="price-field produtc-price"><p class="price">{{ $item->shipping_address }} </p></div></td>
+          <td> <div class="price-field produtc-price"><p class="price">{{ $item->shipping_phone }} </p></div></td>
+          <td><div class="price-field produtc-price"><p class="price">{{ $item->shipping_email }} </p></div></td>
+          <td> <div class="price-field produtc-price"><p class="price"><a href="{{Route('history', $item->id)}}">View</a></p></div></td>
+        
+        </tr>
+        
+     @endforeach
+    </table>
+
+    
+      
+   
+  </ul>
+</div>
 
 @else
 <h3> Please Log in To Continue

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Models\User;
+use App\Models\OrderDetail;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -15,8 +17,9 @@ class OrderController extends Controller
      */
     public function index()
     {
+        $user = User::all();
         $order = Order::all();
-        return view('admin.order.index', compact('order'));
+        return view('admin.order.index', compact('order' ,'user'));
     }
 
     /**
@@ -62,24 +65,7 @@ class OrderController extends Controller
         return view('admin.order.edit', compact('order'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Order $order)
-    {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Order $order)
     {
         $order->delete();

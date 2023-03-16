@@ -49,7 +49,7 @@ class RegisterController extends Controller
        
         $user::create($request->all());
         
-        return redirect('login')->with('thongbao' , 'You are Register susscess!');
+        return redirect('login')->with('messagesuccess' , '');
     }
 
     /**

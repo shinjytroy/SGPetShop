@@ -81,7 +81,7 @@ Route::group(['middleware'=>'canLogin'], function() {
 
     Route::get('/review', [FEController::class, 'review'])->name('review');
     
-    Route::get('/history', [FEController::class, 'history'])->name('history');
+    Route::get('/history/view/{id}', [FEController::class, 'history'])->name('history');
     
     Route::group(['middleware'=>'canAdmin', 'prefix'=> 'admin', 'as' => 'admin.'], function() {
         // cần admin mới truy cập
@@ -96,6 +96,8 @@ Route::group(['middleware'=>'canLogin'], function() {
         Route::resource('/product', ProductController::class);
 
         Route::resource('/orderdetail', OrderDetailController::class);
+
+        Route::get('/orderdetail/view/{id}', [OrderDetailController::class, 'view'])->name('orderdetail.view');
 
         Route::resource('/order', OrderController::class);
 

@@ -40,7 +40,7 @@
       <table class="table table-striped projects">
           <thead>
               <tr>
-                  <th style="width: 10%">Order Id</th>
+                  
                   <th style="width: 20%">Product Name</th>
                   <th style="width: 15%">Image</th>
                  
@@ -56,41 +56,29 @@
               </tr>
           </thead>
           <tbody>
-            @foreach($ord as $item)
+            @foreach($order as $item)
             @php
             $productName = DB::table('products')->where('id',"=",$item->product_id)->value('name');  
             $productImage = DB::table  ('products')->where('id',"=",$item->product_id)->value('image');
 
             @endphp
               <tr>
-              <td>{{ $item->order_id }}</td>
-                  <td>{{ $productName}}</td>   
-                  <td><img src="{{ asset('/images/' .$productImage) }}" alt="" width="100px" height="100px"> </td>      
+
+                  <td>{{ $productName }}</td>  
+                  <td><img src="{{ asset('/images/' .$productImage) }}" alt="" width="100px" height="100px"> </td>
+                 
+                  
                   <td>{{ number_format($item->price) }}</td>
                   <td>{{ $item->quantity }}</td>
-                  <td>{{ number_format($item->price * $item->quantity) }}</td>     
-                  <td>{{ $item->created_at }}</td>            
-                  <td class="project-actions text-right">
-            
-                      <!-- <a class="btn btn-primary btn-sm" href="#">
-                          <i class="fas fa-folder">
-                          </i>
-                          View
-                      </a> -->
+                  <td>{{ number_format($item->price * $item->quantity) }}</td>    
+                  <td>{{ $item->created_at }}</td>          
+                  <td class="project-actions text-right">                    
                       <a class="btn btn-info btn-sm" href="#">
                           <i class="fas fa-pencil-alt">
                           </i>
                           Edit
                       </a>
-                      <form action="#" method="post" style="display:inline-block">
-                        @csrf
-                        @method("delete")
-                        <button type="submit" class="btn btn-danger btn-sm">
-                            <i class="fas fa-trash">
-                            </i>
-                            Delete
-                        </button>
-                      </form>
+                     
                   </td>
               </tr>
             @endforeach

@@ -16,6 +16,8 @@ use App\Models\Contact;
 use App\Models\Membership;
 use App\Models\Review;
 use App\Models\Footer;
+use App\Models\User;
+
 use Illuminate\Contracts\Session\Session;
 
 class HomeController extends Controller
@@ -103,18 +105,20 @@ class HomeController extends Controller
         $review = Review::all();
         $categories = Category::all();
         $brands = Brand::all();
+        $footer = Footer::all();
         //$prods = Product::where('categorie_id', $id);
         $prods = Product::where('categorie_id', 'LIKE', "%{$id}%")->get();
-
-        return view('fe.shop.search-result', compact('prods','review', 'categories', 'brands'));
+        
+        return view('fe.shop.search-result', compact('prods','review', 'categories', 'brands','footer'));
     }
     
     public function searchProducts(Request $request){
         $review = Review::all();
         $categories = Category::all();
         $brands = Brand::all();
+        $footer = Footer::all();
         $prods = Product::whereBetween('price',[$request->start_price, $request->end_price])->get();
-        return view('fe.shop.search-result', compact('prods', 'review', 'categories', 'brands'))->render();
+        return view('fe.shop.search-result', compact('prods', 'review', 'categories', 'brands','footer'))->render();
     }
 
     public function addCart(Request $request) 
@@ -156,13 +160,7 @@ class HomeController extends Controller
         $category = Category::all();
         $footer = Footer::all();
         return view('fe.viewCart', compact('category','footer'));
-        // if ($request->session()->has('cart')) {
-        //     $cart = $request->session()->get('cart');
-        //     //dd($cart);
-        //     echo "Product Name: " . $cart[0]->product->name;
-        // } else{
-        //     echo 'No Product';
-        // }
+       
     }
 
     public function clearCart(Request $request) 
@@ -248,7 +246,22 @@ class HomeController extends Controller
         $footer = Footer::all();
         return view('fe.thankyou' , compact('footer'));
     }
+<<<<<<< HEAD
      
+=======
+     public function shop()
+    {
+        $prods = Product::all();
+        $categories = Category::all();
+        $brands = Brand::all();
+        $min_price = Product::min('price');
+        $max_price = Product::max('price');
+        $footer = Footer::all();
+        return view('fe.shop.search-result', compact(
+            'prods', 'brands', 'categories', 'footer', 'min_price', 'max_price' , 
+        ));
+    }
+>>>>>>> f3453013b9685584956ef6f731b02cb5aec9e25e
     public function about()
     {
         $mems = Membership::all();
@@ -273,15 +286,21 @@ class HomeController extends Controller
          return  redirect()->route ('contact',compact('contact'))->with('messagesuccess','');
    
     }
-    public function person()
+    public function person(Request $request)
     {
-        $footer= Footer::all();
-        return view ('fe.person' , compact('footer'));
+       
+        $footer= Footer::all();   
+        $order = Order::all()   ;
+         return view ('fe.person' , compact('footer','order'));
+       
     }
-    public function history()
+    public function history(Request $request ,  $id)
     {
         $footer= Footer::all();
-        return view ('fe.history',compact('footer'));
+        $prod = Product::all();
+        $user = User::all();
+        $order = OrderDetail::where('order_id','=',$id)->get();
+        return view ('fe.history',compact('footer','prod','user','order'));
     }
     public function review(Request $request){   
         $footer= Footer::all();  
