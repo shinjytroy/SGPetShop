@@ -16,6 +16,8 @@ use App\Models\Contact;
 use App\Models\Membership;
 use App\Models\Review;
 use App\Models\Footer;
+use App\Models\User;
+
 use Illuminate\Contracts\Session\Session;
 
 class HomeController extends Controller
@@ -246,10 +248,13 @@ class HomeController extends Controller
          return view ('fe.person' , compact('footer','order'));
        
     }
-    public function history()
+    public function history(Request $request ,  $id)
     {
         $footer= Footer::all();
-        return view ('fe.history',compact('footer'));
+        $prod = Product::all();
+        $user = User::all();
+        $order = OrderDetail::where('order_id','=',$id)->get();
+        return view ('fe.history',compact('footer','prod','user','order'));
     }
     public function review(Request $request){   
         $footer= Footer::all();  

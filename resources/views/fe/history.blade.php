@@ -5,49 +5,55 @@
 <div class="wrap-breadcrumb">
   <ul>
     <li class="item-link"><a href="{{Route('home')}}" class="link">home</a></li>
-    <li class="item-link"><span>Person</span></li>
+    <li class="item-link"><span>Order Detail</span></li>
   </ul>
 </div>
 <div class=" main-content-area">
 @if (Session::get('user'))
+
 <div class="wrap-iten-in-cart">
-  <h3 class="box-title"> Information Member</h3>
-<h4> Name : {{Session::get('user')->name}} </h4>
-<h4> Email : {{Session::get('user')->email}} </h4>
-<h4> Phone : {{Session::get('user')->phone}} </h4>
-<h4> Address : {{Session::get('user')->address}} </h4>
-</div>
-<div class="wrap-iten-in-cart">
-  <h3 class="box-title"> History Order</h3>
+  <h3 class="box-title"> Order Detail</h3>
   <ul class="products-cart">  
  
     <table>
-        <tr>
-        <td> <div class="price-field produtc-price"><p class="price">STT</p></div> </td>
-          <td> <div class="price-field produtc-price"><p class="price">Date Order </p></div> </td>
-          <td> <div class="price-field produtc-price"><p class="price">Shipping Name </p></div></td>
-          <td> <div class="price-field produtc-price"><p class="price">Shipping Address </p></div></td>
-          <td> <div class="price-field produtc-price"><p class="price">Phone Number  </p></div></td>
-          <td> <div class="price-field produtc-price"><p class="price">Email  </p></div></td>
-          <td></td>
-        </tr>
-        @php 
-    $id =Session::get('user')->id;
-    $count = 0 ;
-    $order = DB::table('orders')->where('user_id','=',$id)->get();   
+       
+        <thead>
+              <tr>
+              <th> <div class="price-field produtc-price"><p class="price">STT</p></div> </th>
+
+                  <th ><div class="price-field produtc-price"><p class="price">Product Name </p></div></th>
+                  <th><div class="price-field produtc-price"><p class="price">Image </p></div></th>
+                 
+                  <th > <div class="price-field produtc-price"><p class="price">Price </p></div></th>  
+                  <th ><div class="price-field produtc-price"><p class="price">Quantity </p></div></th>
+                  <th><div class="price-field produtc-price"><p class="price">
+                  Total Money </p></div>
+                  </th>
+                  <th ><div class="price-field produtc-price"><p class="price">Create Date</th>
+                  <th>
+                  </th>
+              </tr>
+          </thead>
+          @php
+    $count = 0;
     @endphp
-    @foreach($order as $item )
-    @php
-    $count++;
-    @endphp
-        <tr>
-          <td> <div class="price-field produtc-price"><p class="price">{{$count}}</p></div></td>
-          <td> <div class="price-field produtc-price"><p class="price">{{ $item->order_date }} </p></div></td>
-          <td> <div class="price-field produtc-price"><p class="price">{{ $item->shipping_name }} </p></div></td>
-          <td><div class="price-field produtc-price"><p class="price">{{ $item->shipping_address }} </p></div></td>
-          <td> <div class="price-field produtc-price"><p class="price">{{ $item->shipping_phone }} </p></div></td>
-          <td><div class="price-field produtc-price"><p class="price">{{ $item->shipping_email }} </p></div></td>
-          <td> <div class="price-field produtc-price"><p class="price"><a href="{{Route('history', $item->id)}}">View</a></p></div></td>
+          @foreach($order as $item)
+            @php
+            $count ++ ;
+            $productName = DB::table('products')->where('id',"=",$item->product_id)->value('name');  
+            $productImage = DB::table  ('products')->where('id',"=",$item->product_id)->value('image');
+
+            @endphp
+        <tr>       
+        <td> <div class="price-field produtc-price"><p class="price">{{$count}}</p></div></td>
+
+          <td> <div class="price-field produtc-price"><p class="price">{{ $productName }} </p></div></td>
+          <td><img src="{{ asset('/images/' .$productImage) }}" alt="" width="100px" height="100px"> </td>
+          <td><div class="price-field produtc-price"><p class="price">{{ number_format($item->price) }}</p></div></td>
+          <td><div class="price-field produtc-price"><p class="price">{{ $item->quantity}}</p></div></td>
+
+          <td> <div class="price-field produtc-price"><p class="price">{{ number_format($item->price * $item->quantity) }}</p></div></td>
+          <td><div class="price-field produtc-price"><p class="price">{{ $item->created_at }} </p></div></td>
         
         </tr>
         

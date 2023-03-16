@@ -78,7 +78,7 @@ Route::group(['middleware'=>'canLogin'], function() {
 
     Route::get('/review', [FEController::class, 'review'])->name('review');
     
-    Route::get('/history', [FEController::class, 'history'])->name('history');
+    Route::get('/history/view/{id}', [FEController::class, 'history'])->name('history');
     
     Route::group(['middleware'=>'canAdmin', 'prefix'=> 'admin', 'as' => 'admin.'], function() {
         // cần admin mới truy cập
