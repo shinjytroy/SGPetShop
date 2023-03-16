@@ -158,9 +158,12 @@ class HomeController extends Controller
 
     public function viewCart(Request $request) 
     {
+        $prods = Product::all();
+        $brands = Brand::all();
+        $order=Order::all();
         $category = Category::all();
         $footer = Footer::all();
-        return view('fe.viewCart', compact('category','footer'));
+        return view('fe.viewCart', compact('category','footer','prods','order','brands'));
        
     }
 
@@ -217,6 +220,10 @@ class HomeController extends Controller
     }
     public function checkout(Request $request){
         $total=0;
+        $prods = Product::all();
+        $brands = Brand::all();
+        $order=Order::all();
+        $category = Category::all();
         $footer = Footer::all();
         if ($request->session()->has('cart')) {
             $cart = $request->session()->get('cart');
@@ -224,7 +231,7 @@ class HomeController extends Controller
                 $total += $item->product->price * $item ->quantity;
             }
         }
-        return view('fe.checkout',compact('total','footer'));
+        return view('fe.checkout',compact('total','footer','category','prods','order','brands'));
     }
     public function processCheckout(Request $request){
        $cart =$request->all();

@@ -65,7 +65,7 @@
         @endif
       <div class="choose-payment-methods">
         <label class="payment-method">
-          <input name="payment" id="payment" value="COD" type="radio" >
+          <input name="payment" id="payment" value="COD" type="radio" checked>
           <span>Cash on Delivery</span>
           <span class="payment-desc"> </span>
         </label>
@@ -96,7 +96,39 @@
     </div>
   </div>
 </form>
- 
+<div class="wrap-show-advance-info-box style-1 box-in-site">
+  <h3 class="title-box">Most Viewed Products</h3>
+      <div class="xwrap-show-advance-info-box style-1 has-countdown">
+        <div class="wrap-products slide-carousel owl-carousel style-nav-1 equal-container " data-items="5" data-loop="false" data-nav="true" data-dots="false" data-responsive='{"0":{"items":"1"},"480":{"items":"2"},"768":{"items":"3"},"992":{"items":"4"},"1200":{"items":"5"}}'>
+          @foreach($prods as $item)
+          <div class="product product-style-2 equal-elem ">
+            <div class="product-thumnail">
+              <a href="{{ Route('product.details', $item->slug) }}" title="{{ $item->name }}">
+                <figure><img src="{{ asset('/images/'. $item->image) }}" width="800" height="800" alt="{{ $item->name }}"></figure>
+              </a>
+              <div class="group-flash">
+                <span class="flash-item sale-label">sale -10%</span>
+                
+              </div>
+              
+              <div class="wrap-btn">
+                <a href="{{ Route('product.details', $item->slug) }}" class="function-link">quick view</a>
+              </div>
+            </div>
+            @php
+            $price=number_format("$item->sale_price");
+            @endphp
+            <div class="product-info">
+              <a href="{{ Route('product.details', $item->slug) }}" class="product-name"><span>{{ $item->name }}</span></a>
+              <div class="wrap-price"><span class="product-price">{{ $price }} $</span></div>
+              <!-- <div class="wrap-stock"><span class="product-stock">SL: {{ $item->stock }} </span></div> -->
+            </div>
+          </div>
+          @endforeach
+        </div>
+      </div>
+  </div><!--End wrap-products--> 
+</div>
 
 </div><!--end main content area-->
 </div><!--end container-->
