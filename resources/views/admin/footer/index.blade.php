@@ -47,7 +47,7 @@
       <table class="table table-striped projects">
           <thead>
               <tr>
-                
+              <th style="width: 15%">Id</th>    
                   <th style="width: 30%">Address</th>
                   <th style="width: 15%">Phone</th>                 
                   <th style="width: 20%">Email</th>     
@@ -56,9 +56,9 @@
               </tr>
           </thead>
           <tbody>
-            @foreach($footer as $item)
+            @foreach($footers as $item)
               <tr>
-                 
+              <td>{{ $item-> id }}</td>
                   <td>{{ $item-> address }}</td>
                   <td>{{ $item-> phone }}</td>
                   <td>{{ $item-> email }}</td> 
