@@ -43,11 +43,12 @@
               <tr>
               <th style="width: 5%">Id</th>
                   <th style="width: 5%">User_Name</th>
-                  <th style="width: 15%">order_date</th>
+                  <th style="width: 10%">order_date</th>
                   <th style="width: 10%">shipping_name</th>  
                   <th style="width: 10%">shipping_phone</th>
-                  <th style="width: 20%">shipping_email</th>
-                  <th style="width: 20%">shipping_address</th>                 
+                  <th style="width: 15%">shipping_email</th>
+                  <th style="width: 25%">shipping_address</th>   
+                  <th style="width: 20%">payment</th>                
                   <th>
 
                   </th>
@@ -68,6 +69,7 @@
                   <td>{{ $item->shipping_phone}}</td>
                   <td>{{ $item->shipping_email}}</td>
                   <td>{{ $item->shipping_address}}</td>        
+                  <td>{{ $item->payment}}</td>        
                   <td class="project-actions text-right">      
                       <a class="btn btn-info btn-sm" href="{{ Route('admin.orderdetail.view', $item->id) }}">
                           <i class="fas fa-pencil-alt">
