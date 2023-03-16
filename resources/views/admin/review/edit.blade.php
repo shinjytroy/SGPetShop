@@ -53,14 +53,18 @@
             @method('put')
             <input type="hidden" name="id" value="{{ $review->id }}"/>
             <div class="form-group">
-              <label for="user_id">User Id</label>
-             <div>{{ $review->user_id }}</div> 
+              @php
+                $name_user = DB::table('users')->where('id',"=",$review->user_id)->value('name');
+                $name_product = DB::table('products')->where('id','=', $review->product_id)->value('name');
+                @endphp
+              <label for="user_name">User Name</label>
+             <div>{{ $name_user }}</div> 
             </div>
             <div class="form-group">
-              <label for="product_id">Product Id</label>
+              <label for="product_name">Product Name</label>
               {{-- <input type="text" id="product_id" name="product_id" class="form-control" value="{{ $review->product_id }}"> --}}
 
-             <div>{{ $review->product_id }}</div> 
+             <div>{{ $name_product }}</div> 
             </div>
             <div class="form-group">
               <label for="review_name">review Name</label>

@@ -43,8 +43,8 @@
           <thead>
               <tr>
                   <th style="width: 10%">Id</th>
-                  <th style="width: 10%">User Id</th>
-                  <th style="width: 10%">Product Id </th>
+                  <th style="width: 10%">User Name</th>
+                  <th style="width: 10%">Product Name</th>
                   <th style="width: 20%">review Name</th>
                   <th style="width: 30%">Description</th>
                   <th style="width: 10%">Status</th>
@@ -56,8 +56,12 @@
             @foreach($review as $item)
               <tr>
                   <td>{{ $item->id }}</td>  
-                  <td>{{ $item->user_id }}</td>  
-                  <td>{{ $item->product_id }}</td>  
+                  @php
+                    $name_user = DB::table('users')->where('id',"=",$item->user_id)->value('name');
+                    $name_product = DB::table('products')->where('id','=', $item->product_id)->value('name');
+                  @endphp 
+                  <td>{{ $name_user }}</td>  
+                  <td>{{ $name_product }}</td>
                   <td>{{ $item->review_name }}</td>
                   <td>{{ $item->description }}</td>
                   <td>
