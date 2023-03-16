@@ -36,30 +36,32 @@
           </thead>
           @php
     $count = 0;
+    $total = 0;
     @endphp
           @foreach($order as $item)
             @php
             $count ++ ;
             $productName = DB::table('products')->where('id',"=",$item->product_id)->value('name');  
             $productImage = DB::table  ('products')->where('id',"=",$item->product_id)->value('image');
-
+            $total += $item->quantity * $item->price;         
             @endphp
         <tr>       
         <td> <div class="price-field produtc-price"><p class="price">{{$count}}</p></div></td>
-
           <td> <div class="price-field produtc-price"><p class="price">{{ $productName }} </p></div></td>
           <td><img src="{{ asset('/images/' .$productImage) }}" alt="" width="100px" height="100px"> </td>
           <td><div class="price-field produtc-price"><p class="price">{{ number_format($item->price) }}</p></div></td>
           <td><div class="price-field produtc-price"><p class="price">{{ $item->quantity}}</p></div></td>
-
-          <td> <div class="price-field produtc-price"><p class="price">{{ number_format($item->price * $item->quantity) }}</p></div></td>
-          <td><div class="price-field produtc-price"><p class="price">{{ $item->created_at }} </p></div></td>
-        
+          <td> <div class="price-field produtc-price"><p class="price">{{ number_format($item->price * $item->quantity) }} $</p></div></td>
+          <td><div class="price-field produtc-price"><p class="price">{{ $item->created_at }} </p></div></td>       
         </tr>
         
      @endforeach
     </table>
-
+    <div class="summary">
+      <div class="order-summary">
+      <p class="summary-info total-info "><span class="title">Total</span><b class="index">{{ number_format($total)}} $</b></p>
+      </div>
+      </div>  
     
       
    

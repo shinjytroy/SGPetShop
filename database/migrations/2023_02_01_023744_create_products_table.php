@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug');
             $table->text('description')->nullable();
-            $table->integer('price')->nullable();
-            $table->integer('sale_price')->nullable();
+            $table->float('price')->nullable();
+            $table->float('sale_price')->nullable();
             $table->string('image')->nullable();
             $table->integer('stock')->nullable();
             $table->string('status')->nullable();

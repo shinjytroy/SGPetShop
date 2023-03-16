@@ -83,11 +83,11 @@ Toast.fire({
           </div>
           
           <div class="wrap-btn">
-            <a href="#" class="function-link">quick view</a>
+            <a href="{{ Route('product.details', $item->slug) }}" class="function-link">quick view</a>
           </div>
         </div>
         @php
-        $price=number_format("$item->price");
+        $price=number_format("$item->sale_price");
         @endphp
         <div class="product-info">
           <a href="{{ Route('product.details', $item->slug) }}" class="product-name"><span>{{ $item->name }}</span></a>
@@ -118,7 +118,7 @@ Toast.fire({
               @foreach ($brands as $item)
               <div class="product product-style-2 equal-elem ">
                 <div class="product-thumnail">
-                  <a href="$" title="{{ $item->brand_name }}">
+                  <a href="#" title="{{ $item->brand_name }}">
                     <figure><img src="{{asset('images/'.$item->brand_image_path)}}" alt="{{ $item->brand_name }}" width="800" height="800"></figure>
                   </a>
                   <div class="group-flash">
@@ -163,8 +163,8 @@ Toast.fire({
                 </a>
                 <div class="group-flash">
                   <span class="flash-item new-label">new</span>
-                  @if($item->sale_price > 0)
-                    <span class="flash-item sale-label">sale {{$item->sale_price}} %</span>
+                  @if($item->sale_price < $item->price)
+                    <span class="flash-item sale-label">sale</span>
                   @else
                     <span></span>
                   @endif
@@ -176,8 +176,8 @@ Toast.fire({
               </div>
               <div class="product-info">
                 <a href="#" class="product-name"><span>{{ $item->name }}</span></a>
-                <div class="wrap-price"><ins><p class="product-price">{{$item->price - ($item->price * $item->sale_price/100)}} $</p></ins>
-                  @if ($item->sale_price > 0)
+                <div class="wrap-price"><ins><p class="product-price">{{$item->sale_price}} $</p></ins>
+                  @if ($item->sale_price < $item->price)
                     <del><p class="product-price">{{ $item->price }} $</p></del></div>
                   @else
                     </div>
