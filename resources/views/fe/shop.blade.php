@@ -188,6 +188,7 @@
 											<a href="{{ Route('product.details', $item->slug) }}" class="product-name"><span>{{$item->name}}</span></a>
 											<div class="wrap-price"><span class="product-price">${{ $item->sale_price }}</span></div>
 										</div>
+										
 									</div>
 								</li>
 								@endforeach
