@@ -1,6 +1,15 @@
 @extends('admin.layout.layout')
 
 @section('contents')
+@if(Session::has('messageupdate'))
+    <script>
+      Swal.fire(
+  'Update Success !!',
+  'You clicked the button to continue!',
+  'success'
+    )
+    </script>
+   @endif
 <section class="content-header">
   <div class="container-fluid">
     <div class="row mb-2">
@@ -82,15 +91,7 @@
                           </i>
                           Edit
                       </a>
-                      <form action="#" method="post" style="display:inline-block">
-                        @csrf
-                        @method("delete")
-                        <button type="submit" class="btn btn-danger btn-sm">
-                            <i class="fas fa-trash">
-                            </i>
-                            Delete
-                        </button>
-                      </form>
+                     
                   </td>
               </tr>
             @endforeach

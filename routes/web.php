@@ -113,6 +113,9 @@ Route::group(['middleware'=>'canLogin'], function() {
 
         Route::resource('/contact', ContactController::class);
 
+   
+
+
         Route::resource('/footer', FooterController::class);
     });
         

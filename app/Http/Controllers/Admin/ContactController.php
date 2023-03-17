@@ -14,6 +14,10 @@ class ContactController extends Controller
         return view ('admin.contact.index' , compact('contacts'));
 
     }
+    public function create()
+    {
+        return view('admin.contact.create');
+    }
     public function destroy(Contact $contact)
     {
         $contact->delete();

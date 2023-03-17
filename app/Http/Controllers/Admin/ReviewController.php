@@ -86,7 +86,7 @@ class ReviewController extends Controller
     {
         $reviewData = $request->all();
         $review->update($reviewData);
-        return redirect()->route('admin.review.index');
+        return redirect()->route('admin.review.index')->with('messageupdate' , '');
     }
 
     /**
