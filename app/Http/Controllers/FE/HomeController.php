@@ -17,6 +17,9 @@ use App\Models\Membership;
 use App\Models\Review;
 use App\Models\Footer;
 use App\Models\User;
+use App\Models\Keyword;
+use Illuminate\Support\Facades\DB;
+
 
 use Illuminate\Contracts\Session\Session;
 
@@ -296,18 +299,37 @@ class HomeController extends Controller
         return view ('fe.history',compact('footer','prod','user','order'));
     }
     public function review(Request $request){   
-        $footer= Footer::all();  
-        return view('fe.review',compact('footer'));        
+        $footer= Footer::all(); 
+        $keyword = Keyword::all();
+        
+        return view('fe.review',compact('footer' , 'keyword'));        
     }
     public function processReview(Request $request){   
         $rv =$request->all();
-        $footer= Footer::all();   
-        
+        $footer= Footer::all();  
+      
+
+       
         $rv['user_id']=$request->session()->get('user')->id;
+        
+        $description =  $request->description;
+        $keyword = Keyword::where   ('keyword' ,"LIKE" , $description )->first();
+       
+        if ($keyword != null) {
+        //Tìm thấy
+        return redirect()->route('shop',compact('footer','keyword'))->with('messagereviewfalse','');              
+
+        } else {
+        // Không tìm thấy
         $review = Review::create($rv);
-        // luu review
-        $request->session()->forget('review');
-         return redirect()->route('shop',compact('footer'))->with('messagereviewsucess','');              
+
+                // luu review
+                $request->session()->forget('review');
+                 return redirect()->route('shop',compact('footer','keyword'))->with('messagereviewsucess','');              
+               
+        }
+
+        
        
     }
 

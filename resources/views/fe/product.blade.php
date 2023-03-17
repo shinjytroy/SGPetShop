@@ -61,14 +61,27 @@
               <a class="btn btn-increase" href="#"></a>
             </div>
           </div>
+        
+       
           <div class="wrap-butons">
+          @if(Session::get('user') && Session::get('user') -> role ==2 )
             <a href="#" class="btn add-to-cart">Add to Cart</a>
               <div class="wrap-btn">
                   <a href="#" class="btn btn-compare">Add Compare</a>
                   <a href="#" class="btn btn-wishlist">Add Wishlist</a>
               </div>
+              @else
+              
+              <div class="wrap-btn">
+                 
+                 <a href="{{Route('login')}}">  Please Login To Buy</a>
+                 
+              </div>
+              @endif
           </div>
         </div>
+         
+        
         <div class="advance-info">
           <div class="tab-control normal">
             <a href="#description" class="tab-control-item active">description</a>
@@ -128,7 +141,7 @@
 
                     
                           @php
-                          $Order_id = DB::table('orders')->where('user_id','=',Session::get('user')->id)->value('id');
+                            $Order_id = DB::table('orders')->where('user_id','=',Session::get('user')->id)->value('id');
                             $product_Id = DB::table('order_details')->where('order_id','=',$Order_id )->value('product_id');
                           @endphp
                     @if( $product_Id == $prod->id )

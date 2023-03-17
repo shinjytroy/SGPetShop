@@ -17,6 +17,8 @@ use App\Http\Controllers\Admin\InformationController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\FooterController;
 use App\Http\Controllers\Admin\CouponsController;
+use App\Http\Controllers\Admin\KeywordController;
+
 use App\Http\Controllers\FE\HomeController as FEController;
 use App\Http\Controllers\SearchController;
 /*
@@ -115,8 +117,7 @@ Route::group(['middleware'=>'canLogin'], function() {
 
         Route::resource('/contact', ContactController::class);
 
-   
-
+        Route::resource('/keyword', KeywordController::class);
 
         Route::resource('/footer', FooterController::class);
     });

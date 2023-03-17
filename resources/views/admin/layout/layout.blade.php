@@ -343,6 +343,12 @@
                   <p>Create Review</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="{{ Route('admin.keyword.index') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Keyword</p>
+                </a>
+              </li>
             </ul>
           </li>
           <!--Coupon-->
