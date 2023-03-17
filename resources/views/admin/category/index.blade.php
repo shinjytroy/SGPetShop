@@ -48,9 +48,18 @@
                   <th></th>
               </tr>
           </thead>
-          <tbody>
+          <style type="text/css">
+              #categorie_order .ui-state-highlight {
+                padding: 24px;
+                background-color: #ffffcc;
+                border: 1px dotted #ccc;
+                cursor: move;
+                margin-top: 12px;
+              }
+          </style>
+          <tbody id="categorie_order">
             @foreach($category as $item)
-              <tr>
+              <tr id="{{ $item->id}}">
                   <td>{{ $item->id }}</td>   
                   <td>{{ $item->categorie_name }}</td>
                   <td>{{ $item->description }}</td>

@@ -90,6 +90,8 @@ Route::group(['middleware'=>'canLogin'], function() {
         Route::resource('/user', UserController::class);
 
         Route::resource('/category', CategoryController::class);
+        
+        Route::post('/arrange-category', [CategoryController::class,'arrangeCategory'])->name('arrangeCategory');
 
         Route::resource('/brand', BrandController::class);
 

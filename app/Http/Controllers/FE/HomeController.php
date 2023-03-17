@@ -77,7 +77,7 @@ class HomeController extends Controller
     public function shop()
     {
         $prods = Product::all();
-        $categories = Category::all();
+        $categories = Category::orderBy('categorie_order', 'asc')->get();
         $brands = Brand::all();
         $min_price = Product::min('price');
         $max_price = Product::max('price');

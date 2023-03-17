@@ -15,7 +15,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $category = Category::all();
+        $category = Category::orderBy('categorie_order', 'asc')->get();
         return view('admin.category.index', compact('category'));
     }
 
@@ -91,4 +91,16 @@ class CategoryController extends Controller
         return redirect()->route('admin.category.index');
     }
     
+    public function arrangeCategory(Request $request){
+        $data = $request->all();
+        $cate_id = $data["page_id_array"];
+        
+        foreach($cate_id as $key => $value){
+            echo $value;
+            // $category = Category::find($value);
+            // $category->categorie_order = $key;
+            // $category->save();
+        }
+        echo "Updated";
+    }
 }

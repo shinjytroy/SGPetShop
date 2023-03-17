@@ -448,10 +448,24 @@
             $("#suggestion-box").hide();
         }
     </script>
+	
 	<script>
 		$.ajaxSetup({
 			headers: {
-				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		}
+		});
+		$.ajax({
+			type: "POST",
+			cache: false,
+			url: "URL_POST",
+			data: {DATA_REQUEST},
+			dataType: "json",
+			success: function(data){
+			//Code của bạn
+			},
+			error: function(error){
+			//Code của bạn
 			}
 		});
 	</script>
