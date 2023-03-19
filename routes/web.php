@@ -117,6 +117,8 @@ Route::group(['middleware'=>'canLogin'], function() {
 
         Route::resource('/contact', ContactController::class);
 
+        Route::get('/contact/view/{id}', [ContactController::class, 'view'])->name('contact.view');
+
         Route::resource('/keyword', KeywordController::class);
 
         Route::resource('/footer', FooterController::class);

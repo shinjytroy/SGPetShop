@@ -114,8 +114,15 @@
                     </td>
                     <td class="mailbox-name">{{$item->name}}</td>
                     <td class="mailbox-name"><a href="#">{{$item->email}}</a></td>
-                    <td class="mailbox-name">{{$item->phone}}</td>
-                    <td class="mailbox-subject"><b>{{$item->comment}}</b> 
+                    <td class="mailbox-name">Phone : {{$item->phone}}</td>
+                     <td class="project-actions text-right">
+                     
+                      <a class="btn btn-info btn-sm" href="{{ Route('admin.contact.view', $item->id) }}">
+                          <i class="fas fa-pencil-alt">
+                          </i>
+                          view
+                      </a>
+                   
                     </td>
                     <td class="mailbox-attachment"></td>
                     <td class="mailbox-date">{{ $item->created_at}}</td>
