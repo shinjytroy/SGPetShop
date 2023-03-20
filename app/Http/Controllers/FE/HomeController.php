@@ -18,6 +18,7 @@ use App\Models\Review;
 use App\Models\Footer;
 use App\Models\User;
 use App\Models\Keyword;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 
@@ -284,10 +285,35 @@ class HomeController extends Controller
     }
     public function person(Request $request)
     {
-       
+        $user = User::all();
         $footer= Footer::all();   
         $order = Order::all()   ;
-         return view ('fe.person' , compact('footer','order'));
+         return view ('fe.person' , compact('footer','order','user'));
+       
+    }
+
+    public function edituser(Request $request ,$id)
+    {
+        $footer =Footer::all();
+        $order =Order::all();     
+        $user = User::where('id','=',$id)->first();
+       
+       
+        return view('fe.edituser',compact('footer' , 'order','user',));  
+       
+    }
+    public function processEditUser(Request $request ,User $user)
+    {
+        
+        $footer =Footer::all();
+        $order =Order::all();    
+        
+           $user =User::find(Auth::user()->id);
+           $user->name=$this->name;
+        
+        
+       
+        return redirect()->route('person' , compact('footer','order','user'))->with("messageupdate","");
        
     }
     public function history(Request $request ,  $id)

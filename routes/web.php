@@ -79,11 +79,17 @@ Route::group(['middleware'=>'canLogin'], function() {
 
     Route::post('/process-review', [FEController::class, 'processReview'])->name('processReview');
     
+    Route::post('/process-edituser/{id}', [FEController::class, 'processEditUser'])->name('processEditUser');
+    
     Route::get('/checkout', [FEController::class, 'checkout'])->name('checkout');
 
     Route::get('/review', [FEController::class, 'review'])->name('review');
     
     Route::get('/history/view/{id}', [FEController::class, 'history'])->name('history');
+
+
+    Route::get('/edituser/view/{id}', [FEController::class, 'edituser'])->name('edituser');
+
     
     Route::group(['middleware'=>'canAdmin', 'prefix'=> 'admin', 'as' => 'admin.'], function() {
         // cần admin mới truy cập

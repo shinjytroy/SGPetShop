@@ -89,7 +89,7 @@
                   <td>{{ $item->age }}</td>
                   <td>
                     @if (!empty($item->image))
-                    <img src="{{asset('images/'.$item->image)}}" alt="{{$item->name}}" style="width: 100px; height:auto">
+                    <img src="{{asset('images/'.$item->image)}}" alt="{{$item->name}}" style="width: 100px; height:200">
                     @endif
                   </td>
                   <td>{{ $item->description }}</td>               

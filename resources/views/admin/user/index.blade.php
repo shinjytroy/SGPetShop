@@ -75,7 +75,7 @@
                   <th style="width: 10%">Phone</th>
                   <th style="width: 15%">Address</th>
                   <th style="width: 10%" class="text-center">Role</th>
-                  <th style="width: 10%">Password</th>
+                 
                   
                   <th></th>
               </tr>
@@ -98,13 +98,9 @@
                       <span class="badge badge-success">User</span>
                     @endif
                   </td>
-                 <td>{{$item->password}}</td>
+                 
                   <td class="project-actions text-right">
-                      <a class="btn btn-primary btn-sm" href="#">
-                          <i class="fas fa-folder">
-                          </i>
-                          View
-                      </a>
+                      
                       <a class="btn btn-info btn-sm" href="{{ Route('admin.user.edit', $item->id) }}">
                           <i class="fas fa-pencil-alt">
                           </i>
@@ -130,22 +126,18 @@
                       <span class="badge badge-success">User</span>
                     @endif
                   </td>
-                  <td>*****</td>
+                  
                  @if ($item->role != null   && $item->name !="Adminshop" )
                      
                   <td class="project-actions text-right">
-                      <a class="btn btn-primary btn-sm" href="#">
-                          <i class="fas fa-folder">
-                          </i>
-                          View
-                      </a>
+                   
                       <a class="btn btn-info btn-sm" href="{{ Route('admin.user.edit', $item->id) }}">
                           <i class="fas fa-pencil-alt">
                           </i>
                           Edit
                       </a>
                       @if ($item->role ==2)
-                      <form action="{{ Route('admin.user.destroy', $item->id) }}" method="post" style="display:inline-block">
+                      <form action="{{ Route('admin.user.destroy', $item->id) }}" method="pos t" style="display:inline-block">
                         @csrf
                         @method("delete")
                         <button type="submit" class="btn btn-danger btn-sm">

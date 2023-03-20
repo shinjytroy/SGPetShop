@@ -24,6 +24,14 @@ class ContactController extends Controller
         $contact = Contact::where('id','=',$id)->get();
         return view('admin.contact.view', compact('user', 'contact'));
     }
+
+    public function send (Request $request ,  $id )
+    {
+       
+        $user = User::all();
+        $contact = Contact::where('id','=',$id)->get();
+        return view('admin.send.view', compact('user', 'contact'));
+    }
     public function create()
     {
         return view('admin.contact.create');
