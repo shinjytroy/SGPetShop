@@ -1,6 +1,34 @@
 @extends('admin.layout.layout')
 
 @section('contents')
+@if(Session::has('messageupdate'))
+<script>
+  Swal.fire(
+'Update Success !!',
+'You clicked the button to continue!',
+'success'
+)
+</script>
+@endif
+
+@if(Session::has('messagedelete'))
+<script>
+  Swal.fire(
+'Delete Success !!',
+'You clicked the button to continue!',
+'success'
+)
+</script>
+@endif
+@if(Session::has('messagecreate'))
+<script>
+  Swal.fire(
+'Create Success !!',
+'You clicked the button to continue!',
+'success'
+)
+</script>
+@endif
 <section class="content-header">
   <div class="container-fluid">
     <div class="row mb-2">

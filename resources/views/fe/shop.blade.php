@@ -5,7 +5,7 @@
 	@if(Session::has('messagereviewsucess'))
     <script>
       Swal.fire(
-  'Thank you review ,Continue Shpping!!',
+  'Thank you review ,Continue Shopping!!',
   'You clicked the button to continue!',
   'success'
     )

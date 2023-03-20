@@ -48,7 +48,7 @@ class KeywordController extends Controller
         $keywordData = $request->all();
       
         Keyword::create($keywordData);
-        return redirect()->route('admin.keyword.index',compact('keyword'));
+        return redirect()->route('admin.keyword.index',compact('keyword'))->with("messagecreate","");
     }
 
     /**
@@ -81,7 +81,7 @@ class KeywordController extends Controller
     {
         $keywordData = $request->all();
         $keyword->update($keywordData);
-        return redirect()->route('admin.keyword.index')->with('messageupdate' , '');
+        return redirect()->route('admin.keyword.index')->with('messageupdate' , '')->with("messageupdate","");
     }
 
     /**
@@ -93,6 +93,6 @@ class KeywordController extends Controller
     public function destroy(Keyword $keyword)
     {
         $keyword->delete();
-        return redirect()->route('admin.keyword.index');
+        return redirect()->route('admin.keyword.index')->with("messagedelete","");
     }
 }

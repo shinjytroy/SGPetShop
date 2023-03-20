@@ -87,7 +87,7 @@ Toast.fire({
           </div>
         </div>
         @php
-        $price=number_format("$item->sale_price");
+        $price=$item->sale_price;
         @endphp
         <div class="product-info">
           <a href="{{ Route('product.details', $item->slug) }}" class="product-name"><span>{{ $item->name }}</span></a>
