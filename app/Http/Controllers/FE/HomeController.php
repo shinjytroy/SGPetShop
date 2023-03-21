@@ -311,9 +311,9 @@ class HomeController extends Controller
         $request->validate([
             'name' => 'required|min:3|max:50',
             
-            'phone' => 'numeric|required|min:8|max:12',
+            'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
             'address' => 'required|min:3|max:50',
-            'password' => 'min:6|max:12|required_with:confirm|same:confirm',
+            'password' => 'min:6|max:12|required_with:confirm',
             
         ]);
         $id = $request->id;

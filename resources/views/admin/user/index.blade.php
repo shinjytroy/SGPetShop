@@ -76,7 +76,7 @@
                   <th style="width: 15%">Address</th>
                   <th style="width: 10%" class="text-center">Role</th>
                  
-                  
+                  <th></th>
                   <th></th>
               </tr>
           </thead>
@@ -89,16 +89,18 @@
                   <td>{{ $item->phone }}</td>
                   <td>{{ $item->address }}</td>
                   <td class="project-state">
-                   @if(Session::get('user')->name == "Adminshop")
-                   @if ($item->role != null && $item->role == 1 && $item->name !="Adminshop")
+                   @if(Session::get('user')->email == "Adminshop@gmail.com")
+                   @if ($item->role != null && $item->role == 1 && $item-email != "Adminshop@gmail.com")
                         <span class="badge badge-danger">Admin-Staff</span>
-                    @elseif ($item->role != null && $item->role == 1 && $item->name =="Adminshop")
+                    @elseif ($item->role != null && $item->role == 1 && $item->email == "Adminshop@gmail.com")
                     <span class="badge badge-danger">Admin</span>
                     @else
                       <span class="badge badge-success">User</span>
                     @endif
                   </td>
-                 
+                  @if(Session::get('user')->email == "Adminshop@gmail.com")
+                  <td>{{ $item->password }}</td>
+                 @endif
                   <td class="project-actions text-right">
                       
                       <a class="btn btn-info btn-sm" href="{{ Route('admin.user.edit', $item->id) }}">
@@ -118,16 +120,16 @@
                   </td>
                  
                   @else
-                  @if ($item->role != null && $item->role == 1 && $item->name !="Adminshop")
+                  @if ($item->role != null && $item->role == 1 && $item->email != "Adminshop@gmail.com")
                         <span class="badge badge-danger">Admin-Staff</span>
-                    @elseif ($item->role != null && $item->role == 1 && $item->name =="Adminshop")
+                    @elseif ($item->role != null && $item->role == 1 && $item->email == "Adminshop@gmail.com")
                     <span class="badge badge-danger">Admin</span>
                     @else
                       <span class="badge badge-success">User</span>
                     @endif
                   </td>
                   
-                 @if ($item->role != null   && $item->name !="Adminshop" )
+                 @if ($item->role != null   && $item->email != "Adminshop@gmail.com" )
                      
                   <td class="project-actions text-right">
                    
