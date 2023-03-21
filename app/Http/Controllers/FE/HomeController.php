@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 
+
 use Illuminate\Contracts\Session\Session;
 
 class HomeController extends Controller
@@ -306,12 +307,24 @@ class HomeController extends Controller
     {
         
         $footer =Footer::all();
-        $order =Order::all();    
-        
-           $user =User::find(Auth::user()->id);
-           $user->name=$this->name;
-        
-        
+        $order =Order::all();   
+        $request->validate([
+            'name' => 'required|min:3|max:50',
+            
+            'phone' => 'numeric|required|min:8|max:12',
+            'address' => 'required|min:3|max:50',
+            'password' => 'min:6|max:12|required_with:confirm|same:confirm',
+            
+        ]);
+        $id = $request->id;
+        $name = $request->input('name');
+      
+        $phone= $request->input('phone');   
+        $address= $request->input('address');   
+        $password= $request->input('password');  
+        DB::update('update users set name = ? ,phone = ?,address = ?,password = ? where id = ?',[
+            $name, $phone,$address,$password,$id
+        ]);
        
         return redirect()->route('person' , compact('footer','order','user'))->with("messageupdate","");
        
@@ -351,12 +364,9 @@ class HomeController extends Controller
 
                 // luu review
                 $request->session()->forget('review');
-                 return redirect()->route('shop',compact('footer','keyword'))->with('messagereviewsucess','');              
-               
-        }
-
-        
-       
+                 return redirect()->route('shop',compact('footer','keyword'))->with('messagereviewsucess','');                            
+        }       
     }
+   
 
 }

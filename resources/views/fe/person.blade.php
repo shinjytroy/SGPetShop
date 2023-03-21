@@ -79,7 +79,7 @@
   </tbody>
 </table>
 <h3 class="box-title"> Edit Information </h3>
-<a href="{{Route('edituser',$user->id)}}">Edit</a>
+<a href="{{Route('edituser',$user->id)}}"class="btn btn-small">Edit</a>
 
 </div>
 <br>
@@ -117,7 +117,8 @@
       <td>{{$item->shipping_address}}</td>
       <td>{{$item->shipping_phone}}</td>
       <td>{{ $item->shipping_email }}</td>
-      <td><a href="{{Route('history', $item->id)}}">View</a></td>
+      <td><a href="{{Route('history', $item->id)}}" class="btn btn-small">View</a></td>
+      
     </tr>
     @else
     <tr>

@@ -95,6 +95,8 @@ Route::group(['middleware'=>'canLogin'], function() {
         // cần admin mới truy cập
         Route::get('/', [HomeController::class, 'homedb'])->name('homedb');
 
+      
+
         Route::resource('/user', UserController::class);
 
         Route::resource('/category', CategoryController::class);
@@ -124,6 +126,10 @@ Route::group(['middleware'=>'canLogin'], function() {
         Route::resource('/contact', ContactController::class);
 
         Route::get('/contact/view/{id}', [ContactController::class, 'view'])->name('contact.view');
+
+        Route::get('/contact/sendMail/{id}', [ContactController::class, 'sendMail'])->name('contact.sendMail');
+
+        Route::post('process-sendMail', [ContactController::class, 'processsendMail'])->name('processsendMail');
 
         Route::resource('/keyword', KeywordController::class);
 

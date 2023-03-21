@@ -28,22 +28,26 @@
 <div class="form-group">
     <label for="name">Name</label>
     <input type="text" class="form-control" id="name" name="name" placeholder="Enter name" value="{{$user->name}}">
+    <span style="color:red"> @error('name'){{$message}}@enderror</span>
   </div>
   <div class="form-group">
-    <label for="email">Email address</label>
-    <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" value="{{$user->email}}">
+    <label for="email">{{$user->email}}</label>
+   
   </div>
   <div class="form-group">
     <label for="phone">Phone</label>
     <input type="number" class="form-control" id="phone" name="phone" placeholder="Enter Phone" value="{{$user->phone}}">
+    <span style="color:red"> @error('phone'){{$message}}@enderror</span>
   </div>
   <div class="form-group">
     <label for="address">Address</label>
     <input type="text" class="form-control" id="address" name="address" placeholder="Enter Address" value="{{$user->address}}">
+    <span style="color:red"> @error('address'){{$message}}@enderror</span>
   </div>
   <div class="form-group">
     <label for="exampleInputPassword1">Password</label>
     <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+    <span style="color:red"> @error('password'){{$message}}@enderror</span>
   </div>
 
   <input type="submit" value="Update" class="btn btn-success">

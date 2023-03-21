@@ -67,7 +67,13 @@
             <!-- /.card-footer -->
             <div class="card-footer">
               <div class="float-right">
-                <button type="button" class="btn btn-default"><i class="fas fa-reply"></i> Reply</button>
+                <button type="button" class="btn btn-default">
+                
+                <a class="btn btn-info btn-sm" href="{{ Route('admin.contact.sendMail', $item->id) }}">
+                <i class="fas fa-reply"></i>
+                          Reply
+                      </a>
+              </button>
               
               </div>
               <button type="button" class="btn btn-default"><i class="far fa-trash-alt"></i> Delete</button>
