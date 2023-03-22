@@ -21,6 +21,7 @@ use App\Http\Controllers\Admin\KeywordController;
 
 use App\Http\Controllers\FE\HomeController as FEController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\authController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,6 +32,18 @@ use App\Http\Controllers\SearchController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+use Laravel\Socialite\Facades\Socialite;
+ 
+Route::get('/auth/github/redirect',[authController::class ,'githubredirect'] )->name('githublogin');
+  
+Route::get('/auth/github/callback',[authController::class ,'githubcallback'] );
+
+
+Route::get('/auth/google/redirect',[authController::class ,'googleredirect'] )->name('googlelogin');
+  
+Route::get('/auth/google/callback',[authController::class ,'googlecallback'] );
+ 
+
 
 Route::get('/', [FEController::class, 'index'])->name('home');
 
