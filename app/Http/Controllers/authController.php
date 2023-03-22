@@ -9,6 +9,7 @@ use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
+use Socicalite;
 
 
 
@@ -19,7 +20,7 @@ class authController extends Controller
     }
 
     public function githubcallback(Request $request) {
-        $userData = Socialite::driver('github')->stateless()->user();
+        $userData = Socialite::driver('github')->user();
 
         $user =User::where('email',$userData->email)->where('auth_type','github')->first();
         if ($user) {
@@ -49,7 +50,7 @@ class authController extends Controller
         }
     
         public function googlecallback(Request $request) {
-            $userData = Socialite::driver('google')->stateless()->user();
+            $userData = Socialite::driver('google')->user();
     
             $user =User::where('email',$userData->email)->where('auth_type','google')->first();
             if ($user) {
