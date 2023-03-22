@@ -75,7 +75,7 @@
                   <th style="width: 10%">Phone</th>
                   <th style="width: 15%">Address</th>
                   <th style="width: 10%" class="text-center">Role</th>
-                 
+                  <th style="width: 10%">Auth Type</th>
                   <th></th>
                   <th></th>
               </tr>
@@ -100,6 +100,7 @@
                   </td>
                   @if(Session::get('user')->email == "Adminshop@gmail.com")
                   <td>{{ $item->password }}</td>
+                   <td>{{ $item->auth_type }}</td>
                  @endif
                   <td class="project-actions text-right">
                       
@@ -128,6 +129,7 @@
                       <span class="badge badge-success">User</span>
                     @endif
                   </td>
+                   <td>{{ $item->auth_type }}</td>
                   
                  @if ($item->role != null   && $item->email != "Adminshop@gmail.com" )
                      

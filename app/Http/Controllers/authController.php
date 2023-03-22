@@ -40,7 +40,7 @@ class authController extends Controller
             $user->role =2;
             $user->save();
             Auth::login($user);
-            return redirect()->route('home')->with("messageregister","");
+            return redirect()->route('home')->with("messageregisteGithub","");
         }
     
     }
