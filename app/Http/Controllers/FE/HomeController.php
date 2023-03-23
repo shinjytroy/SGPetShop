@@ -215,13 +215,9 @@ class HomeController extends Controller
         $order = Order::all();
         $category = Category::all();
         $footer = Footer::all();
-<<<<<<< HEAD
         $coupon = Coupon::all();
         return view('fe.viewCart', compact('category','footer','prods','order','brands','coupon'));
        
-=======
-        return view('fe.viewCart', compact('category', 'footer', 'prods', 'order', 'brands'));
->>>>>>> 37a8356a3292963dfc36c71d15ebc8f4eb48b702
     }
     public function processCoupon(Request $request) 
     { 
@@ -293,14 +289,9 @@ class HomeController extends Controller
 
                 unset($cart[$i]);
             }
-<<<<<<< HEAD
              $request->session()->put('cart', $cart);
          }
          $request->session()->forget('cart');
-=======
-            $request->session()->put('cart', $cart);
-        }
->>>>>>> 37a8356a3292963dfc36c71d15ebc8f4eb48b702
     }
     public function checkout(Request $request)
     {
