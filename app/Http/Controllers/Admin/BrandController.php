@@ -37,8 +37,11 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'brand_name' => 'required',
+            'description' => 'required',
+        ]);
         $brandData = $request->all();
-
         $brandData['slug'] = \Str::slug($request->brand_name);
 
         if ($request->hasFile('photo')) {
@@ -56,7 +59,7 @@ class BrandController extends Controller
         $brandData['brand_image_path'] = $imageName;
 
         Brand::create($brandData);
-        return redirect()->route('admin.brand.index');
+        return redirect()->route('admin.brand.index')->with('messagecreate','');
     }
 
     /**
@@ -90,6 +93,10 @@ class BrandController extends Controller
      */
     public function update(Request $request, Brand $brand)
     {
+        $request->validate([
+            'brand_name' => 'required',
+            'description' => 'required',
+        ]);
         $brandData = $request->all();
         $brandData['slug'] = \Str::slug($request->brand_name);
 
@@ -108,7 +115,7 @@ class BrandController extends Controller
         }
 
         $brand->update($brandData);
-        return redirect()->route('admin.brand.index');
+        return redirect()->route('admin.brand.index')->with('messageupdate','');
     }
 
     /**
@@ -120,6 +127,6 @@ class BrandController extends Controller
     public function destroy(Brand $brand)
     {
         $brand->delete();
-        return redirect()->route('admin.brand.index');
+        return redirect()->route('admin.brand.index')->with('messagedelete','');
     }
 }

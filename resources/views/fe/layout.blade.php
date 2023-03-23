@@ -61,7 +61,7 @@
 							@foreach($footer as $item)
 							<ul>
 								<li class="menu-item" >
-									<a style="color:white" title="{{$item->address}}" href="#" ><span class="icon label-before fa fa-home"></span>Address : {{$item->address}}</a>
+									<a style="color:white" title="{{$item->address}}" href="{{ Route("contact")}}" ><span class="icon label-before fa fa-home"></span>Address : {{$item->address}}</a>
 								</li>
 							</ul>
 							
@@ -69,7 +69,7 @@
 						 <div class="topbar-menu right-menu">
 							<ul>
 							<li class="menu-item" >
-							<a style="color:white" title="{{$item->hotline}}" href="#" ><span  class="icon  fa fa-mobile"></span> Hotline: {{$item->hotline}}</a>
+							<a style="color:white" title="{{$item->hotline}}" href="{{ Route("contact")}}" ><span  class="icon  fa fa-mobile"></span> Hotline: {{$item->hotline}}</a>
 							
 							@endforeach
 							@if (Session::get('user'))
@@ -166,11 +166,11 @@
 					<div class="header-nav-section">
 						<div class="container">
 							<ul class="nav menu-nav clone-main-menu" id="mercado_haead_menu" data-menuname="Sale Info" >
-								<li class="menu-item"><a href="#" class="link-term">Weekly Featured</a><span class="nav-label hot-label">hot</span></li>
-								<li class="menu-item"><a href="#" class="link-term">Hot Sale items</a><span class="nav-label hot-label">hot</span></li>
-								<li class="menu-item"><a href="#" class="link-term">Top new items</a><span class="nav-label hot-label">hot</span></li>
-								<li class="menu-item"><a href="#" class="link-term">Top Selling</a><span class="nav-label hot-label">hot</span></li>
-								<li class="menu-item"><a href="#" class="link-term">Top rated items</a><span class="nav-label hot-label">hot</span></li>
+								<li class="menu-item"><a href="{{ Route("shop")}}" class="link-term">Weekly Featured</a><span class="nav-label hot-label">hot</span></li>
+								<li class="menu-item"><a href="{{ Route("shop")}}" class="link-term">Hot Sale items</a><span class="nav-label hot-label">hot</span></li>
+								<li class="menu-item"><a href="{{ Route("shop")}}" class="link-term">Top new items</a><span class="nav-label hot-label">hot</span></li>
+								<li class="menu-item"><a href="{{ Route("shop")}}" class="link-term">Top Selling</a><span class="nav-label hot-label">hot</span></li>
+								<li class="menu-item"><a href="{{ Route("shop")}}" class="link-term">Top rated items</a><span class="nav-label hot-label">hot</span></li>
 							</ul>
 						</div>
 					</div>
@@ -222,7 +222,6 @@
 								<h4 class="fc-name">Free Shipping</h4>
 								<p class="fc-desc">Free On Oder Over $99</p>
 							</div>
-
 						</li>
 						<li class="fc-info-item">
 							<i class="fa fa-recycle" aria-hidden="true"></i>
@@ -230,7 +229,6 @@
 								<h4 class="fc-name">Guarantee</h4>
 								<p class="fc-desc">30 Days Money Back</p>
 							</div>
-
 						</li>
 						<li class="fc-info-item">
 							<i class="fa fa-credit-card-alt" aria-hidden="true"></i>
@@ -305,7 +303,7 @@
 								<h3 class="item-header">Sign up for newsletter</h3>
 								<div class="item-content">
 									<div class="wrap-newletter-footer">
-										<form action="#" class="frm-newletter" id="frm-newletter">
+										<form action="" class="frm-newletter" id="frm-newletter">
 											<input type="email" class="input-email" name="email" value="" placeholder="Enter your email address">
 											<button class="btn-submit">Subscribe</button>
 										</form>
@@ -369,11 +367,10 @@
 								<div class="item-content">
 									<div class="wrap-list-item social-network">
 										<ul>
-											<li><a href="#" class="link-to-item" title="twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-											<li><a href="#" class="link-to-item" title="facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-											<li><a href="#" class="link-to-item" title="pinterest"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
-											<li><a href="#" class="link-to-item" title="instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-											<li><a href="#" class="link-to-item" title="vimeo"><i class="fa fa-vimeo" aria-hidden="true"></i></a></li>
+											<li><a href="https://twitter.com/?lang=vi" class="link-to-item" title="twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+											<li><a href="https://www.facebook.com/" class="link-to-item" title="facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+											<li><a href="https://www.pinterest.com/" class="link-to-item" title="pinterest"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+											<li><a href="https://www.instagram.com/" class="link-to-item" title="instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
 										</ul>
 									</div>
 								</div>
@@ -386,17 +383,15 @@
 								<div class="item-content">
 									<div class="wrap-list-item apps-list">
 										<ul>
-											<li><a href="#" class="link-to-item" title="our application on apple store"><figure><img src="assets/images/brands/apple-store.png" alt="apple store" width="128" height="36"></figure></a></li>
-											<li><a href="#" class="link-to-item" title="our application on google play store"><figure><img src="assets/images/brands/google-play-store.png" alt="google play store" width="128" height="36"></figure></a></li>
+											<li><a href="https://www.apple.com/store" class="link-to-item" title="our application on apple store"><figure><img src="assets/images/brands/apple-store.png" alt="apple store" width="128" height="36"></figure></a></li>
+											<li><a href="https://play.google.com/" class="link-to-item" title="our application on google play store"><figure><img src="assets/images/brands/google-play-store.png" alt="google play store" width="128" height="36"></figure></a></li>
 										</ul>
 									</div>
 								</div>
 							</div>
 						</div>
-
 					</div>
 				</div>
-
 			</div>
 
 			<div class="coppy-right-box">
@@ -429,7 +424,8 @@
 	<script src="{{ asset('/assets/js/jquery.countdown.min.js') }}"></script>
 	<script src="{{ asset('/assets/js/jquery.sticky.js') }}"></script>
 	<script src="{{ asset('/assets/js/functions.js') }}"></script>
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	{{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script>
         $(document).ready(function(){
@@ -457,27 +453,6 @@
             $("#suggestion-box").hide();
         }
     </script>
-	
-	<script>
-		$.ajaxSetup({
-			headers: {
-			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-		}
-		});
-		$.ajax({
-			type: "POST",
-			cache: false,
-			url: "URL_POST",
-			data: {DATA_REQUEST},
-			dataType: "json",
-			success: function(data){
-			//Code của bạn
-			},
-			error: function(error){
-			//Code của bạn
-			}
-		});
-	</script>
 	<style>
         #search-box{width:500px;border:solid 1px #000;padding:10px;}
         #suggestion-box{position:relative;width: 500px; margin: 0 auto;}

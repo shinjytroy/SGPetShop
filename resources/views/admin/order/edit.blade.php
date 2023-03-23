@@ -5,13 +5,13 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1>Categories</h1>
+        <h1>Order</h1>
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="{{ Route('admin.homedb') }}">Home</a></li>
-          <li class="breadcrumb-item"><a href="{{ Route('admin.category.index') }}">Categories</a></li>
-          <li class="breadcrumb-item active">Edit Category</li>
+          <li class="breadcrumb-item"><a href="{{ Route('admin.user.index') }}">Order</a></li>
+          <li class="breadcrumb-item active">Edit Order</li>
         </ol>
       </div>
     </div>
@@ -24,7 +24,7 @@
   <!-- Default box -->
   <div class="card">
     <div class="card-header">
-      <h3 class="card-title">Categories</h3>
+      <h3 class="card-title">Order</h3>
 
       <div class="card-tools">
         <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -40,7 +40,7 @@
       <div class="col-md-12">
         <div class="card card-primary">
           <div class="card-header">
-            <h3 class="card-title">Edit Category</h3>
+            <h3 class="card-title">Edit Status</h3>
 
             <div class="card-tools">
               <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -48,19 +48,18 @@
               </button>
             </div>
           </div>
-          <form action="{{ Route('admin.category.update', $category->id) }}" method="post" class="card-body" enctype="multipart/form-data">
+          <form action="{{ Route('admin.order.update', $order->id) }}" method="post" class="card-body">
             @csrf
             @method('put')
-            <input type="hidden" name="category_id" value="{{ $category->id }}"/>
+            <input type="hidden" name="id" value="{{ $order->id }}"/>
+            
             <div class="form-group">
-              <label for="categorie_name">Category Name</label>
-              <input type="text" id="categorie_name" name="categorie_name" class="form-control" value="{{ $category->categorie_name }}">
-              <span style="color:red"> @error('categorie_name'){{$message}}@enderror</span>
-            </div>
-            <div class="form-group">
-              <label for="description">Description</label>
-              <textarea rows="4" cols="50" type="text" id="description" name="description" class="form-control" >{{$category->description}}</textarea>
-              <span style="color:red"> @error('description'){{$message}}@enderror</span>
+              <label for="status">Status</label>
+              <select id="status" name="status" class="form-control custom-select" required>
+                <option value="1" {{ $order->status!=null && $order->status==1 ? 'selected' : ''}}>Processing</option>
+                <option value="2" {{ $order->status!=null && $order->status==2 ? 'selected' : ''}}>Cancel</option>
+                <option value="3" {{ $order->status!=null && $order->status==3 ? 'selected' : ''}}>Finish</option>
+              </select>
             </div>
             <input type="submit" value="Update" class="btn btn-success">
           </form>

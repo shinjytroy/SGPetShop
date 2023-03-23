@@ -89,13 +89,13 @@ Toast.fire({
   <div class="wrap-banner style-twin-default">
   
     <div class="banner-item" >
-      <a href="#" class="link-banner banner-effect-1">
+      <a href="{{ Route('shop') }}" class="link-banner banner-effect-1">
         <figure><img src="assets/images/brands/banner1.jpg" alt="royal_cain"  style="height:300px ; width:600px"></figure>
       </a>
     </div>
 
     <div class="banner-item">
-      <a href="#" class="link-banner banner-effect-1">
+      <a href="{{ Route('shop') }}" class="link-banner banner-effect-1">
         <figure><img src="assets/images/brands/banner3.jpg" alt="pro_pand"   style="height:300px;  width:600px"></figure>
 
       </a>
@@ -143,10 +143,10 @@ Toast.fire({
   <div class="wrap-show-advance-info-box style-1">
     <h2 class="title-box">2,000+ Brands - Shop All</h2>
     <div class="wrap-top-banner">
-      <a href="#" class="link-banner banner-effect-2">
+      <a href="{{ Route('shop') }}" class="link-banner banner-effect-2">
         <figure><img src="assets/images/brands/banner2.jpg" width="580" height="240" alt=""></figure>
       </a>
-      <a href="#" class="link-banner banner-effect-2">
+      <a href="{{ Route('shop') }}" class="link-banner banner-effect-2">
         <figure><img src="assets/images/brands/banner2.jpg" width="580" height="240" alt=""></figure>
       </a>
     </div>
@@ -158,14 +158,14 @@ Toast.fire({
               @foreach ($brands as $item)
               <div class="product product-style-2 equal-elem ">
                 <div class="product-thumnail">
-                  <a href="#" title="{{ $item->brand_name }}">
+                  <a href="{{ Route('shop.brand', $item->id) }}" title="{{ $item->brand_name }}">
                     <figure><img src="{{asset('images/'.$item->brand_image_path)}}" alt="{{ $item->brand_name }}" width="800" height="800"></figure>
                   </a>
                   <div class="group-flash">
                     <span class="flash-item new-label">new</span>
                   </div>
                   <div class="wrap-btn">
-                    <a href="#" class="function-link">quick view</a>
+                    <a href="{{ Route('shop.brand', $item->id) }}" class="function-link">quick view</a>
                   </div>
                 </div>
               </div>
@@ -181,7 +181,7 @@ Toast.fire({
   <div class="wrap-show-advance-info-box style-1">
     <h3 class="title-box">Product Categories</h3>
     <div class="wrap-top-banner">
-      <a href="#" class="link-banner banner-effect-2">
+      <a href="{{ Route('shop') }}" class="link-banner banner-effect-2">
         <figure><img src="images/0-panner-shop.webp" width="1170" height="240" alt=""></figure>
       </a>
     </div>
@@ -189,7 +189,7 @@ Toast.fire({
       <div class="wrap-product-tab tab-style-1">
         <div class="tab-control">
           @foreach ($categories as $item)
-          <a href="#" class="tab-control-item">{{ $item->categorie_name }}</a>
+          <li><a href="{{ Route('shop.category', $item->id) }}" class="tab-control-item">{{ $item->categorie_name }}</a></li>
           @endforeach
         </div>
         <div class="tab-contents">
@@ -198,7 +198,7 @@ Toast.fire({
             @foreach ($prods as $item)
             <div class="product product-style-2 equal-elem ">
               <div class="product-thumnail">
-                <a href="detail.html" title="{{ $item->name }}">
+                <a href="{{ Route('product.details', $item->slug, $item->categorie_id) }}" title="{{ $item->name }}">
                   <figure><img src="{{asset('images/'.$item->image)}}" alt="{{$item->name}}" width="800" height="800"></figure>
                 </a>
                 <div class="group-flash">
@@ -211,11 +211,11 @@ Toast.fire({
                   <span class="flash-item bestseller-label">Bestseller</span>
                 </div>
                 <div class="wrap-btn">
-                  <a href="#" class="function-link">quick view</a>
+                  <a href="{{ Route('product.details', $item->slug, $item->categorie_id) }}" class="function-link">quick view</a>
                 </div>
               </div>
               <div class="product-info">
-                <a href="#" class="product-name"><span>{{ $item->name }}</span></a>
+                <a href="{{ Route('product.details', $item->slug, $item->categorie_id) }}" class="product-name"><span>{{ $item->name }}</span></a>
                 <div class="wrap-price"><ins><p class="product-price">{{$item->sale_price}} $</p></ins>
                   @if ($item->sale_price < $item->price)
                     <del><p class="product-price">{{ $item->price }} $</p></del></div>

@@ -58,6 +58,7 @@
                 <option value="{{ $item->id }}">{{ $item->categorie_name }}</option>
                 @endforeach
               </select>
+              <span style="color:red"> @error('categorie_id'){{$message}}@enderror</span>
             </div>
             <div class="form-group">
               <label for="brand_id">Brand</label>
@@ -67,10 +68,12 @@
                 <option value="{{ $item->id }}">{{ $item->brand_name }}</option>
                 @endforeach
               </select>
+              <span style="color:red"> @error('brand_id'){{$message}}@enderror</span>
             </div>
             <div class="form-group">
               <label for="name">Name</label>
-              <input type="text" id="name" name="name" class="form-control">
+              <input type="text" id="name" name="name" class="form-control" placeholder="Enter product name">
+              <span style="color:red"> @error('name'){{$message}}@enderror</span>
             </div>
             <div class="form-group">
               <label for="desc">Description</label>
@@ -78,15 +81,18 @@
             </div>
             <div class="form-group">
               <label for="price">Price</label>
-              <input type="number" id="price" name="price" class="form-control">
+              <input type="number" id="price" name="price" class="form-control" placeholder="Enter price">
+              <span style="color:red"> @error('price'){{$message}}@enderror</span>
             </div>
             <div class="form-group">
               <label for="price">Sale Price</label>
-              <input type="number" id="sale_price" name="sale_price" class="form-control">
+              <input type="number" id="sale_price" name="sale_price" class="form-control" placeholder="Enter sale price">
+              <span style="color:red"> @error('sale_price'){{$message}}@enderror</span>
             </div>
             <div class="form-group">
               <label for="stock">Stock</label>
-              <input type="number" id="stock" name="stock" class="form-control">
+              <input type="number" id="stock" name="stock" class="form-control" placeholder="Enter number of stock">
+              <span style="color:red"> @error('stock'){{$message}}@enderror</span>
             </div>
             <div class="form-group">
               <label for="status">Status</label>

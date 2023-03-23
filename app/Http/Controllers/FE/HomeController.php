@@ -25,35 +25,37 @@ use Illuminate\Support\Facades\DB;
 
 
 use Illuminate\Contracts\Session\Session;
+use PDO;
 
 class HomeController extends Controller
 {
-    public $orderBy = 'Default sorting';
     public $pagesize;
-    
-    public function index() 
+
+    public function index()
     {
         $prods = Product::all();
         $categories = Category::all();
         $brands = Brand::all();
-        $order=Order::all();
+        $order = Order::all();
         $footer = Footer::all();
         return view('fe.index', compact(
-            'prods', 'categories', 'brands','order' ,'footer'
+            'prods',
+            'categories',
+            'brands',
+            'order',
+            'footer'
         ));
-        
     }
-    public function layout() 
+    public function layout()
     {
-        
+
         $footer = Footer::all();
         return view('fe.layout', compact(
             'footer'
         ));
-        
     }
 
-    public function product($slug) 
+    public function product($slug)
     {
         $category = Category::all();
         // get() chuyển laravel collection thành php array
@@ -61,74 +63,118 @@ class HomeController extends Controller
         // hàm first() lấy phần tử đầu
         $prod = Product::where('slug', $slug)->first();
         $categorie_id = $prod->categorie_id;
-        $relatedProds = Product::where('categorie_id',$categorie_id)->whereNotIn('slug',[$slug])->get();
-        $review=Review::all();
-        $orderdetail =  OrderDetail::where('product_id',$categorie_id)->get();
+        $relatedProds = Product::where('categorie_id', $categorie_id)->whereNotIn('slug', [$slug])->get();
+        $review = Review::all();
+        $orderdetail =  OrderDetail::where('product_id', $categorie_id)->get();
         $footer = Footer::all();
-        return view('fe.product', compact('prod','relatedProds','category','review','footer','orderdetail'));
+        return view('fe.product', compact('prod', 'relatedProds', 'category', 'review', 'footer', 'orderdetail'));
     }
 
-    public function sortProducts($sortOption) {
-        if($sortOption == 'price_asc') {
-          $prods = Product::orderBy('sale_price', 'asc')->get();
-        } else if($sortOption == 'price_desc') {
-          $prods = Product::orderBy('sale_price', 'desc')->get();
-        }else if($sortOption == 'name_asc') {
-            $prods = Product::orderBy('name', 'asc')->get();
-        }else if($sortOption == 'name_desc') {
-            $prods = Product::orderBy('name', 'desc')->get();
-        return view('fe.shop.search-result', compact('prods'));
-        }
-    }
-    public function shop()
+
+    public function sortBy(Request $request)
     {
         $prods = Product::all();
+        if ($request->sort_by == 'latest') {
+            $prods = Product::orderBy('id', 'desc')->get();
+        }
+        if ($request->sort_by == 'lowest_price') {
+            $prods = Product::orderBy('price', 'asc')->get();
+        }
+        if ($request->sort_by == 'highest_price') {
+            $prods = Product::orderBy('price', 'desc')->get();
+        }
+        if ($request->sort_by == 'begin_name') {
+            $prods = Product::orderBy('name', 'asc')->get();
+        }
+        if ($request->sort_by == 'end_name') {
+            $prods = Product::orderBy('name', 'desc')->get();
+        }
+        // return view('fe.shop.search-result', compact('prods'))->render();
+        return $prods;
+    }
+    public function viewCategory($slug)
+    {
+        if (Category::where('slug', $slug)->exists()) {
+            $viewCategory = Category::where('slug', $slug)->first();
+            $viewCategoryProds = Product::where('categorie_id', $viewCategory->id)->get();
+            return view('fe.index', compact('viewCategory', 'viewCategoryProds'));
+        } else {
+            return redirect('/')->with('Slug doesnot exists.');
+        }
+    }
+    public function shop(Request $request)
+    {
         $categories = Category::orderBy('categorie_order', 'asc')->get();
-        $brands = Brand::all();
+        $brands = Brand::orderBy('brand_name', 'asc')->get();
         $min_price = Product::min('price');
         $max_price = Product::max('price');
-        $featProds= Product::where('featured','=','Yes')->get();
-        if($this->orderBy == 'Sort By Price: ASC'){
-            $prods = Product::orderBy('sale_price', 'ASC');
-        }
-        else if($this->orderBy == 'Sort By Price: DESC'){
-            $prods = Product::orderBy('sale_price', 'DESC');
-        }
-        else if($this->orderBy == 'Sort By Name: A to Z'){
-            $prods = Product::orderBy('name', 'ASC');
-        }
-        else if($this->orderBy == 'Sort By Name: Z to A'){
-            $prods = Product::orderBy('name', 'ASC');
-        }else{
-            $prods = Product::all();
-        }
+        $featProds = Product::where('featured', '=', 'Yes')->get();
         $footer = Footer::all();
-        return view('fe.shop.search-result', compact(
-            'prods', 'brands', 'categories', 'footer', 'min_price', 'max_price', 'featProds',
-        ));
+        if (isset($request->brand)) {
+            $brand = $request->brand;
+            $prods = Product::whereIn('brand_id', explode(",", $brand))->get();
+            response()->json($prods);
+        } else {
+            $prods = Product::orderBy('id', 'desc')->get();
+        }
+        return view('fe.shop', compact(
+            'prods',
+            'brands',
+            'categories',
+            'footer',
+            'min_price',
+            'max_price',
+            'featProds',
+        )); // anh tra về view đây na
     }
-
-    public function shopByCategory($id){
+    public function filterBrand(Request $request)
+    {
+        if (isset($request->brand)) {
+            $brand = $request->brand;
+            $prods = Product::whereIn('brand_id', explode(",", $brand))->get();
+            return response()->json($prods);
+        } else {
+            return $prods = Product::orderBy('id', 'desc')->get();
+        }
+    }
+   
+    public function shopByCategory($id)
+    {
         $review = Review::all();
         $categories = Category::all();
         $brands = Brand::all();
         $footer = Footer::all();
-        //$prods = Product::where('categorie_id', $id);
         $prods = Product::where('categorie_id', 'LIKE', "%{$id}%")->get();
-        
-        return view('fe.shop.search-result', compact('prods','review', 'categories', 'brands','footer'));
+
+        return view('fe.shop', compact('prods', 'review', 'categories', 'brands', 'footer'));
     }
-    
-    public function searchProducts(Request $request){
+    public function shopByBrand($id)
+    {
         $review = Review::all();
         $categories = Category::all();
         $brands = Brand::all();
         $footer = Footer::all();
-        $prods = Product::whereBetween('price',[$request->start_price, $request->end_price])->get();
-        return view('fe.shop.search-result', compact('prods', 'review', 'categories', 'brands','footer'))->render();
+        $prods = Product::where('brand_id', 'LIKE', "%{$id}%")->get();
+
+        return view('fe.shop', compact('prods', 'review', 'categories', 'brands', 'footer'));
     }
 
-    public function addCart(Request $request) 
+    public function searchProducts(Request $request)
+    {
+        $review = Review::all();
+        $categories = Category::all();
+        $brands = Brand::all();
+        $footer = Footer::all();
+        $prods = Product::whereBetween('price', [$request->start_price, $request->end_price])->get();
+        return view('fe.shop', compact('prods', 'review', 'categories', 'brands', 'footer'))->render();
+    }
+    public function ajaxSearch()
+    {
+        $data = Product::search()->get();
+        return view('ajaxSearch', compact('data'));
+    }
+
+    public function addCart(Request $request)
     {
         $pid = $request->pid;
         $quantity = $request->quantity;
@@ -141,37 +187,41 @@ class HomeController extends Controller
         } else {
             $cart = [];
         }
-    // xử lý cộng dồn quantity nếu item trùng
-    for ($i=0; $i < count($cart); $i++) { 
-        # code...
-        if ($cart[$i] ->product->id ==$pid) {
+        // xử lý cộng dồn quantity nếu item trùng
+        for ($i = 0; $i < count($cart); $i++) {
             # code...
-            break;
+            if ($cart[$i]->product->id == $pid) {
+                # code...
+                break;
+            }
         }
-    }
-    if ($i <count($cart)) {
-        # code...
-        // truong hop product da co trong cart => cong don quantity
-    $cart[$i]->quantity += $quantity;
-    }else {
-        
-        $cart[] = $cartItem;
-    }
-           
-        
+        if ($i < count($cart)) {
+            # code...
+            // truong hop product da co trong cart => cong don quantity
+            $cart[$i]->quantity += $quantity;
+        } else {
+
+            $cart[] = $cartItem;
+        }
+
+
         $request->session()->put('cart', $cart);
     }
 
-    public function viewCart(Request $request) 
+    public function viewCart(Request $request)
     {
         $prods = Product::all();
         $brands = Brand::all();
-        $order=Order::all();
+        $order = Order::all();
         $category = Category::all();
         $footer = Footer::all();
+<<<<<<< HEAD
         $coupon = Coupon::all();
         return view('fe.viewCart', compact('category','footer','prods','order','brands','coupon'));
        
+=======
+        return view('fe.viewCart', compact('category', 'footer', 'prods', 'order', 'brands'));
+>>>>>>> 37a8356a3292963dfc36c71d15ebc8f4eb48b702
     }
     public function processCoupon(Request $request) 
     { 
@@ -195,10 +245,10 @@ class HomeController extends Controller
     }
 
 
-    public function clearCart(Request $request) 
+    public function clearCart(Request $request)
     {
         $request->session()->forget('cart');
-        return view ('fe.viewCart');
+        return view('fe.viewCart');
     }
     public function changeCartItem(Request $request)
     {
@@ -206,22 +256,22 @@ class HomeController extends Controller
         if ($request->session()->has('cart')) {
             $cart = $request->session()->get('cart');
             $pid = $request->pid;
-            $quantity = $request ->quantity;    
+            $quantity = $request->quantity;
 
-            for ($i=0; $i < count($cart); $i++) { 
+            for ($i = 0; $i < count($cart); $i++) {
                 # code...
-                if ($cart[$i] ->product->id ==$pid) {
-                  # code...
+                if ($cart[$i]->product->id == $pid) {
+                    # code...
                     break;
-                }   
+                }
             }
-            if ($i <count($cart)) {
+            if ($i < count($cart)) {
                 # code...
-            
+
                 $cart[$i]->quantity = $quantity;
             }
-             $request->session()->put('cart', $cart);
-         }
+            $request->session()->put('cart', $cart);
+        }
     }
     public function removeCartitem(Request $request)
     {
@@ -229,43 +279,50 @@ class HomeController extends Controller
         if ($request->session()->has('cart')) {
             $cart = $request->session()->get('cart');
             $pid = $request->pid;
-            $quantity = $request ->quantity;
+            $quantity = $request->quantity;
 
-            for ($i=0; $i < count($cart); $i++) { 
+            for ($i = 0; $i < count($cart); $i++) {
                 # code...
-                if ($cart[$i] ->product->id ==$pid) {
-                  # code...
+                if ($cart[$i]->product->id == $pid) {
+                    # code...
                     break;
-                }   
+                }
             }
-            if ($i <count($cart)) {
+            if ($i < count($cart)) {
                 # code...
-            
+
                 unset($cart[$i]);
             }
+<<<<<<< HEAD
              $request->session()->put('cart', $cart);
          }
          $request->session()->forget('cart');
+=======
+            $request->session()->put('cart', $cart);
+        }
+>>>>>>> 37a8356a3292963dfc36c71d15ebc8f4eb48b702
     }
-    public function checkout(Request $request){
-        $total=0;
+    public function checkout(Request $request)
+    {
+        $total = 0;
         $prods = Product::all();
         $brands = Brand::all();
-        $order=Order::all();
+        $order = Order::all();
         $category = Category::all();
         $footer = Footer::all();
         if ($request->session()->has('cart')) {
             $cart = $request->session()->get('cart');
-            foreach($cart as $item){
-                $total += $item->product->price * $item ->quantity;
+            foreach ($cart as $item) {
+                $total += $item->product->price * $item->quantity;
             }
         }
-        return view('fe.checkout',compact('total','footer','category','prods','order','brands'));
+        return view('fe.checkout', compact('total', 'footer', 'category', 'prods', 'order', 'brands'));
     }
-    public function processCheckout(Request $request){
+    public function processCheckout(Request $request ){
        $cart =$request->all();
        $cart['order_date']=date('Y-m-d' , time());
        $cart['user_id']=$request->session()->get('user')->id;
+       $cart['status']=1;
        $ord = Order::create($cart);
        //dd($ord);
        // luu order details
@@ -276,38 +333,38 @@ class HomeController extends Controller
         $od->product_id=$item->product->id;
         $od->price=$item->product->price;
         $od->quantity=$item->quantity;
+        
         $od->save();
 
        }
         $request->session()->forget('cart');
       
         $footer = Footer::all();
-        return view('fe.thankyou' , compact('footer'));
+        return view('fe.thankyou', compact('footer'));
     }
 
     public function about()
     {
         $mems = Membership::all();
         $blogs = Blog::all();
-        $infors=Informations::all();
+        $infors = Informations::all();
         $footer = Footer::all();
-        return view('fe.about', compact('mems','blogs','infors','footer' ));
-     
+        return view('fe.about', compact('mems', 'blogs', 'infors', 'footer'));
     }
     public function contact()
     {
         $footer = Footer::all();
 
-        return view ('fe.contact',compact('footer'));
+        return view('fe.contact', compact('footer'));
     }
-    public function processContact(Request $request){
-        $contactData =$request->all();  
+    public function processContact(Request $request)
+    {
+        $contactData = $request->all();
         $contact = Contact::create($contactData);
         // luu review
-        
-         $request->session()->forget('contact');
-         return  redirect()->route ('contact',compact('contact'))->with('messagesuccess','');
-   
+
+        $request->session()->forget('contact');
+        return  redirect()->route('contact', compact('contact'))->with('messagesuccess', '');
     }
     public function person(Request $request)
     {
@@ -354,13 +411,13 @@ class HomeController extends Controller
         return redirect()->route('person' , compact('footer','order','user'))->with("messageupdate","");
        
     }
-    public function history(Request $request ,  $id)
+    public function history(Request $request,  $id)
     {
-        $footer= Footer::all();
+        $footer = Footer::all();
         $prod = Product::all();
         $user = User::all();
-        $order = OrderDetail::where('order_id','=',$id)->get();
-        return view ('fe.history',compact('footer','prod','user','order'));
+        $order = OrderDetail::where('order_id', '=', $id)->get();
+        return view('fe.history', compact('footer', 'prod', 'user', 'order'));
     }
     public function review(Request $request){   
         $footer= Footer::all(); 
@@ -372,8 +429,6 @@ class HomeController extends Controller
         $rv =$request->all();
         $footer= Footer::all();  
       
-
-       
         $rv['user_id']=$request->session()->get('user')->id;
         
         $description =  $request->description;
