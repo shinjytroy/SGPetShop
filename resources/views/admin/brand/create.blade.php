@@ -53,10 +53,12 @@
             <div class="form-group">
               <label for="brand_name">Brand Name</label>
               <input type="text" id="brand_name" name="brand_name" class="form-control">
+              <span style="color:red"> @error('brand_name'){{$message}}@enderror</span>
             </div>
             <div class="form-group">
               <label for="desc">Description</label>
               <textarea id="desc" name="description" class="form-control"></textarea>
+              <span style="color:red"> @error('description'){{$message}}@enderror</span>
             </div>
             <div class="form-group">
               <label for="brand_image_path">Image</label>

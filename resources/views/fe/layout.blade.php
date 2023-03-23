@@ -150,10 +150,8 @@
 							<div class="wrap-icon-section wishlist">
 							@if (Session::get('user'))
 								<div class="title"><i class="fa fa-star" aria-hidden="true"></i>
-									<i class="fa fa-star" aria-hidden="true"></i>
-									<i class="fa fa-star" aria-hidden="true"></i>
-									<i class="fa fa-star" aria-hidden="true"></i>
-									<i class="fa fa-star" aria-hidden="true"></i>{{Session::get('user')->name}} </div>
+									
+									{{Session::get('user')->name}} </div>
 								@endif	
 							</div>
 

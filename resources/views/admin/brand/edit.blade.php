@@ -55,10 +55,12 @@
             <div class="form-group">
               <label for="brand_name">Brand Name</label>
               <input type="text" id="brand_name" name="brand_name" class="form-control" value="{{ $brand->brand_name }}">
+              <span style="color:red"> @error('brand_name'){{$message}}@enderror</span>
             </div>
             <div class="form-group">
               <label for="description">Description</label>
               <textarea rows="4" cols="50" type="text" id="description" name="description" class="form-control" >{{$brand->description}}</textarea>
+              <span style="color:red"> @error('description'){{$message}}@enderror</span>
             </div>
             <div class="form-group">
               <label for="image">Image</label>

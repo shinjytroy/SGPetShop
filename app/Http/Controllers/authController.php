@@ -15,66 +15,68 @@ use Socicalite;
 
 class authController extends Controller
 {
-    public function githubredirect(Request $request) {
+    public function githubredirect(Request $request)
+    {
         return Socialite::driver('github')->redirect();
     }
 
-    public function githubcallback(Request $request) {
+    public function githubcallback(Request $request)
+    {
         $userData = Socialite::driver('github')->user();
 
-        $user =User::where('email',$userData->email)->where('auth_type','github')->first();
+        $user = User::where('email', $userData->email)->where('auth_type', 'github')->first();
         if ($user) {
             // Ktra neu co tai khoan thi login
-               // save user to session
-               $request->session()->put('user', $user);
-            Auth::login($user);
-            return redirect()->route('home')->with("messagelogin","");
-        }else {
-            // neu khong co thi dang khy
+            // save user to session
             $request->session()->put('user', $user);
-            $uuid= Str::uuid()->toString();
+            Auth::login($user);
+            return redirect()->route('home')->with("messagelogin", "");
+        } else {
+            // neu khong co thi dang khy
+
+            $uuid = Str::uuid()->toString();
             $user = new User();
             $user->name = $userData->name;
-            $user->email=$userData->email;
-            $user->password = Hash::make($uuid.now());
-            $user->auth_type ='github';
-            $user->role =2;
+            $user->email = $userData->email;
+            $user->password = Hash::make($uuid . now());
+            $user->auth_type = 'github';
+            $user->role = 2;
             $user->save();
+            $request->session()->put('user', $user);
             Auth::login($user);
-            return redirect()->route('home')->with("messageregisteGithub","");
-        }
-    
-    }
-        public function googleredirect(Request $request) {
-            return Socialite::driver('google')->redirect();
-        }
-    
-        public function googlecallback(Request $request) {
-            $userData = Socialite::driver('google')->user();
-    
-            $user =User::where('email',$userData->email)->where('auth_type','google')->first();
-            if ($user) {
-                // Ktra neu co tai khoan thi login
-                $request->session()->put('user', $user);
-                Auth::login($user);
-                return redirect()->route('home')->with("messagelogin","");
-            }else {
-                // neu khong co thi dang khy
-                $request->session()->put('user', $user);
-                $uuid= Str::uuid()->toString();
-                $user = new User();
-                $user->name = $userData->name;
-                $user->email=$userData->email;
-                $user->password = Hash::make($uuid.now());
-                $user->auth_type ='google';
-                $user->role =2;
-                $user->save();
-                Auth::login($user);
-                return redirect()->route('home')->with("messageregister","");
-            }
-       
-       
-    }
-    
 
+            return redirect()->route('home')->with("messageregisteGithub", "");
+        }
+    }
+    public function googleredirect(Request $request)
+    {
+        return Socialite::driver('google')->redirect();
+    }
+
+    public function googlecallback(Request $request)
+    {
+        $userData = Socialite::driver('google')->user();
+
+        $user = User::where('email', $userData->email)->where('auth_type', 'google')->first();
+        if ($user) {
+            // Ktra neu co tai khoan thi login
+            $request->session()->put('user', $user);
+            Auth::login($user);
+            return redirect()->route('home')->with("messagelogin", "");
+        } else {
+            // neu khong co thi dang khy
+
+            $uuid = Str::uuid()->toString();
+            $user = new User();
+            $user->name = $userData->name;
+            $user->email = $userData->email;
+            $user->password = Hash::make($uuid . now());
+            $user->auth_type = 'google';
+            $user->role = 2;
+            $user->save();
+            $request->session()->put('user', $user);
+            Auth::login($user);
+            return redirect()->route('home')->with("messageregister", "");
+        }
+    }
 }

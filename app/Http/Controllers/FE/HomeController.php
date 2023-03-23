@@ -291,7 +291,7 @@ class HomeController extends Controller
             }
              $request->session()->put('cart', $cart);
          }
-         $request->session()->forget('cart');
+        
     }
     public function checkout(Request $request)
     {

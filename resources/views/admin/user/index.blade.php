@@ -95,7 +95,7 @@
                   <td>{{ $item->address }}</td>
                   <td class="project-state">
                    @if(Session::get('user')->email == "Adminshop@gmail.com")
-                   @if ($item->role != null && $item->role == 1 && $item-email != "Adminshop@gmail.com")
+                   @if ($item->role != null && $item->role == 1 && $item->email != "Adminshop@gmail.com")
                         <span class="badge badge-danger">Admin-Staff</span>
                     @elseif ($item->role != null && $item->role == 1 && $item->email == "Adminshop@gmail.com")
                     <span class="badge badge-danger">Admin</span>
@@ -104,7 +104,7 @@
                     @endif
                   </td>
                   @if(Session::get('user')->email == "Adminshop@gmail.com")
-                  <td>{{ $item->password }}</td>
+                 
                    <td>{{ $item->auth_type }}</td>
                  @endif
                   <td class="project-actions text-right">
@@ -145,17 +145,7 @@
                           </i>
                           Edit
                       </a>
-                      @if ($item->role ==2)
-                      <form action="{{ Route('admin.user.destroy', $item->id) }}" method="pos t" style="display:inline-block">
-                        @csrf
-                        @method("delete")
-                        <button type="submit" class="btn btn-danger btn-sm">
-                            <i class="fas fa-trash">
-                            </i>
-                            Delete
-                        </button>
-                      </form>
-                      @endif
+                      
                     @endif
                   </td>
                   @endif

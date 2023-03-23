@@ -72,14 +72,7 @@
                   <td>{{ $item->quantity }}</td>
                   <td>{{ number_format($item->price * $item->quantity) }}</td>    
                   <td>{{ $item->created_at }}</td>          
-                  <td class="project-actions text-right">                    
-                      <a class="btn btn-info btn-sm" href="#">
-                          <i class="fas fa-pencil-alt">
-                          </i>
-                          Edit
-                      </a>
-                     
-                  </td>
+                  
               </tr>
             @endforeach
           </tbody>
