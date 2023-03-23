@@ -27,7 +27,12 @@
   <div class="card">
     <div class="card-header">
       <h3 class="card-title">Users : {{Session::get('user')->name }} </h3>
-
+      <div class="card-tools">
+        <a class="btn btn-info btn-sm" href="{{ Route('admin.user.create')}}">
+          <i class="fas fa-plus">
+          </i>
+          Create New
+      </a>
       <div class="card-tools">
         <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
           <i class="fas fa-minus"></i>

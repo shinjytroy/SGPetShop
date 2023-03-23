@@ -17,6 +17,7 @@ use App\Models\Membership;
 use App\Models\Review;
 use App\Models\Footer;
 use App\Models\User;
+use App\Models\Coupon;
 use App\Models\Keyword;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -214,8 +215,35 @@ class HomeController extends Controller
         $order = Order::all();
         $category = Category::all();
         $footer = Footer::all();
+<<<<<<< HEAD
+        $coupon = Coupon::all();
+        return view('fe.viewCart', compact('category','footer','prods','order','brands','coupon'));
+       
+=======
         return view('fe.viewCart', compact('category', 'footer', 'prods', 'order', 'brands'));
+>>>>>>> 37a8356a3292963dfc36c71d15ebc8f4eb48b702
     }
+    public function processCoupon(Request $request) 
+    { 
+        $prods = Product::all();
+        $brands = Brand::all();
+        $order=Order::all();
+        $category = Category::all();
+        $footer = Footer::all();
+        $coupon = Coupon::all();
+        $code = $request->code;
+        $coupon = Coupon::where('code', '=', $code)->first();
+        if ($coupon != null) {
+            // save user to session
+            $request->session()->put('coupon', $coupon);
+           
+            return view('fe.checkout', compact('category','footer','prods','order','brands','coupon'))->with('code','');
+           
+        }
+           
+
+    }
+
 
     public function clearCart(Request $request)
     {
@@ -265,8 +293,14 @@ class HomeController extends Controller
 
                 unset($cart[$i]);
             }
+<<<<<<< HEAD
+             $request->session()->put('cart', $cart);
+         }
+         $request->session()->forget('cart');
+=======
             $request->session()->put('cart', $cart);
         }
+>>>>>>> 37a8356a3292963dfc36c71d15ebc8f4eb48b702
     }
     public function checkout(Request $request)
     {
@@ -304,6 +338,7 @@ class HomeController extends Controller
 
        }
         $request->session()->forget('cart');
+      
         $footer = Footer::all();
         return view('fe.thankyou', compact('footer'));
     }

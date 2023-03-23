@@ -35,6 +35,13 @@ class CouponsController extends Controller
      */
     public function store(Request $request, Coupon $coupon)
     {
+        $request->validate([
+            'code' => 'required|min:3|max:50|unique:coupons',
+            'type' => 'required|min:3|max:50',
+            
+            'value' => 'numeric|min:1|max:100',
+            'cart_value' => 'numeric|min:100|max:1000'
+        ]);
         $coupon = $request->all();
         Coupon::create($coupon);
         return redirect()->route('admin.coupons.index', compact('coupon'));

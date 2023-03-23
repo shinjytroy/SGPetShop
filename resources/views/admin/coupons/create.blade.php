@@ -54,6 +54,8 @@
             <div class="form-group">
               <label for="coupon_name">Coupon Name</label>
               <input type="text" id="code" name="code" class="form-control" value="">
+              <span style="color:red"> @error('code'){{$message}}@enderror</span>
+
             </div>
             <div class="form-group" >
                 <label for="coupon_type" >Coupon Type</label>
@@ -66,10 +68,14 @@
             <div class="form-group">
                 <label for="coupon_value">Coupon Value</label>
                 <input type="text" id="value" name="value" class="form-control">
+                <span style="color:red"> @error('value'){{$message}}@enderror</span>
+
             </div>
             <div class="form-group">
-                <label for="cart_name">Cart Name</label>
+                <label for="cart_name">Cart Value</label>
                 <input type="text" id="cart_value" name="cart_value" class="form-control" >
+                <span style="color:red"> @error('cart_value'){{$message}}@enderror</span>
+
             </div>
             <input type="submit" value="Create" class="btn btn-success">
           </form>
