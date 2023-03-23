@@ -21,13 +21,16 @@
 <section class="content">
 
   <!-- Default box -->
-        {{-- @php
-        $countorder=count($order);      
-        @endphp --}}
+   
   <div class="card">
     <div class="card-header">
-      {{-- <h3 class="card-title">Having : {{$countorder}} in  Order List</h3> --}}
-
+     
+      <div class="card-tools">
+        <a class="btn btn-info btn-sm" href="{{ Route('admin.coupons.create')}}">
+          <i class="fas fa-plus">
+          </i>
+          Create New
+      </a>
       <div class="card-tools">
         <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
           <i class="fas fa-minus"></i>
@@ -58,7 +61,7 @@
                   <td>{{ $coupon->id }}</td>   
                   <td>{{ $coupon->code }}</td>
                   <td>{{ $coupon->type}}</td>
-                  @if($coupon->type == 'Fixed')
+                  @if($coupon->type == 'fixed')
                     <td>${{ $coupon->value}}</td>
                   @else
                     <td>{{ $coupon->value}}%</td>
@@ -66,11 +69,7 @@
                   <td>{{ $coupon->cart_value}}</td>   
                   <td class="project-actions text-right">
                     
-                      <!-- <a class="btn btn-primary btn-sm" href="#">
-                          <i class="fas fa-folder">
-                          </i>
-                          View
-                      </a> -->
+                    
                       <a class="btn btn-info btn-sm" href="{{ Route('admin.coupons.edit', $coupon->id) }}">
                           <i class="fas fa-pencil-alt">
                           </i>

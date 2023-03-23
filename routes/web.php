@@ -92,6 +92,9 @@ Route::group(['middleware'=>'canLogin'], function() {
 
     Route::post('/process-review', [FEController::class, 'processReview'])->name('processReview');
     
+    Route::post('/process-coupon', [FEController::class, 'processCoupon'])->name('processCoupon');
+
+
     Route::post('/process-edituser/{id}', [FEController::class, 'processEditUser'])->name('processEditUser');
     
     Route::get('/checkout', [FEController::class, 'checkout'])->name('checkout');
