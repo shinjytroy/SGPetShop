@@ -97,6 +97,7 @@
       <th scope="col">Shipping Address</th>
       <th scope="col">Phone Number</th>
       <th scope="col">Email</th>
+      <th scope="col">Status</th>
     </tr>
   </thead>
   <tbody>
@@ -118,7 +119,14 @@
       <td>{{$item->shipping_address}}</td>
       <td>{{$item->shipping_phone}}</td>
       <td>{{ $item->shipping_email }}</td>
-      <td><button type="button" class="btn btn-outline-success" ><a href="{{Route('history', $item->id)}}" >View</a></button></td>
+      @if ($item->status == 1  ) 
+                  <td><span class="badge badge-success" style="background: green">Processing</span></td>   
+                  @elseif ($item->status == 2 )   
+                  <td><span class="badge badge-danger" style="background: rgb(255, 0, 0)">Cancel</span></td>   
+                  @else
+                  <td><span class="badge badge-warning" style="background: rgb(226, 226, 12)">Finish</span></td>    
+                  @endif
+      <td><button type="button" class="btn btn-outline-success"  ><a href="{{Route('history', $item->id)}}" >View</a></button></td>
       
     </tr>
     @else

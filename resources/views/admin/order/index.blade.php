@@ -48,7 +48,8 @@
                   <th style="width: 10%">shipping_phone</th>
                   <th style="width: 15%">shipping_email</th>
                   <th style="width: 25%">shipping_address</th>   
-                  <th style="width: 20%">payment</th>                
+                  <th style="width: 10%">payment</th>  
+                  <th style="width: 10%">Status</th>                
                   <th>
 
                   </th>
@@ -69,14 +70,29 @@
                   <td>{{ $item->shipping_phone}}</td>
                   <td>{{ $item->shipping_email}}</td>
                   <td>{{ $item->shipping_address}}</td>        
-                  <td>{{ $item->payment}}</td>        
+                  <td>{{ $item->payment}}</td>   
+                  @if ($item->status == 1  ) 
+                  <td><span class="badge badge-success">Processing</span></td>   
+                  @elseif ($item->status == 2 )   
+                  <td><span class="badge badge-danger">Cancel</span></td>   
+                  @else
+                  <td><span class="badge badge-warning">Finish</span></td>    
+                  @endif
+
                   <td class="project-actions text-right">      
                       <a class="btn btn-info btn-sm" href="{{ Route('admin.orderdetail.view', $item->id) }}">
                           <i class="fas fa-pencil-alt">
                           </i>
                           View
-                      </>                 
+                      </a>                 
                   </td>
+                  <td class="project-actions text-right">      
+                    <a class="btn btn-info btn-sm" href="{{ Route('admin.order.edit', $item->id) }}">
+                        <i class="fas fa-pencil-alt">
+                        </i>
+                        Edit
+                    </>                 
+                </td>
               </tr>
             @endforeach
           </tbody>

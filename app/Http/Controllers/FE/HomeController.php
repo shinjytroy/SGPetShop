@@ -238,10 +238,11 @@ class HomeController extends Controller
         }
         return view('fe.checkout',compact('total','footer','category','prods','order','brands'));
     }
-    public function processCheckout(Request $request){
+    public function processCheckout(Request $request ){
        $cart =$request->all();
        $cart['order_date']=date('Y-m-d' , time());
        $cart['user_id']=$request->session()->get('user')->id;
+       $cart['status']=1;
        $ord = Order::create($cart);
        //dd($ord);
        // luu order details
@@ -252,6 +253,7 @@ class HomeController extends Controller
         $od->product_id=$item->product->id;
         $od->price=$item->product->price;
         $od->quantity=$item->quantity;
+        
         $od->save();
 
        }
