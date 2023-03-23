@@ -145,7 +145,7 @@
                         <p class="comment-form-author">
                           <label for="user_id">Name <span class="required">*</span></label> 
                           <input id="user_id" type="text" name="user_id" value="{{Session::get('user')->name}}" placeholder="Your name">
-
+                          
                         </p>
 
                         <p class="comment-form-comment">

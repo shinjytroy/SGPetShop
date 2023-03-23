@@ -66,6 +66,7 @@
                 <option value="{{ $item->id }}">{{ $item->categorie_name }}</option>
                 @endforeach
               </select>
+              <span style="color:red"> @error('categorie_id'){{$message}}@enderror</span>
             </div>
             <div class="form-group">
               <label for="brand_id">Brand</label>
@@ -75,10 +76,12 @@
                 <option value="{{ $item->id }}">{{ $item->brand_name }}</option>
                 @endforeach
               </select>
+              <span style="color:red"> @error('brand_id'){{$message}}@enderror</span>
             </div>
             <div class="form-group">
               <label for="name">Name</label>
               <input type="text" id="name" name="name" class="form-control" value="{{ $product->name }}">
+              <span style="color:red"> @error('name'){{$message}}@enderror</span>
             </div>
             <div class="form-group">
               <label for="description">Description</label>
@@ -87,14 +90,17 @@
             <div class="form-group">
               <label for="price">Price</label>
               <input type="text" id="price" name="price" class="form-control" value="{{ $product->price }}">
+              <span style="color:red"> @error('price'){{$message}}@enderror</span>
             </div>
             <div class="form-group">
               <label for="sale_price">Sale Price</label>
               <input type="text" id="sale_price" name="sale_price" class="form-control" value="{{ $product->sale_price }}">
+              <span style="color:red"> @error('sale_price'){{$message}}@enderror</span>
             </div>
             <div class="form-group">
               <label for="stock">Stock</label>
               <input type="number" id="stock" name="stock" class="form-control" value="{{ $product->stock }}">
+              <span style="color:red"> @error('stock'){{$message}}@enderror</span>
             </div>
             <div class="form-group">
               <label for="status">Status</label>

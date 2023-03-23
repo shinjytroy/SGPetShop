@@ -19,7 +19,7 @@ class SearchController extends Controller
         $brands = Brand::all();
         $keyword = $request->search;
         $prods = Product::where('name', 'LIKE', '%'.$keyword.'%')->get();
-        return view('fe.shop.search-result', compact('review', 'categories', 'brands', 'prods','footer'));
+        return view('fe.shop', compact('review', 'categories', 'brands', 'prods','footer'));
         // $query = $request->get('query');
         // $prods = Product::where('name', 'LIKE', "%{$query}%")->get();
         // return response()->json($prods);

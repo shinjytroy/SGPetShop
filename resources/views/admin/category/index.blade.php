@@ -39,6 +39,34 @@
       </div>
     </div>
     <div class="card-body p-0">
+      @if(Session::has('messageupdate'))
+      <script>
+        Swal.fire(
+    'Update Success !!',
+    'You clicked the button to continue!',
+    'success'
+      )
+      </script>
+     @endif
+  
+     @if(Session::has('messagedelete'))
+      <script>
+        Swal.fire(
+    'Delete Success !!',
+    'You clicked the button to continue!',
+    'success'
+      )
+      </script>
+     @endif
+     @if(Session::has('messagecreate'))
+      <script>
+        Swal.fire(
+    'Create Success !!',
+    'You clicked the button to continue!',
+    'success'
+      )
+      </script>
+     @endif
       <table class="table table-striped projects">
           <thead>
               <tr>
@@ -95,4 +123,31 @@
   <!-- /.card -->
 
 </section>
+@endsection
+
+@section('myjs')
+<script>
+  $(document).ready(function(){
+  $("#categorie_order").sortable({
+      placeholder: 'ui-state-highlight',
+      update: function(event, ui){
+        var page_id_array = new Array();
+        var _token = $('input[name="_token"]').val();
+
+        $('#categorie_order tr').each(function(){
+          page_id_array.push($(this).attr("id"));
+        });
+        //alert(page_id_array);
+        $.ajax({
+          url:"{{ Route('admin.arrange') }}",
+          method:"POST",
+          data: {page_id_array:page_id_array,_token:_token},
+          success: function(data){
+            console.log(data);
+          }
+        });
+      }
+  });
+});
+</script>
 @endsection

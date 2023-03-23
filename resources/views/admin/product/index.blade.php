@@ -39,6 +39,40 @@
       </div>
     </div>
     <div class="card-body p-0">
+      @if(Session::has('messageupdate'))
+      <script>
+        Swal.fire(
+    'Update Success !!',
+    'You clicked the button to continue!',
+    'success'
+      )
+      </script>
+     @endif
+  
+     @if(Session::has('messagedelete'))
+      <script>
+        Swal.fire(
+    'Delete Success !!',
+    'You clicked the button to continue!',
+    'success'
+      )
+      </script>
+     @endif
+     @if(Session::has('messagecreate'))
+      <script>
+        Swal.fire(
+    'Create Success !!',
+    'You clicked the button to continue!',
+    'success'
+      )
+      </script>
+     @endif
+     <div class="container">
+       <div class="search">
+         <input type="search" name="search" id="search" placeholder="Enter something here...">
+       </div>
+       
+     </div>
       <table class="table table-striped projects">
           <thead>
               <tr>
@@ -47,7 +81,7 @@
                   <th style="width: 10%">Brand</th>
                   <th style="width: 20%">Name</th>
                   <th style="width: 5%">Regular Price</th>
-                  <th style="width: 5%">Sale Price (%)</th>  
+                  <th style="width: 5%">Sale Price</th>  
                   <th style="width: 5%">Status</th>
                   <th style="width: 5%">Featured</th>
                   <th style="width: 5%">Stock</th>
@@ -68,7 +102,7 @@
                   <td>{{ $namebrand}}</td>  
                   <td>{{ $item->name }}</td>
                   <td>{{ $item->price }} $</td>
-                  <td>{{ $item->sale_price }} %</td>
+                  <td>{{ $item->sale_price }} $</td>
                   <td>{{ $item->status }}</td>
                   <td>{{ $item->featured }}</td>
                   <td>{{ $item->stock }}</td>
@@ -111,4 +145,11 @@
   <!-- /.card -->
 
 </section>
+@endsection
+@section('myjs')
+    <script type="text/javascript">
+        $('#search').on('keyup',function(){
+          console.log(first);
+        })
+    </script>
 @endsection

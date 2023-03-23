@@ -43,6 +43,14 @@ class ProductController extends Controller
      */
     public function store(Request $request, Category $category)
     {
+        $request->validate([
+            'categorie_id' => 'required',
+            'brand_id' => 'required',
+            'name' => 'required|min:3',
+            'price' => 'required',
+            'sale_price' => 'required',
+            'stock' => 'required',
+        ]);
         $prodData = $request->all();
         $category = Category::all();
         $prodData['slug'] = \Str::slug($request->name);
@@ -63,7 +71,7 @@ class ProductController extends Controller
         $prodData['image'] = $imageName;
 
         Product::create($prodData);
-        return redirect()->route('admin.product.index', compact('category'));
+        return redirect()->route('admin.product.index', compact('category'))->with('messagecreate','');
     }
 
     /**
@@ -99,7 +107,15 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Product $product, Category $category, Brand $brand)
-    {
+    {   
+        $request->validate([
+            'categorie_id' => 'required',
+            'brand_id' => 'required',
+            'name' => 'required|min:3',
+            'price' => 'required',
+            'sale_price' => 'required',
+            'stock' => 'required',
+        ]);
         $prodData = $request->all();
         $category = Category::all();
         $brand = Brand::all();
@@ -122,15 +138,17 @@ class ProductController extends Controller
 
 
         $product->update($prodData);
-        return redirect()->route('admin.product.index', compact('category', 'brand'));
+        return redirect()->route('admin.product.index', compact('category', 'brand'))->with('messageupdate','');
     }
 
    
     public function destroy(Product $product)
     {
         $product->delete();
-        return redirect()->route('admin.product.index');
+        return redirect()->route('admin.product.index')->with('messagedelete','');
     }
+
+    
 
 }
     

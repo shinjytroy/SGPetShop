@@ -55,10 +55,12 @@
             <div class="form-group">
               <label for="categorie_name">Category Name</label>
               <input type="text" id="categorie_name" name="categorie_name" class="form-control" value="{{ $category->categorie_name }}">
+              <span style="color:red"> @error('categorie_name'){{$message}}@enderror</span>
             </div>
             <div class="form-group">
               <label for="description">Description</label>
               <textarea rows="4" cols="50" type="text" id="description" name="description" class="form-control" >{{$category->description}}</textarea>
+              <span style="color:red"> @error('description'){{$message}}@enderror</span>
             </div>
             <input type="submit" value="Update" class="btn btn-success">
           </form>

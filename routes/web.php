@@ -34,7 +34,6 @@ Route::get('/', [FEController::class, 'index'])->name('home');
 
 Route::get('/layout', [FEController::class, 'layout'])->name('layout');
 
-
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 
 Route::post('/login', [LoginController::class, 'login'])->name('checkLogin');
@@ -47,16 +46,21 @@ Route::post('/register', [RegisterController::class, 'store'])->name('createregi
 
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
+Route::get('/ajax-search-product', [FEController::class, 'ajaxSearch'])->name('ajax-search-product');
 // for product details
 Route::get('/product/{slug}', [FEController::class, 'product'])->name('product.details');
+Route::get('/view-category/{slug}', [FEController::class, 'viewCategory'])->name('view-category');
 
 Route::post('/add-cart', [FEController::class, 'addCart'])->name('addCart');
 
 Route::get('/shop', [FEController::class, 'shop'])->name('shop');
+Route::get('/filterBrand', [FEController::class, 'filterBrand'])->name('filterBrand');
 Route::get('/shop/category/{id}', [FEController::class, 'shopByCategory'])->name('shop.category');
+Route::get('/shop/brand/{id}', [FEController::class, 'shopByBrand'])->name('shop.brand');
 Route::get('/shop/search-products', [FEController::class, 'searchProducts'])->name('search.products');
 Route::get('/shop/featured-products', [FEController::class, 'featuredProducts'])->name('featured.products');
-Route::get('/products/sort/{sortOption}', [FEController::class,'sortProducts'])->name('sort.products');
+Route::get('/sort-by', [FEController::class, 'sortBy'])->name('sort.by');
+Route::get('/products/sort/{sortOption}', [FEController::class, 'sortProducts'])->name('sort.products');
 
 Route::get('/about', [FEController::class, 'about'])->name('about');
 Route::get('/contact', [FEController::class, 'contact'])->name('contact');
@@ -71,31 +75,33 @@ Route::post('/process-contact', [FEController::class, 'processContact'])->name('
 
 
 
-Route::group(['middleware'=>'canLogin'], function() {
+Route::group(['middleware' => 'canLogin'], function () {
     // cần login mới truy cập
     Route::post('/process-checkout', [FEController::class, 'processCheckout'])->name('processCheckout');
 
     Route::post('/process-review', [FEController::class, 'processReview'])->name('processReview');
-    
+
     Route::get('/checkout', [FEController::class, 'checkout'])->name('checkout');
 
     Route::get('/review', [FEController::class, 'review'])->name('review');
-    
+
     Route::get('/history/view/{id}', [FEController::class, 'history'])->name('history');
-    
-    Route::group(['middleware'=>'canAdmin', 'prefix'=> 'admin', 'as' => 'admin.'], function() {
+
+    Route::group(['middleware' => 'canAdmin', 'prefix' => 'admin', 'as' => 'admin.'], function () {
         // cần admin mới truy cập
         Route::get('/', [HomeController::class, 'homedb'])->name('homedb');
 
         Route::resource('/user', UserController::class);
 
         Route::resource('/category', CategoryController::class);
-        
-        Route::post('/arrange-category', [CategoryController::class,'arrangeCategory'])->name('arrangeCategory');
+
+        Route::post('/arrange', [CategoryController::class, 'arrangeCategory'])->name('arrange');
 
         Route::resource('/brand', BrandController::class);
 
         Route::resource('/product', ProductController::class);
+
+        Route::get('/product/brand/{id}', [ProductController::class, 'filterByBrand'])->name('filterByBrand');
 
         Route::resource('/orderdetail', OrderDetailController::class);
 
@@ -117,6 +123,4 @@ Route::group(['middleware'=>'canLogin'], function() {
 
         Route::resource('/footer', FooterController::class);
     });
-        
 });
-

@@ -37,9 +37,13 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'categorie_name' => 'required',
+            'description' => 'required',
+        ]);
         $cateData = $request->all();
         Category::create($cateData);
-        return redirect()->route('admin.category.index');
+        return redirect()->route('admin.category.index')->with('messagecreate','');
     }
 
     /**
@@ -73,10 +77,14 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
+        $request->validate([
+            'categorie_name' => 'required',
+            'description' => 'required',
+        ]);
         $cateData = $request->all();
         $category->update($cateData);
 
-        return redirect()->route('admin.category.index');
+        return redirect()->route('admin.category.index')->with('messageupdate','');
     }
 
     /**
@@ -88,7 +96,7 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
-        return redirect()->route('admin.category.index');
+        return redirect()->route('admin.category.index')->with('messagedelete','');
     }
     
     public function arrangeCategory(Request $request){
@@ -96,11 +104,11 @@ class CategoryController extends Controller
         $cate_id = $data["page_id_array"];
         
         foreach($cate_id as $key => $value){
-            echo $value;
-            // $category = Category::find($value);
-            // $category->categorie_order = $key;
-            // $category->save();
+            $category = Category::find($value);
+            $category->categorie_order = $key;
+            $category->save();
         }
-        echo "Updated";
+
+        return $category;
     }
 }
