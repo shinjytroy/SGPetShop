@@ -74,7 +74,7 @@
       @php
       $total=number_format($total);
       @endphp
-      <p class="summary-info grand-total"><span>Grand Total</span> <span id="totalpaypal" class="grand-total-price">{{$total}}</span></p>
+      <p class="summary-info grand-total"><span>Grand Total</span> <span id="totalpaypal" class="grand-total-price">{{$total}}$</span></p>
       <button type="submit" class="btn btn-medium">Place order now</button>
     </div>
     <div class="summary-item shipping-method">
