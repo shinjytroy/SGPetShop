@@ -64,6 +64,7 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/ajax-search-product', [FEController::class, 'ajaxSearch'])->name('ajax-search-product');
 // for product details
 Route::get('/product/{slug}', [FEController::class, 'product'])->name('product.details');
+
 Route::get('/view-category/{slug}', [FEController::class, 'viewCategory'])->name('view-category');
 
 Route::post('/add-cart', [FEController::class, 'addCart'])->name('addCart');
