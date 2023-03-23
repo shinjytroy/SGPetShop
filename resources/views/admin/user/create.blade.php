@@ -81,6 +81,12 @@
                 <option value="2" selected>User</option>
               </select>
             </div>
+            <div class="form-group">
+            
+              <input type="hidden" id="auth_type" name="auth_type" class="form-control"  value="email">
+              
+            </div>
+            
             <input type="submit" value="Create" class="btn btn-success">
           </form>
           <!-- /.card-body -->

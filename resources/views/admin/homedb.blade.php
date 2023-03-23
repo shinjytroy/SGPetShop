@@ -32,6 +32,7 @@
             $countorder=count($order);
             $countcate=count($category);
             $countuser=count($user);
+            $countbrand = count($brand);
             @endphp
 </section>
 <!-- Main content -->
@@ -39,6 +40,21 @@
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row">
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-danger">
+              <div class="inner">
+                <h3>{{$countuser}}</h3>
+
+                <p>Total Member</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-user-plus"></i>
+              </div>
+              <a href="{{Route('admin.user.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
           <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-info">
@@ -56,11 +72,11 @@
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-success">
+            <div class="small-box bg-warning">
               <div class="inner">
                 <h3>{{$countprods}}<sup style="font-size: 20px"></sup></h3>
 
-                <p>Total Product in Shope </p>
+                <p> Product in Shope </p>
               </div>
               <div class="icon">
                 <i class="fas fa-shopping-cart"></i>
@@ -68,42 +84,28 @@
               <a href="{{Route('admin.product.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
-          <!-- ./col -->
           <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-warning">
-              <div class="inner">
-                <h3>9999</h3>
-
-                <p>Total Money </p>
-              </div>
-              <div class="icon">
-                <i class="fas fa-usd"></i>
-              </div>
-              <a href="{{Route('admin.orderdetail.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-danger">
-              <div class="inner">
-                <h3>{{$countuser}}</h3>
-
-                <p>Total Member</p>
-              </div>
-              <div class="icon">
-                <i class="fas fa-user-plus"></i>
-              </div>
-              <a href="{{Route('admin.user.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-        
-       
-                  <!-- ./col -->
-                  <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-success">
+              <div class="inner">
+                <h3>{{$countbrand}}<sup style="font-size: 20px"></sup></h3>
+
+                <p>Total Brand in Shope </p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-shopping-cart"></i>
+              </div>
+              <a href="{{Route('admin.brand.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          
+          
+        
+       
+           <!-- ./col -->
+           <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-danger">
               <div class="inner">
                 <h3>{{$countcate}}<sup style="font-size: 20px"></sup></h3>
 
@@ -116,7 +118,36 @@
             </div>
           </div>
       
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3> {{$countProduct}}  </h3>
+
+                <p>Total Product Sold</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-usd"></i>
+              </div>
+              <a href="{{Route('admin.orderdetail.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
         <!-- ./col -->
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+              <div class="inner">
+                <h3> {{$countMoney}} $ </h3>
+
+                <p>Total Money Sold</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-usd"></i>
+              </div>
+              <a href="{{Route('admin.orderdetail.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          
       
       </div>
 </div>

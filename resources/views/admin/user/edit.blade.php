@@ -81,6 +81,10 @@
               <input type="text" id="phone" name="phone" class="form-control" value="{{ $user->phone }}">
             </div>
             <div class="form-group">
+              <label for="address">Address</label>
+              <input type="text" id="address" name="address" class="form-control" value="{{ $user->address }}">
+            </div>
+            <div class="form-group">
               <label for="role">Role</label>
               <select id="role" name="role" class="form-control custom-select" required>
                 <option value="1" {{ $user->role!=null && $user->role==1 ? 'selected' : ''}}>Admin</option>

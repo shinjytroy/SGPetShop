@@ -20,6 +20,46 @@ Toast.fire({
 })
     </script>
    @endif
+   @if(Session::has('messageregister'))
+    <script>
+   const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+})
+
+Toast.fire({
+  icon: 'success',
+  title: 'Login with GOOGLE successfully'
+})
+    </script>
+   @endif
+   @if(Session::has('messageregisteGithub'))
+    <script>
+   const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+})
+
+Toast.fire({
+  icon: 'success',
+  title: 'Login with GITHUB Successfully'
+})
+    </script>
+   @endif
 <div class="container">
 
   <!--MAIN SLIDE-->
@@ -87,7 +127,7 @@ Toast.fire({
           </div>
         </div>
         @php
-        $price=number_format("$item->sale_price");
+        $price=$item->sale_price;
         @endphp
         <div class="product-info">
           <a href="{{ Route('product.details', $item->slug) }}" class="product-name"><span>{{ $item->name }}</span></a>

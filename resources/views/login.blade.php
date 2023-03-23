@@ -77,9 +77,8 @@ Toast.fire({
 		<div class="or-seperator"><i>or</i></div>
         <p class="text-center">Login with your social media account</p>
         <div class="text-center social-btn">
-            <a href="#"  class="btn btn-secondary" style="color:#fff"><i class="fa fa-facebook"></i>&nbsp; Facebook</a>
-            <a href="#" class="btn btn-info"><i class="fa fa-twitter"></i>&nbsp; Twitter</a>
-			      <a href="#" class="btn btn-danger"><i class="fa fa-google"></i>&nbsp; Google</a>
+            <a href="{{Route('githublogin')}}" class="btn btn-info"><i class="fa fa-github"></i>&nbsp; GitHUB</a>
+			 <a href="{{Route('googlelogin')}}" class="btn btn-danger"><i class="fa fa-google"></i>&nbsp; Google</a>
         </div>
     </form>
     <p class="text-center text-muted small">Don't have an account? <a href="{{Route('register')}}">Sign up here!</a></p>

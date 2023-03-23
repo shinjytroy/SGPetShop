@@ -97,7 +97,7 @@
 					<div class="team-member equal-elem">
 						<div class="media">
 							<a href="#" title="{{$item->name}}">
-								<figure><img src="{{ asset('/images/'. $item->image) }}" alt="{{$item->name}}"></figure>
+								<figure><img src="{{ asset('/images/'. $item->image) }}" alt="{{$item->name}}" style="width:200 ; height:400px"></figure>
 							</a>
 						</div>
 						<div class="info">

@@ -6,11 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Models\Review;
 use App\Models\User;
 use App\Models\Product;
-use App\Models\keyword;
+use App\Models\Keyword;
 
 use Illuminate\Http\Request;
 
-class ReviewController extends Controller
+class KeywordController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,13 +19,8 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        $keyword = keyword::all();
-        $review = Review::all();
-        $product=Product::all();
-        $user=User::all();
-        return view('admin.review.index', compact(
-            'review','product','user'
-        ));
+        $keyword = Keyword::all();   
+        return view('admin.keyword.index', compact('keyword'));
     }
 
     /**
@@ -33,11 +28,11 @@ class ReviewController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create( User $user , Product $product)
+    public function create( Keyword $keyword)
     {
-        $user=User::all();
-        $product=Product::all();
-        return view ('admin.review.create',compact('user','product'));
+        $keyword=Keyword::all();
+       
+        return view ('admin.keyword.create',compact('keyword'));
     }
 
 
@@ -48,13 +43,12 @@ class ReviewController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store (Request $request , User $user , Product $product)
+    public function store (Request $request , Keyword $keyword)
     {
-        $reviewData = $request->all();
-        $user=User::all();
-        $product=Product::all();
-        Review::create($reviewData);
-        return redirect()->route('admin.review.index',compact('user','product'))->with("messagescreate","");
+        $keywordData = $request->all();
+      
+        Keyword::create($keywordData);
+        return redirect()->route('admin.keyword.index',compact('keyword'))->with("messagecreate","");
     }
 
     /**
@@ -63,7 +57,7 @@ class ReviewController extends Controller
      * @param  \App\Models\Review  $review
      * @return \Illuminate\Http\Response
      */
-
+ 
 
     /**
      * Show the form for editing the specified resource.
@@ -71,9 +65,9 @@ class ReviewController extends Controller
      * @param  \App\Models\Review  $review
      * @return \Illuminate\Http\Response
      */
-    public function edit(Review $review)
+    public function edit(Keyword $keyword)
     {
-        return view('admin.review.edit', compact('review'));
+        return view('admin.keyword.edit', compact('keyword'));
     }
 
     /**
@@ -83,11 +77,11 @@ class ReviewController extends Controller
      * @param  \App\Models\Review  $review
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Review $review)
+    public function update(Request $request, Keyword $keyword)
     {
-        $reviewData = $request->all();
-        $review->update($reviewData);
-        return redirect()->route('admin.review.index')->with('messageupdate' , '');
+        $keywordData = $request->all();
+        $keyword->update($keywordData);
+        return redirect()->route('admin.keyword.index')->with('messageupdate' , '')->with("messageupdate","");
     }
 
     /**
@@ -96,9 +90,9 @@ class ReviewController extends Controller
      * @param  \App\Models\Review  $review
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Review $review)
+    public function destroy(Keyword $keyword)
     {
-        $review->delete();
-        return redirect()->route('admin.review.index')->with('messagedelete' , '');
+        $keyword->delete();
+        return redirect()->route('admin.keyword.index')->with("messagedelete","");
     }
 }

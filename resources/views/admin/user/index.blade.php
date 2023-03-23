@@ -75,8 +75,8 @@
                   <th style="width: 10%">Phone</th>
                   <th style="width: 15%">Address</th>
                   <th style="width: 10%" class="text-center">Role</th>
-                  <th style="width: 10%">Password</th>
-                  
+                  <th style="width: 10%">Auth Type</th>
+                  <th></th>
                   <th></th>
               </tr>
           </thead>
@@ -89,22 +89,21 @@
                   <td>{{ $item->phone }}</td>
                   <td>{{ $item->address }}</td>
                   <td class="project-state">
-                   @if(Session::get('user')->name == "Adminshop")
-                   @if ($item->role != null && $item->role == 1 && $item->name !="Adminshop")
+                   @if(Session::get('user')->email == "Adminshop@gmail.com")
+                   @if ($item->role != null && $item->role == 1 && $item-email != "Adminshop@gmail.com")
                         <span class="badge badge-danger">Admin-Staff</span>
-                    @elseif ($item->role != null && $item->role == 1 && $item->name =="Adminshop")
+                    @elseif ($item->role != null && $item->role == 1 && $item->email == "Adminshop@gmail.com")
                     <span class="badge badge-danger">Admin</span>
                     @else
                       <span class="badge badge-success">User</span>
                     @endif
                   </td>
-                 <td>{{$item->password}}</td>
+                  @if(Session::get('user')->email == "Adminshop@gmail.com")
+                  <td>{{ $item->password }}</td>
+                   <td>{{ $item->auth_type }}</td>
+                 @endif
                   <td class="project-actions text-right">
-                      <a class="btn btn-primary btn-sm" href="#">
-                          <i class="fas fa-folder">
-                          </i>
-                          View
-                      </a>
+                      
                       <a class="btn btn-info btn-sm" href="{{ Route('admin.user.edit', $item->id) }}">
                           <i class="fas fa-pencil-alt">
                           </i>
@@ -122,30 +121,27 @@
                   </td>
                  
                   @else
-                  @if ($item->role != null && $item->role == 1 && $item->name !="Adminshop")
+                  @if ($item->role != null && $item->role == 1 && $item->email != "Adminshop@gmail.com")
                         <span class="badge badge-danger">Admin-Staff</span>
-                    @elseif ($item->role != null && $item->role == 1 && $item->name =="Adminshop")
+                    @elseif ($item->role != null && $item->role == 1 && $item->email == "Adminshop@gmail.com")
                     <span class="badge badge-danger">Admin</span>
                     @else
                       <span class="badge badge-success">User</span>
                     @endif
                   </td>
-                  <td>*****</td>
-                 @if ($item->role != null   && $item->name !="Adminshop" )
+                   <td>{{ $item->auth_type }}</td>
+                  
+                 @if ($item->role != null   && $item->email != "Adminshop@gmail.com" )
                      
                   <td class="project-actions text-right">
-                      <a class="btn btn-primary btn-sm" href="#">
-                          <i class="fas fa-folder">
-                          </i>
-                          View
-                      </a>
+                   
                       <a class="btn btn-info btn-sm" href="{{ Route('admin.user.edit', $item->id) }}">
                           <i class="fas fa-pencil-alt">
                           </i>
                           Edit
                       </a>
                       @if ($item->role ==2)
-                      <form action="{{ Route('admin.user.destroy', $item->id) }}" method="post" style="display:inline-block">
+                      <form action="{{ Route('admin.user.destroy', $item->id) }}" method="pos t" style="display:inline-block">
                         @csrf
                         @method("delete")
                         <button type="submit" class="btn btn-danger btn-sm">

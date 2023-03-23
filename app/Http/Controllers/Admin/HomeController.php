@@ -21,12 +21,23 @@ class HomeController extends Controller
         $brand = Brand::all();
         $prods = Product::all();
         $order = Order::all();
+        $orderdetail = OrderDetail::all();
+        $countMoney=0;
+        $countProduct=0;
+        foreach($orderdetail as $item){
+            $countMoney  += ($item->price * $item->quantity);
+            $countProduct += $item->quantity;
+            
+        }
+       
         $ord = OrderDetail::all();
         $review = Review::all();
         $user = User::all();
         $coupon = Coupon::all();
         
-        return view ('admin.homedb',compact('category','brand','prods' ,'order','ord','review','user', 'coupon'));
+        return view ('admin.homedb',compact(
+            'category','brand','prods' ,'order','ord','review','user', 'coupon','orderdetail','countMoney','countProduct'
+        ));
     }
 
 }

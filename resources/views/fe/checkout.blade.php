@@ -5,7 +5,7 @@
 <div class="wrap-breadcrumb">
   <ul>
     <li class="item-link"><a href="{{Route('home')}}" class="link">home</a></li>
-    <li class="item-link"><span>login</span></li>
+    <li class="item-link"><span>Check Out</span></li>
   </ul>
 </div>
 <div class=" main-content-area">
@@ -69,18 +69,12 @@
           <span>Cash on Delivery</span>
           <span class="payment-desc"> </span>
         </label>
-        <label class="payment-method">
-          <input name="payment" id="payment" value="PAYPAL"type="radio"  >
-          <span>Paypal</span>
-          <span class="payment-desc"><div id="paypal-button" class="total"></div></span>
-        <div id="paypal-button" class="total"></div>
-        </label>
       </div>
 
       @php
       $total=number_format($total);
       @endphp
-      <p class="summary-info grand-total"><span>Grand Total</span> <span id="totalpaypal" class="grand-total-price">{{$total}}</span></p>
+      <p class="summary-info grand-total"><span>Grand Total</span> <span id="totalpaypal" class="grand-total-price">{{$total}}$</span></p>
       <button type="submit" class="btn btn-medium">Place order now</button>
     </div>
     <div class="summary-item shipping-method">
@@ -116,7 +110,7 @@
               </div>
             </div>
             @php
-            $price=number_format("$item->sale_price");
+            $price=$item->sale_price;
             @endphp
             <div class="product-info">
               <a href="{{ Route('product.details', $item->slug) }}" class="product-name"><span>{{ $item->name }}</span></a>
@@ -132,49 +126,5 @@
 
 </div><!--end main content area-->
 </div><!--end container-->
-<script src="https://www.paypalobjects.com/api/checkout.js"></script>
-<script>
-	paypal.Button.render({
-	  // Configure environment
-	  env: 'sandbox',
-	  client: {
-		sandbox: 'AfQkAK-Vb1re9ccSjUXorxkpBmr259PurmV3SoonN5timhx2Nhk43WDqSadA-mSNfiKPce7q-lN0C5vs',
-		production: 'demo_production_client_id'
-	  },
-	  // Customize button (optional)
-	  locale: 'en_US',
-	  style: {
-		size: 'medium',
-		color: 'gold',
-		shape: 'pill',
-	  },
-  
-	  // Enable Pay Now checkout flow (optional)
-	  commit: true,
-  
-	  // Set up a payment
-	  payment: function(data, actions) {
-		return actions.payment.create({
-		  transactions: [{
-			amount: {
-			  total: '{{$total}}',
-			  currency: 'USD'
-			}
-		  }]
-		});
-	  },
-	  // Execute the payment
-	  onAuthorize: function(data, actions) {
-		return actions.payment.execute().then(function() {
-		  // Show a confirmation message to the buyer
-		  window.alert('Thank you for your purchase!');
-		});
-	  }
-
-    // return view('thanksyou');
-	}, '#paypal-button');
-  
-	
-	</script>
-@endsection
+@endsection 
 

@@ -1,5 +1,14 @@
 @extends('fe.layout')
 @section('contents')
+@if(Session::has('messageupdate'))
+    <script>
+      Swal.fire(
+  'Edit Success !!',
+  'You clicked the button to continue!',
+  'success'
+    )
+    </script>
+   @endif
 <div class="container">
 
 <div class="wrap-breadcrumb">
@@ -10,28 +19,89 @@
 </div>
 <div class=" main-content-area">
 @if (Session::get('user'))
+    @php
+    $id =Session::get('user')->id;
+          
+    $user = DB::table('users')->where('id','=',$id)->first();   
+@endphp
 <div class="wrap-iten-in-cart">
   <h3 class="box-title"> Information Member</h3>
-<h4> Name : {{Session::get('user')->name}} </h4>
-<h4> Email : {{Session::get('user')->email}} </h4>
-<h4> Phone : {{Session::get('user')->phone}} </h4>
-<h4> Address : {{Session::get('user')->address}} </h4>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col"></th>
+     
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Name</th>
+      <td>{{$user->name}}</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+    <th scope="row">Email</th>
+      <td>{{$user->email}}</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+    @if($user->phone != null)
+    <th scope="row">Phone</th>
+      <td>{{$user->phone}}</td>
+      <td></td>
+      <td></td>
+    </tr>
+    @else
+    <th scope="row">Phone</th>
+      <td>No Information</td>
+      <td></td>
+      <td></td>
+    </tr>
+    @endif
+
+    @if($user->address != null)
+    <th scope="row">Address</th>
+      <td>{{$user->address}}</td>
+      <td></td>
+      <td></td>
+    </tr>
+    @else
+    <th scope="row">Address</th>
+      <td>No Information</td>
+      <td></td>
+      <td></td>
+    </tr>
+    @endif
+  </tbody>
+</table>
+<h3 class="box-title"> Edit Information </h3>
+<button type="button" class="btn btn-info"><a href="{{Route('edituser',$user->id)}}">Edit</a></button>
+
+
 </div>
+<br>
 <div class="wrap-iten-in-cart">
   <h3 class="box-title"> History Order</h3>
   <ul class="products-cart">  
  
-    <table>
-        <tr>
-        <td> <div class="price-field produtc-price"><p class="price">STT</p></div> </td>
-          <td> <div class="price-field produtc-price"><p class="price">Date Order </p></div> </td>
-          <td> <div class="price-field produtc-price"><p class="price">Shipping Name </p></div></td>
-          <td> <div class="price-field produtc-price"><p class="price">Shipping Address </p></div></td>
-          <td> <div class="price-field produtc-price"><p class="price">Phone Number  </p></div></td>
-          <td> <div class="price-field produtc-price"><p class="price">Email  </p></div></td>
-          <td></td>
-        </tr>
-        @php 
+  <table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Date Order</th>
+      <th scope="col">Shipping Name</th>
+      <th scope="col">Shipping Address</th>
+      <th scope="col">Phone Number</th>
+      <th scope="col">Email</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+       @php 
            $id =Session::get('user')->id;
            $count = 0 ;
            $order = DB::table('orders')->where('user_id','=',$id)->get();   
@@ -39,27 +109,42 @@
             @foreach($order as $item )
               @php
               $count++;
-                        
-            
-            @endphp
-        <tr>
-          <td> <div class="price-field produtc-price"><p class="price">{{$count}}</p></div></td>
-          <td> <div class="price-field produtc-price"><p class="price">{{ $item->order_date }} </p></div></td>
-          <td> <div class="price-field produtc-price"><p class="price">{{ $item->shipping_name }} </p></div></td>
-          <td><div class="price-field produtc-price"><p class="price">{{ $item->shipping_address }} </p></div></td>
-          <td> <div class="price-field produtc-price"><p class="price">{{ $item->shipping_phone }} </p></div></td>
-          <td><div class="price-field produtc-price"><p class="price">{{ $item->shipping_email }} </p></div></td>
-          <td> <div class="price-field produtc-price"><p class="price"><a href="{{Route('history', $item->id)}}">View</a></p></div></td>
+             @endphp
+             @if($item->id >0)      
+    <tr>
+    
+      <th scope="row">{{$count}}</th>
+      <td>{{ $item->order_date }}</td>
+      <td>{{ $item->shipping_name }}</td>
+      <td>{{$item->shipping_address}}</td>
+      <td>{{$item->shipping_phone}}</td>
+      <td>{{ $item->shipping_email }}</td>
+      @if ($item->status == 1  ) 
+                  <td><span class="badge badge-success" style="background: green">Processing</span></td>   
+                  @elseif ($item->status == 2 )   
+                  <td><span class="badge badge-danger" style="background: rgb(255, 0, 0)">Cancel</span></td>   
+                  @else
+                  <td><span class="badge badge-warning" style="background: rgb(226, 226, 12)">Finish</span></td>    
+                  @endif
+      <td><button type="button" class="btn btn-outline-success"  ><a href="{{Route('history', $item->id)}}" >View</a></button></td>
+      
+    </tr>
+    @else
+    <tr>
+      <td>No history order </td>
+    </tr>   
+    @endif 
+    @endforeach
+  </tbody>
+</table>
+   
         
-        </tr>
-        
-     @endforeach
+    
      
-    </table>
    
       
    
-  </ul>
+  
 </div>
 
 @else
@@ -98,5 +183,7 @@
 
 </div><!--end main content area-->
 </div><!--end container-->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
 @endsection
 

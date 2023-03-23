@@ -19,29 +19,51 @@
 			<li class="item-link"><span>Contact us</span></li>
 		</ul>
 	</div>
+	
 	<div class="row">
 		<div class=" main-content-area">
 			<div class="wrap-contacts ">
 				<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
 					<div class="contact-box contact-form">
+					
 						<h2 class="box-title">Leave a Message</h2>
+						@if (Session::get('user'))
 						<form action="{{Route('processContact')}}" method="post" name="frm-contact">
 							@csrf
 							<label for="name">Name<span>*</span></label>
-							<input type="text" value="" id="name" name="name" >
+							<input type="text"  id="name" name="name" required value ="{{Session::get('user')->name}}">
 
 							<label for="email">Email<span>*</span></label>
-							<input type="text" value="" id="email" name="email" >
+							<input type="text"  id="email" name="email" required value="{{Session::get('user')->email}}" >
 
-							<label for="phone">Number Phone</label>
-							<input type="text" value="" id="phone" name="phone" >
+							<label for="phone">Number Phone<span>*</span></label>
+							<input type="text" id="phone" name="phone" required value="{{Session::get('user')->phone}} ">
 
 							<label for="comment">Comment</label>
-							<textarea name="comment" id="comment"></textarea>
+							<textarea name="comment" id="comment" required></textarea>
 
 							<input type="submit" name="ok" value="Submit" >
 							
 						</form>
+						@else
+						<form action="{{Route('processContact')}}" method="post" name="frm-contact">
+							@csrf
+							<label for="name">Name<span>*</span></label>
+							<input type="text" value="" id="name" name="name" required placeholder="Input Name" >
+
+							<label for="email">Email<span>*</span></label>
+							<input type="text" value="" id="email" name="email" required placeholder="Example:abc@gmail.com">
+
+							<label for="phone">Number Phone<span>*</span></label>
+							<input type="text" value="" id="phone" name="phone" required placeholder="Number Phone" >
+
+							<label for="comment">Comment</label>
+							<textarea name="comment" id="comment" required></textarea>
+
+							<input type="submit" name="ok" value="Submit" >
+							
+						</form>
+						@endif
 					</div>
 				</div>
 				<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
@@ -52,20 +74,14 @@
 						</div>
 						<h2 class="box-title">Contact Detail</h2>
 						<div class="wrap-icon-box">
-							@foreach ($footer as $item)
-								
-						
-							<div class="icon-box-item">
+							@foreach ($footer as $item)											
+					<div class="icon-box-item">
 								<i class="fa fa-envelope" aria-hidden="true"></i>
 								<div class="right-info">
 									<b>Email</b>
 									<p>{{$item->email}}</p>
 								</div>
-							</div>
-							
-
-							
-
+							</div>							
 							<div class="icon-box-item">
 								<i class="fa fa-phone" aria-hidden="true"></i>
 								<div class="right-info">

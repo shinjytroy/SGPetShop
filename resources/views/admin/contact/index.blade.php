@@ -5,14 +5,14 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1>Review List Manage</h1>
+        <h1>Contact List Manage</h1>
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="{{ Route('admin.homedb') }}">Home</a></li>
           <li class="breadcrumb-item active">Contact</li>
         </ol>
-      </div>
+      </div>  
     </div>
   </div><!-- /.container-fluid -->
 </section>
@@ -28,14 +28,12 @@
   )
   </script>
  @endif
-  <!-- Default box -->
-  <div class="card">
+ <!-- Default box -->
+ <div class="card">
     <div class="card-header">
       
-                @php
-                $countreview = count($contacts);
-                @endphp
-      <h3 class="card-title">Having : {{$countreview}}  Contacts in List</h3>
+               
+      <h3 class="card-title">  Contact in List</h3>
       
       <div class="card-tools">
         <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -47,50 +45,102 @@
       </div>
     </div>
     <div class="card-body p-0">
-      <table class="table table-striped projects">
-          <thead>
-              <tr>
-                  <th style="width: 10%">Id</th>
-                  <th style="width: 10%">Name</th>
-                  <th style="width: 15%">Email</th>
-                  <th style="width: 10%">Phone</th>
-                  <th style="width: 40%">Comment</th>
-                  <th style="width: 10%">Created_at</th>
-                  
+ 
+          <div class="card card-primary card-outline">
+            <div class="card-header">
+              <h3 class="card-title">Inbox</h3>
 
-                  <th></th>
-              </tr>
-          </thead>
-          <tbody>
-            @foreach($contacts as $item)
-              <tr>
-                  <td>{{ $item->id }}</td>  
-                  <td>{{ $item->name }}</td>  
-                  <td>{{ $item->email }}</td>  
-                  <td>{{ $item->phone }}</td>
-                  <td>{{ $item->comment }}</td>
-                  <td>{{ $item->created_at }}</td>
-              <td></td>
-                 
-                  <td class="project-actions text-right">
-                      <form action="{{ Route('admin.contact.destroy', $item->id) }}" method="post" style="display:inline-block">
-                        @csrf
-                        @method("delete")
-                        <button type="submit" class="btn btn-danger btn-sm">
-                            <i class="fas fa-trash">
-                            </i>
-                            Delete
-                        </button>
-                      </form>
-                  </td> 
-              </tr>
-            @endforeach
-          </tbody>
-      </table>
-    </div>
-    <!-- /.card-body -->
-  </div>
-  <!-- /.card -->
+              <div class="card-tools">
+                <div class="input-group input-group-sm">
+                  <input type="text" class="form-control" placeholder="Search Mail">
+                  <div class="input-group-append">
+                    <div class="btn btn-primary">
+                      <i class="fas fa-search"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /.card-tools -->
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body p-0">
+              <div class="mailbox-controls">
+                <!-- Check all button -->
+                <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="far fa-square"></i>
+                </button>
+                <div class="btn-group">
+                  <button type="button" class="btn btn-default btn-sm">
+                    <i class="far fa-trash-alt"></i>
+                  </button>
+                  <button type="button" class="btn btn-default btn-sm">
+                    <i class="fas fa-reply"></i>
+                  </button>
+                  <button type="button" class="btn btn-default btn-sm">
+                    <i class="fas fa-share"></i>
+                  </button>
+                </div>
+                <!-- /.btn-group -->
+                <button type="button" class="btn btn-default btn-sm">
+                  <i class="fas fa-sync-alt"></i>
+                </button>
+                <div class="float-right">
+                  1-50/200
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-default btn-sm">
+                      <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button type="button" class="btn btn-default btn-sm">
+                      <i class="fas fa-chevron-right"></i>
+                    </button>
+                  </div>
+                  <!-- /.btn-group -->
+                </div>
+                <!-- /.float-right -->
+              </div>
+              <div class="table-responsive mailbox-messages">
+                <table class="table table-hover table-striped">
+                  <tbody>
+                    @php
+                    
+
+                    @endphp
+                  @foreach($contacts as $item)
+                  <tr>
+                    <td>
+                      <div class="icheck-primary">
+                        <input type="checkbox" value="" id="check1">
+                        <label for="check1"></label>
+                      </div>
+                    </td>
+                    <td class="mailbox-name">{{$item->name}}</td>
+                    <td class="mailbox-name"><a href="#">{{$item->email}}</a></td>
+                    <td class="mailbox-name">Phone : {{$item->phone}}</td>
+                     <td class="project-actions text-right">
+                     
+                      <a class="btn btn-info btn-sm" href="{{ Route('admin.contact.view', $item->id) }}">
+                          <i class="fas fa-pencil-alt">
+                          </i>
+                          view
+                      </a>
+                   
+                    </td>
+                    <td class="mailbox-attachment"></td>
+                    <td class="mailbox-date">{{ $item->created_at}}</td>
+                  </tr> 
+                  @endforeach
+                  </tbody>
+                </table>
+                <!-- /.table -->
+              </div>
+              <!-- /.mail-box-messages -->
+            </div>
+            <!-- /.card-body -->
+            
+          
+          
+          <!-- /.card -->
+        </div>
 
 </section>
+    </div>
 @endsection

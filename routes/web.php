@@ -17,8 +17,11 @@ use App\Http\Controllers\Admin\InformationController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\FooterController;
 use App\Http\Controllers\Admin\CouponsController;
+use App\Http\Controllers\Admin\KeywordController;
+
 use App\Http\Controllers\FE\HomeController as FEController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\authController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,6 +32,18 @@ use App\Http\Controllers\SearchController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+use Laravel\Socialite\Facades\Socialite;
+ 
+Route::get('/auth/github/redirect',[authController::class ,'githubredirect'] )->name('githublogin');
+  
+Route::get('/auth/github/callback',[authController::class ,'githubcallback'] );
+
+
+Route::get('/auth/google/redirect',[authController::class ,'googleredirect'] )->name('googlelogin');
+  
+Route::get('/auth/google/callback',[authController::class ,'googlecallback'] );
+ 
+
 
 Route::get('/', [FEController::class, 'index'])->name('home');
 
@@ -80,16 +95,22 @@ Route::group(['middleware' => 'canLogin'], function () {
     Route::post('/process-checkout', [FEController::class, 'processCheckout'])->name('processCheckout');
 
     Route::post('/process-review', [FEController::class, 'processReview'])->name('processReview');
-
+    
+    Route::post('/process-edituser/{id}', [FEController::class, 'processEditUser'])->name('processEditUser');
+    
     Route::get('/checkout', [FEController::class, 'checkout'])->name('checkout');
 
     Route::get('/review', [FEController::class, 'review'])->name('review');
 
     Route::get('/history/view/{id}', [FEController::class, 'history'])->name('history');
 
-    Route::group(['middleware' => 'canAdmin', 'prefix' => 'admin', 'as' => 'admin.'], function () {
+    Route::get('/edituser/view/{id}', [FEController::class, 'edituser'])->name('edituser');
+
+    Route::group(['middleware'=>'canAdmin', 'prefix'=> 'admin', 'as' => 'admin.'], function() {
         // cần admin mới truy cập
         Route::get('/', [HomeController::class, 'homedb'])->name('homedb');
+
+      
 
         Route::resource('/user', UserController::class);
 
@@ -120,6 +141,14 @@ Route::group(['middleware' => 'canLogin'], function () {
         Route::resource('/information', InformationController::class);
 
         Route::resource('/contact', ContactController::class);
+
+        Route::get('/contact/view/{id}', [ContactController::class, 'view'])->name('contact.view');
+
+        Route::get('/contact/sendMail/{id}', [ContactController::class, 'sendMail'])->name('contact.sendMail');
+
+        Route::post('process-sendMail', [ContactController::class, 'processsendMail'])->name('processsendMail');
+
+        Route::resource('/keyword', KeywordController::class);
 
         Route::resource('/footer', FooterController::class);
     });

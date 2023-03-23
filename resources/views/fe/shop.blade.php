@@ -5,19 +5,20 @@
 	@if(Session::has('messagereviewsucess'))
     <script>
       Swal.fire(
-  'Thank you review ,Continue Shpping!!',
+  'Thank you review ,Continue Shopping!!',
   'You clicked the button to continue!',
   'success'
     )
     </script>
    @endif
-   @if(Session::has('messagereviewfail'))
-    <script>
-      Swal.fire(
-  'Err!!',
-  'You clicked the button to continue!',
-  'success'
-    )
+   @if(Session::has('messagereviewfalse'))
+   <script>
+     Swal.fire({
+  icon: 'error',
+  title: 'Oops...',
+  text: 'Invalid character wrong! Please Review again',
+  
+})
     </script>
    @endif
 		<div class="container">
@@ -156,6 +157,7 @@
 											<a href="{{ Route('product.details', $item->slug) }}" class="product-name"><span>{{$item->name}}</span></a>
 											<div class="wrap-price"><span class="product-price">${{ $item->sale_price }}</span></div>
 										</div>
+										
 									</div>
 								</li>
 								@endforeach

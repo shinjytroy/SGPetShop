@@ -17,6 +17,11 @@ use App\Models\Membership;
 use App\Models\Review;
 use App\Models\Footer;
 use App\Models\User;
+use App\Models\Keyword;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
+
 
 use Illuminate\Contracts\Session\Session;
 use PDO;
@@ -279,23 +284,25 @@ class HomeController extends Controller
         }
         return view('fe.checkout', compact('total', 'footer', 'category', 'prods', 'order', 'brands'));
     }
-    public function processCheckout(Request $request)
-    {
-        $cart = $request->all();
-        $cart['order_date'] = date('Y-m-d', time());
-        $cart['user_id'] = $request->session()->get('user')->id;
-        $ord = Order::create($cart);
-        //dd($ord);
-        // luu order details
-        $cart = $request->session()->get('cart');
-        foreach ($cart as $item) {
-            $od = new OrderDetail();
-            $od->order_id = $ord->id;
-            $od->product_id = $item->product->id;
-            $od->price = $item->product->price;
-            $od->quantity = $item->quantity;
-            $od->save();
-        }
+    public function processCheckout(Request $request ){
+       $cart =$request->all();
+       $cart['order_date']=date('Y-m-d' , time());
+       $cart['user_id']=$request->session()->get('user')->id;
+       $cart['status']=1;
+       $ord = Order::create($cart);
+       //dd($ord);
+       // luu order details
+       $cart = $request->session()->get('cart');
+       foreach ($cart as $item){
+        $od = new OrderDetail();
+        $od->order_id=$ord->id;
+        $od->product_id=$item->product->id;
+        $od->price=$item->product->price;
+        $od->quantity=$item->quantity;
+        
+        $od->save();
+
+       }
         $request->session()->forget('cart');
         $footer = Footer::all();
         return view('fe.thankyou', compact('footer'));
@@ -326,10 +333,48 @@ class HomeController extends Controller
     }
     public function person(Request $request)
     {
+        $user = User::all();
+        $footer= Footer::all();   
+        $order = Order::all()   ;
+         return view ('fe.person' , compact('footer','order','user'));
+       
+    }
 
-        $footer = Footer::all();
-        $order = Order::all();
-        return view('fe.person', compact('footer', 'order'));
+    public function edituser(Request $request ,$id)
+    {
+        $footer =Footer::all();
+        $order =Order::all();     
+        $user = User::where('id','=',$id)->first();
+       
+       
+        return view('fe.edituser',compact('footer' , 'order','user',));  
+       
+    }
+    public function processEditUser(Request $request ,User $user)
+    {
+        
+        $footer =Footer::all();
+        $order =Order::all();   
+        $request->validate([
+            'name' => 'required|min:3|max:50',
+            
+            'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+            'address' => 'required|min:3|max:50',
+            'password' => 'min:6|max:12|required_with:confirm',
+            
+        ]);
+        $id = $request->id;
+        $name = $request->input('name');
+      
+        $phone= $request->input('phone');   
+        $address= $request->input('address');   
+        $password= $request->input('password');  
+        DB::update('update users set name = ? ,phone = ?,address = ?,password = ? where id = ?',[
+            $name, $phone,$address,$password,$id
+        ]);
+       
+        return redirect()->route('person' , compact('footer','order','user'))->with("messageupdate","");
+       
     }
     public function history(Request $request,  $id)
     {
@@ -339,20 +384,34 @@ class HomeController extends Controller
         $order = OrderDetail::where('order_id', '=', $id)->get();
         return view('fe.history', compact('footer', 'prod', 'user', 'order'));
     }
-    public function review(Request $request)
-    {
-        $footer = Footer::all();
-        return view('fe.review', compact('footer'));
+    public function review(Request $request){   
+        $footer= Footer::all(); 
+        $keyword = Keyword::all();
+        
+        return view('fe.review',compact('footer' , 'keyword'));        
     }
-    public function processReview(Request $request)
-    {
-        $rv = $request->all();
-        $footer = Footer::all();
+    public function processReview(Request $request){   
+        $rv =$request->all();
+        $footer= Footer::all();  
+      
+        $rv['user_id']=$request->session()->get('user')->id;
+        
+        $description =  $request->description;
+        $keyword = Keyword::where   ('keyword' ,"LIKE" , $description )->first();
+       
+        if ($keyword != null) {
+        //Tìm thấy
+        return redirect()->route('shop',compact('footer','keyword'))->with('messagereviewfalse','');              
 
-        $rv['user_id'] = $request->session()->get('user')->id;
+        } else {
+        // Không tìm thấy
         $review = Review::create($rv);
-        // luu review
-        $request->session()->forget('review');
-        return redirect()->route('shop', compact('footer'))->with('messagereviewsucess', '');
+
+                // luu review
+                $request->session()->forget('review');
+                 return redirect()->route('shop',compact('footer','keyword'))->with('messagereviewsucess','');                            
+        }       
     }
+   
+
 }

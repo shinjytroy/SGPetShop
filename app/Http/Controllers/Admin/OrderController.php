@@ -65,7 +65,12 @@ class OrderController extends Controller
         return view('admin.order.edit', compact('order'));
     }
 
-
+    public function update(Request $request, Order $order)
+    {
+        $orders = $request->all(); 
+        $order->update($orders);
+        return redirect()->route('admin.order.index')->with('messageupdate','');
+    }
     public function destroy(Order $order)
     {
         $order->delete();

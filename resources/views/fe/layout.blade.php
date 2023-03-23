@@ -135,18 +135,27 @@
 									</div>
 								</a>
 							</div>
+
 							<div class="wrap-icon-section wishlist">
 								<a href="{{asset('person')}}" class="link-direction">
 									<i class="fa fa-user" aria-hidden="true"></i>
+									
 									<div class="left-info">
-									@if (Session::get('user'))
-										<span class="index"></span>
-										<span class="title"> {{Session::get('user')->name}}</span>
-									@endif											
+																
 									</div>
+									
 								</a>
+								
 							</div>	
-							
+							<div class="wrap-icon-section wishlist">
+							@if (Session::get('user'))
+								<div class="title"><i class="fa fa-star" aria-hidden="true"></i>
+									<i class="fa fa-star" aria-hidden="true"></i>
+									<i class="fa fa-star" aria-hidden="true"></i>
+									<i class="fa fa-star" aria-hidden="true"></i>
+									<i class="fa fa-star" aria-hidden="true"></i>{{Session::get('user')->name}} </div>
+								@endif	
+							</div>
 
 						</div>
 

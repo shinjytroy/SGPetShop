@@ -1,6 +1,15 @@
 @extends('admin.layout.layout')
 
 @section('contents')
+@if(Session::has('messageupdate'))
+    <script>
+      Swal.fire(
+  'Update Success !!',
+  'You clicked the button to continue!',
+  'success'
+    )
+    </script>
+   @endif
 <section class="content-header">
   <div class="container-fluid">
     <div class="row mb-2">
@@ -55,12 +64,16 @@
                   </th>
               </tr>
           </thead>
+          @php
+          $countMoney=0;
+          @endphp
           <tbody>
             @foreach($ord as $item)
             @php
             $productName = DB::table('products')->where('id',"=",$item->product_id)->value('name');  
             $productImage = DB::table  ('products')->where('id',"=",$item->product_id)->value('image');
-
+           
+            $countMoney += number_format($item->price * $item->quantity);
             @endphp
               <tr>
               <td>{{ $item->order_id }}</td>
@@ -68,7 +81,7 @@
                   <td><img src="{{ asset('/images/' .$productImage) }}" alt="" width="100px" height="100px"> </td>      
                   <td>{{ number_format($item->price) }}</td>
                   <td>{{ $item->quantity }}</td>
-                  <td>{{ number_format($item->price * $item->quantity) }}</td>     
+                  <td>{{ number_format($item->price * $item->quantity) }} $</td>     
                   <td>{{ $item->created_at }}</td>            
                   <td class="project-actions text-right">
             
@@ -82,21 +95,15 @@
                           </i>
                           Edit
                       </a>
-                      <form action="#" method="post" style="display:inline-block">
-                        @csrf
-                        @method("delete")
-                        <button type="submit" class="btn btn-danger btn-sm">
-                            <i class="fas fa-trash">
-                            </i>
-                            Delete
-                        </button>
-                      </form>
+                     
                   </td>
               </tr>
             @endforeach
           </tbody>
       </table>
     </div>
+
+    <div>{{ $countMoney}}</div>
     <!-- /.card-body -->
   </div>
   <!-- /.card -->
